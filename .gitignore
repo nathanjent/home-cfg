@@ -2,11 +2,23 @@
 Desktop
 Documents
 Downloads
-Dropbox
 Music
 Pictures
 Videos
 
+# Common Storage Apps
+Dropbox
+OneDrive
+
+# Windows stuff
+AppData
+Contacts
+Favorites
+Links
+Searches
+VirtualBox\ VMs
+*.lnk
+.thumbnails
 
 # file types to ignore
 *.swp
@@ -18,7 +30,29 @@ git/
 # security issues
 .ssh
 
+# Dependency manager repositories
+.cargo
+.ivy2
+.m2
+.p2
+
+# editor extensions
+.vscode/extensions
+
 # other
+eclipse
+IzPack
+.atom
+ntuser.*
+.ant
+.eclipse
+.jmc
+.gimp*
+.nbi
+.nbprofiler
+.netbeans*
+.oracle*
+.VirtualBox
 .vim/plugged
 .ICEauthority
 .Xauthority
