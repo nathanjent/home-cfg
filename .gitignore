@@ -1,7 +1,44 @@
+# typical home storage directories
+Desktop
 Documents
 Downloads
+Dropbox
 Music
 Pictures
-Video
+Videos
+
+
+# file types to ignore
 *.swp
 ~*
+
+# other git repositories
+git/
+
+# security issues
+.ssh
+
+# other
+.vim/plugged
+.ICEauthority
+.Xauthority
+.Xclients
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.dir_colors
+.dmrc
+.esd_auth
+.extend.bashrc
+.lesshst
+.profile
+.steampath
+.steampid
+.viminfo
+.xfce4-session.verbose-log
+.xfce4-session.verbose-log.last
+.xinitrc
+.xprofile
+.xsession-errors
+.xsession-errors.old
