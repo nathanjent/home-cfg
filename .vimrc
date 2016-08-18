@@ -1,4 +1,5 @@
 set expandtab tabstop=4 shiftwidth=4
+set number cpoptions+=n
 
 
 call plug#begin('~/.vim/plugged')

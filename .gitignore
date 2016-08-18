@@ -40,6 +40,8 @@ git/
 .vscode/extensions
 
 # other
+.subversion
+Documents_backup
 eclipse
 IzPack
 .atom
