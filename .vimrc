@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
+Plug 'vim-scripts/editorconfig-vim'
 
 call plug#end()
 
