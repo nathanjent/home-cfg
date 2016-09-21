@@ -40,6 +40,12 @@ git/
 # editor extensions
 .vscode/extensions
 
+# vim generated
+.vim/plugged
+vimfiles/plugged
+.viminfo
+_viminfo
+
 # other
 .subversion
 Documents_backup
@@ -56,7 +62,6 @@ ntuser.*
 .netbeans*
 .oracle*
 .VirtualBox
-.vim/plugged
 .ICEauthority
 .Xauthority
 .Xclients
@@ -72,7 +77,6 @@ ntuser.*
 .profile
 .steampath
 .steampid
-.viminfo
 .xfce4-session.verbose-log
 .xfce4-session.verbose-log.last
 .xinitrc
