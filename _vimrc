@@ -18,7 +18,6 @@ call plug#end()
 set hidden
 let g:EditorConfig_exec_path = '$HOME/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
 let g:racer_cmd = "C:/Users/njent/.cargo/bin/racer"
-let $RUST_SRC_PATH="C:/git/rust/src/"
 
 set statusline=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
 let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
