@@ -1,4 +1,5 @@
 set nocompatible           " Explicitly set not vi compatible mode.
+set guioptions -=T         " Remove toolbar option in gui vim
 
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
@@ -52,7 +53,7 @@ set updatecount =100
 "set undodir     =$HOME/vimfiles/undo/
 set viminfo ='100,n$HOME/vimfiles/info/viminfo
 
-colorscheme elflord
+colorscheme industry
 set guifont=Monoid:h9
 set number cpoptions+=n
 set ruler
@@ -64,6 +65,8 @@ Plug 'racer-rust/vim-racer'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/editorconfig-vim'
 Plug 'craigemery/vim-autotag'
+Plug 'dylon/vim-antlr'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 
