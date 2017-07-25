@@ -1,5 +1,5 @@
 set nocompatible           " Explicitly set not vi compatible mode.
-set guioptions -=T         " Remove toolbar option in gui vim
+set guioptions-=T         " Remove toolbar option in gui vim
 
 filetype plugin indent on  " Load plugins according to detected filetype.
 syntax on                  " Enable syntax highlighting.
@@ -7,6 +7,7 @@ syntax on                  " Enable syntax highlighting.
 ""old"set tabstop=4 softtabstop=0 shiftwidth=2 smarttab
 set autoindent             " Indent according to previous line.
 set expandtab              " Use spaces instead of tabs.
+set tabstop     =4         " Spaces per tab
 set softtabstop =4         " Tab key indents by 4 spaces.
 set shiftwidth  =4         " >> indents by 4 spaces.
 set shiftround             " >> indents to next multiple of 'shiftwidth'.
@@ -47,7 +48,7 @@ set backup
 set backupdir   =$HOME/vimfiles/backup/
 set backupext   =-vimbackup
 set backupskip  =
-set directory   =$HOME/vimfiles/swap//
+"set directory   =$HOME/vimfiles/swap/
 set updatecount =100
 "set undofile
 "set undodir     =$HOME/vimfiles/undo/
@@ -61,17 +62,50 @@ set wrapmargin=1
 
 call plug#begin('$HOME/vimfiles/plugged')
 
-Plug 'racer-rust/vim-racer'
+"Plug 'racer-rust/vim-racer'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/editorconfig-vim'
 Plug 'craigemery/vim-autotag'
 Plug 'dylon/vim-antlr'
 Plug 'majutsushi/tagbar'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'scrooloose/nerdtree'
+Plug 'OrangeT/vim-csharp'
+"Plug 'vim-syntastic/syntastic'
+
+" Language server client
+"Plug 'natebosch/vim-lsc'
+"Plug 'OmniSharp/omnisharp-vim'
+"Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
-let g:EditorConfig_exec_path = '$HOME/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
-let g:racer_cmd = "C:/Users/njent/.cargo/bin/racer"
+" Syntastic recommended settings
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
-set statusline=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
+" Editor Config
+let g:EditorConfig_exec_path = 'U:/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+
+" Language Server Client
+let g:lsc_server_commands = { 'rust' : 'rls', 'java' : 'eclimd' }
+nnoremap gd :LSClientGoToDefinition<CR>
+nnoremap gr :LSClientFindReferences<CR>
+
+" Add status when working with Eclim projects
+set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
 let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
+"let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
+
+augroup pandoc_syntax
+    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+    au! BufNewFile,BufFilePre,BufRead *.markdown set filetype=markdown.pandoc
+augroup END
+
+let g:autotagExcludeSuffixes    = "orig.swp"     " suffixes to not ctags on
