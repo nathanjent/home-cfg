@@ -15,4 +15,4 @@ setx RUST_SRC_PATH %%USERPROFILE%%.rustup\toolchains\nightly-x86_64-pc-windows-m
 
 :: My User path environment variables
 :: This will store a dynamic reference to these registry values the values should be set manually depending on locations
-setx PATH %%BIN%%;%%CMAKE%%;%%CARGO%%;%%EMSDK%%;%%ECLIPSE%%;%%NODE%%;%%PYTHON3%%;%%PYTHON2%%:%%PYTHON_SCRIPTS%%;%%CLANG%%;%%VIM%%;%%GNUPLOT%%;%%MINGW_BIN%%;%%MINGW_USR_BIN%%;%msbuildpath%
+setx PATH %%BIN%%;%%CMAKE%%;%%CARGO%%;%%EMSDK%%;%%ECLIPSE%%;%%NODE%%;%%PYTHON3%%;%%PYTHON2%%;%%PYTHON_SCRIPTS%%;%%CLANG%%;%%VIM%%;%%GNUPLOT%%;%%MINGW_BIN%%;%%MINGW_USR_BIN%%;%msbuildpath%
