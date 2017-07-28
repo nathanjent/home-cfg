@@ -1,3 +1,53 @@
+if has('nvim')
+    " neovim specific settings
+    call plug#begin('$LOCALAPPDATA/vimfiles/plugged')
+        Plug 'vim-scripts/editorconfig-vim'
+        Plug 'dylon/vim-antlr'
+    call plug#end()
+else
+    " vim specific settings
+
+    " Put all temporary files under the same directory.
+    " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
+    set backup
+    set backupdir   =$HOME/vimfiles/backup/
+    set backupext   =-vimbackup
+    set backupskip  =
+    "set directory   =$HOME/vimfiles/swap/
+    set updatecount =100
+    "set undofile
+    "set undodir     =$HOME/vimfiles/undo/
+    set viminfo ='100,n$HOME/vimfiles/info/viminfo
+
+    call plug#begin('$HOME/vimfiles/plugged')
+        "Plug 'racer-rust/vim-racer'
+        Plug 'sheerun/vim-polyglot'
+        Plug 'vim-scripts/editorconfig-vim'
+        Plug 'craigemery/vim-autotag'
+        Plug 'dylon/vim-antlr'
+        Plug 'majutsushi/tagbar'
+        Plug 'vim-pandoc/vim-pandoc-syntax'
+        Plug 'scrooloose/nerdtree'
+        Plug 'OrangeT/vim-csharp'
+        "Plug 'vim-syntastic/syntastic'
+
+        " Language server client
+        "Plug 'natebosch/vim-lsc'
+        "Plug 'OmniSharp/omnisharp-vim'
+        "Plug 'Valloric/YouCompleteMe'
+    call plug#end()
+
+    " Editor Config
+    let g:EditorConfig_exec_path = 'U:/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+
+    " Add status when working with Eclim projects
+    set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
+    let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+    let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
+    "let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
+endif
+
+	
 set nocompatible           " Explicitly set not vi compatible mode.
 set guioptions-=T         " Remove toolbar option in gui vim
 
@@ -42,17 +92,6 @@ else
 endif
 
 
-" Put all temporary files under the same directory.
-" https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
-set backup
-set backupdir   =$HOME/vimfiles/backup/
-set backupext   =-vimbackup
-set backupskip  =
-"set directory   =$HOME/vimfiles/swap/
-set updatecount =100
-"set undofile
-"set undodir     =$HOME/vimfiles/undo/
-set viminfo ='100,n$HOME/vimfiles/info/viminfo
 
 colorscheme industry
 set guifont=Monoid:h9
@@ -60,25 +99,6 @@ set number cpoptions+=n
 set ruler
 set wrapmargin=1
 
-call plug#begin('$HOME/vimfiles/plugged')
-
-"Plug 'racer-rust/vim-racer'
-Plug 'sheerun/vim-polyglot'
-Plug 'vim-scripts/editorconfig-vim'
-Plug 'craigemery/vim-autotag'
-Plug 'dylon/vim-antlr'
-Plug 'majutsushi/tagbar'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'scrooloose/nerdtree'
-Plug 'OrangeT/vim-csharp'
-"Plug 'vim-syntastic/syntastic'
-
-" Language server client
-"Plug 'natebosch/vim-lsc'
-"Plug 'OmniSharp/omnisharp-vim'
-"Plug 'Valloric/YouCompleteMe'
-
-call plug#end()
 
 " Syntastic recommended settings
 "set statusline+=%#warningmsg#
@@ -89,19 +109,10 @@ call plug#end()
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
 
-" Editor Config
-let g:EditorConfig_exec_path = 'U:/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
-
 " Language Server Client
 let g:lsc_server_commands = { 'rust' : 'rls', 'java' : 'eclimd' }
 nnoremap gd :LSClientGoToDefinition<CR>
 nnoremap gr :LSClientFindReferences<CR>
-
-" Add status when working with Eclim projects
-set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
-let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
-let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
-"let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
 
 augroup pandoc_syntax
     au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
