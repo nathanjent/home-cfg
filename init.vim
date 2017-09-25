@@ -1,12 +1,5 @@
 "sourced by init.vim in $XDG_CONFIG_HOME/nvim
 
-" Vim.plug plugin manager settings
-"call plug#begin('$XDG_CONFIG_HOME/nvim/plugged')
-"    "Plug 
-"    "Plug '
-"    Plug 'sheerun/vim-polyglot'
-"call plug#end()
-
 " Dien plugin manager settings
 set runtimepath+=$XDG_CONFIG_HOME/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 
@@ -21,12 +14,16 @@ call dein#add('Shougo/dein.vim')
 "    \     'unix': 'gmake',
 "    \    },
 "    \ })
-call dein#add('vim-scripts/editorconfig-vim')
 call dein#add('sheerun/vim-polyglot')
+call dein#add('tpope/vim-dispatch')
+call dein#add('vim-scripts/editorconfig-vim')
 call dein#add('dylon/vim-antlr', { 'on_ft': ['g', 'g4']})
 call dein#add('Shougo/unite.vim')
-" and a lot more plugins.....
+call dein#add('scrooloose/nerdtree', {'on_cmd': 'NERDTreeToggle'})
+call dein#add('OmniSharp/omnisharp-vim', { 'on_ft': ['cs', 'ascx']})
 call dein#end()
+
+let g:OmniSharp_server_type = 'v1'
 
 colorscheme industry
 

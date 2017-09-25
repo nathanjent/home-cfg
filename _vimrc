@@ -1,64 +1,52 @@
-if has('nvim')
-    " neovim specific settings
-    call plug#begin('$LOCALAPPDATA/vimfiles/plugged')
-        "Plug 'vim-scripts/editorconfig-vim'
-        "Plug 'dylon/vim-antlr'
-        Plug 'sheerun/vim-polyglot'
-    call plug#end()
-    set g:python3_host_prog=$PYTHON3\python.exe
-else
-    " vim specific settings
+" Put all temporary files under the same directory.
+" https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
+set backup
+set backupdir   =$HOME/vimfiles/backup/
+set backupext   =-vimbackup
+set backupskip  =
+"set directory   =$HOME/vimfiles/swap/
+set updatecount =100
+"set undofile
+"set undodir     =$HOME/vimfiles/undo/
+set viminfo ='100,n$HOME/vimfiles/info/viminfo
 
-    " Put all temporary files under the same directory.
-    " https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
-    set backup
-    set backupdir   =$HOME/vimfiles/backup/
-    set backupext   =-vimbackup
-    set backupskip  =
-    "set directory   =$HOME/vimfiles/swap/
-    set updatecount =100
-    "set undofile
-    "set undodir     =$HOME/vimfiles/undo/
-    set viminfo ='100,n$HOME/vimfiles/info/viminfo
+call plug#begin('$HOME/vimfiles/plugged')
+    Plug 'sheerun/vim-polyglot'
+    Plug 'vim-scripts/editorconfig-vim'
+    Plug 'craigemery/vim-autotag'
+    Plug 'dylon/vim-antlr'
+    Plug 'majutsushi/tagbar'
+    Plug 'vim-pandoc/vim-pandoc-syntax'
+    Plug 'scrooloose/nerdtree'
+    Plug 'OrangeT/vim-csharp'
+    Plug 'ctrlpvim/ctrlp.vim'
+    "Plug 'vim-syntastic/syntastic'
+    "Plug 'racer-rust/vim-racer'
 
-    call plug#begin('$HOME/vimfiles/plugged')
-        "Plug 'racer-rust/vim-racer'
-        Plug 'sheerun/vim-polyglot'
-        Plug 'vim-scripts/editorconfig-vim'
-        Plug 'craigemery/vim-autotag'
-        Plug 'dylon/vim-antlr'
-        Plug 'majutsushi/tagbar'
-        Plug 'vim-pandoc/vim-pandoc-syntax'
-        Plug 'scrooloose/nerdtree'
-        Plug 'OrangeT/vim-csharp'
-        "Plug 'vim-syntastic/syntastic'
-        Plug 'ctrlpvim/ctrlp.vim'
+    " Language server client
+    "Plug 'natebosch/vim-lsc'
+    
+    " Requires Vim compiled with python
+    "Plug 'OmniSharp/omnisharp-vim'
+    
+    " YouCompleteMe not windows compatible
+    "Plug 'Valloric/YouCompleteMe'
+call plug#end()
 
-        " Language server client
-        "Plug 'natebosch/vim-lsc'
-        
-        " Requires Vim compiled with python
-        "Plug 'OmniSharp/omnisharp-vim'
-        
-        " YouCompleteMe not windows compatible
-        "Plug 'Valloric/YouCompleteMe'
-    call plug#end()
+" Editor Config
+let g:EditorConfig_exec_path = 'U:/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
 
-    " Editor Config
-    let g:EditorConfig_exec_path = 'U:/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+" Add status when working with Eclim projects
+set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
+let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
+"let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
 
-    " Add status when working with Eclim projects
-    set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
-    let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
-    let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
-    "let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
-
-    " CtrlP settings
-    let g:ctrlp_match_window = 'bottom,order:ttb'
-    let g:ctrlp_switch_buffer = 0
-    let g:ctrlp_working_path_mode = 0
-    let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
-endif
+" CtrlP settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
 
 set nocompatible            " Explicitly set not vi compatible mode.
 set guioptions-=T           " Remove toolbar option in gui vim

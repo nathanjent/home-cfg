@@ -9,7 +9,7 @@ setx EDITOR %%VIM%%\vim
 :: Scripts to include on path
 set PYTHON3_SCRIPTS="%%PYTHON3%%\Scripts"
 
-setx XDG_CONFIG_HOME %%LOCALAPPDATA%%
+setx XDG_CONFIG_HOME %%HOMEDRIVE%%\
 
 setx RUST_SRC_PATH %%USERPROFILE%%.rustup\toolchains\nightly-x86_64-pc-windows-msvc\lib\rustlib\src\rust\src
 
