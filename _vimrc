@@ -13,7 +13,7 @@ set viminfo ='100,n$HOME/vimfiles/info/viminfo
 call plug#begin('$HOME/vimfiles/plugged')
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
     Plug 'vim-scripts/editorconfig-vim'
-    Plug 'craigemery/vim-autotag' " Autogenerate tags
+"    Plug 'craigemery/vim-autotag' " Autogenerate tags
     Plug 'dylon/vim-antlr' " Syntax support for Antlr
     Plug 'majutsushi/tagbar' " Show functions and fields from live generated tags
     Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
@@ -22,7 +22,7 @@ call plug#begin('$HOME/vimfiles/plugged')
     Plug 'ctrlpvim/ctrlp.vim' " File search
     Plug 'tpope/vim-dispatch' " Async script running
     Plug 'vim-syntastic/syntastic' " Syntax helper
-    "Plug 'racer-rust/vim-racer'
+"    Plug 'racer-rust/vim-racer'
     Plug 'Shougo/neocomplete.vim' " Autocomplete
 
     Plug 'SirVer/ultisnips' " Insert snippets of code
