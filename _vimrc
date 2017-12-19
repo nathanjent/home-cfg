@@ -236,6 +236,7 @@ else
   let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
 endif
 
+<<<<<<< Updated upstream
 colorscheme industry
 set guifont=Monoid:h9
 set ruler
@@ -252,6 +253,34 @@ function! UnMinify()
     %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
     normal ggVG=
 endfunction
+=======
+
+" Put all temporary files under the same directory.
+" https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
+set backup
+set backupdir   =$HOME/vimfiles/backup/
+set backupext   =-vimbackup
+set backupskip  =
+set directory   =$HOME/vimfiles/swap/
+set updatecount =100
+"set undofile
+"set undodir     =$HOME/vimfiles/undo/
+set viminfo ='100,n$HOME/vimfiles/info/viminfo
+
+colorscheme industry
+set guifont=Monoid:h9
+set number cpoptions+=n
+set ruler "Show the line and column number of the cursor position
+set wrapmargin=1 "Number of characters from the right window border where wrapping starts
+
+call plug#begin('$HOME/vimfiles/plugged')
+
+Plug 'racer-rust/vim-racer'
+Plug 'sheerun/vim-polyglot'
+Plug 'vim-scripts/editorconfig-vim'
+Plug 'dylon/vim-antlr'
+Plug 'majutsushi/tagbar'
+>>>>>>> Stashed changes
 
 " Format JSON
 command! JSONFormat call JSONFormatter()
@@ -278,4 +307,3 @@ function! HighlightRepeats() range
     endif
   endfor
 endfunction
-
