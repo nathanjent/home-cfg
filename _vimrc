@@ -10,6 +10,7 @@ set updatecount =100
 "set undodir     =$HOME/vimfiles/undo/
 set viminfo ='100,n$HOME/vimfiles/info/viminfo
 
+"Vim-Plug plugin management
 call plug#begin('$HOME/vimfiles/plugged')
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
     Plug 'vim-scripts/editorconfig-vim'
@@ -22,13 +23,16 @@ call plug#begin('$HOME/vimfiles/plugged')
     Plug 'ctrlpvim/ctrlp.vim' " File search
     Plug 'tpope/vim-dispatch' " Async script running
     Plug 'vim-syntastic/syntastic' " Syntax helper
-"    Plug 'racer-rust/vim-racer'
+    Plug 'racer-rust/vim-racer'
     Plug 'Shougo/neocomplete.vim' " Autocomplete
 
     Plug 'SirVer/ultisnips' " Insert snippets of code
 
-    " Language server client
-    Plug 'natebosch/vim-lsc'
+    " Language Server Protocol client
+    Plug 'prabirshrestha/async.vim'
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
     
     " Requires Vim compiled with python
     Plug 'OmniSharp/omnisharp-vim' " C# language server
@@ -147,6 +151,7 @@ nnoremap <c-j><c-h> :JavaCallHierarchy<cr>
 nnoremap <c-j><c-f> ggVG:JavaFormat<cr>
 nnoremap <c-j><c-i> :JavaImpl<cr>
 nnoremap <c-j><c-d> :JavaDocPreview<cr>
+nnoremap <c-j><c-s> :JavaSearchContext<cr>
 " JavaRename requires input
 nnoremap <c-j><c-r> :JavaRename 
 
@@ -162,14 +167,21 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
 
-
 " Language Server Client settings
-let g:lsc_server_commands = {
-    \ 'rust' : 'rls_logger.bat',
-    \ 'java' : 'eclimd'
-    \}
-nnoremap gd :LSClientGoToDefinition<CR>
-nnoremap gr :LSClientFindReferences<CR>
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
+let g:lsp_async_completion = 1
+autocmd FileType rust setlocal omnifunc=lsp#complete
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " Pandoc syntax settings
 augroup pandoc_syntax
