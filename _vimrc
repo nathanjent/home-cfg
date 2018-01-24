@@ -1,15 +1,3 @@
-" Put all temporary files under the same directory.
-" https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
-set backup
-set backupdir   =$HOME/vimfiles/backup/
-set backupext   =-vimbackup
-set backupskip  =
-"set directory   =$HOME/vimfiles/swap/
-set updatecount =100
-"set undofile
-"set undodir     =$HOME/vimfiles/undo/
-set viminfo ='100,n$HOME/vimfiles/info/viminfo
-
 "Vim-Plug plugin management
 call plug#begin('$HOME/vimfiles/plugged')
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
@@ -23,7 +11,6 @@ call plug#begin('$HOME/vimfiles/plugged')
     Plug 'ctrlpvim/ctrlp.vim' " File search
     Plug 'tpope/vim-dispatch' " Async script running
     Plug 'vim-syntastic/syntastic' " Syntax helper
-    Plug 'racer-rust/vim-racer'
     Plug 'Shougo/neocomplete.vim' " Autocomplete
 
     Plug 'SirVer/ultisnips' " Insert snippets of code
@@ -37,17 +24,16 @@ call plug#begin('$HOME/vimfiles/plugged')
     " Requires Vim compiled with python
     Plug 'OmniSharp/omnisharp-vim' " C# language server
 
-    " YouCompleteMe not windows compatible
-    "Plug 'Valloric/YouCompleteMe' " Multiprotocol language server
+    " YouCompleteMe not windows compatible yet
 call plug#end()
+
+" Editor Config
+let g:EditorConfig_exec_path = 'U:/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
 
 " OmniSharp settings
 let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_selector_ui = 'ctrlp'   " Use ctrlp.vim
 let g:OmniSharp_timeout = 1             " Timeout in seconds to wait for a response from the server
-set noshowmatch                         " Showmatch significantly slows down omnicomplete when the first match contains parentheses.
-set completeopt=longest,menuone,preview
-set splitbelow
 augroup omnisharp_commands
     autocmd!
 
@@ -140,12 +126,8 @@ let g:syntastic_check_on_wq = 0
 " let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
 let g:syntastic_cs_checkers = ['code_checker'] " omnisharp-roslyn support
 
-
-" Editor Config
-let g:EditorConfig_exec_path = 'U:/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
-
-
 " Eclim settings
+let g:EclimCompletionMethod = 'omnifunc'
 nnoremap <c-j><c-j> :JavaCorrect<cr>
 nnoremap <c-j><c-h> :JavaCallHierarchy<cr>
 nnoremap <c-j><c-f> ggVG:JavaFormat<cr>
@@ -178,10 +160,6 @@ endif
 
 let g:lsp_async_completion = 1
 autocmd FileType rust setlocal omnifunc=lsp#complete
-
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " Pandoc syntax settings
 augroup pandoc_syntax
@@ -218,16 +196,13 @@ set showcmd                 " Show already typed keys when more are expected.
 set incsearch               " Highlight while searching with / or ?.
 set hlsearch                " Keep matches highlighted.
 
-" Remove highlighted searches
-nnoremap <leader><space> :nohlsearch<CR>
-
 set ttyfast                 " Faster redrawing.
 set lazyredraw              " Only redraw when necessary.
 
 set splitbelow              " Open new windows below the current window.
 set splitright              " Open new windows right of the current window.
 
-"set cursorline             " Highlight the current line
+"set cursorline              " Highlight the current line
 set wrapscan                " Searches wrap around end-of-file.
 set report      =0          " Always report changed lines.
 set synmaxcol   =200        " Only highlight the first 200 columns.
@@ -242,17 +217,20 @@ set foldenable              " Enable folding
 set foldlevelstart=5        " Open folds to this level for new buffer
 set foldnestmax=10          " 10 nested fold max
 
+set noshowmatch             " Showmatch significantly slows down omnicomplete when the first match contains parentheses.
+set completeopt=longest,menuone,preview
+set splitbelow              " New split window below current
+
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:? ,extends:?,precedes:?,nbsp:±'
 else
   let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
 endif
 
-<<<<<<< Updated upstream
 colorscheme industry
 set guifont=Monoid:h9
-set ruler
-set wrapmargin=1
+set ruler                   "Show the line and column number of the cursor position
+set wrapmargin=1            "Number of characters from the right window border where wrapping starts
 
 " ------- Custom Commands ------------
 " Simple re-format for minified Javascript
@@ -265,34 +243,6 @@ function! UnMinify()
     %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
     normal ggVG=
 endfunction
-=======
-
-" Put all temporary files under the same directory.
-" https://github.com/mhinz/vim-galore#handling-backup-swap-undo-and-viminfo-files
-set backup
-set backupdir   =$HOME/vimfiles/backup/
-set backupext   =-vimbackup
-set backupskip  =
-set directory   =$HOME/vimfiles/swap/
-set updatecount =100
-"set undofile
-"set undodir     =$HOME/vimfiles/undo/
-set viminfo ='100,n$HOME/vimfiles/info/viminfo
-
-colorscheme industry
-set guifont=Monoid:h9
-set number cpoptions+=n
-set ruler "Show the line and column number of the cursor position
-set wrapmargin=1 "Number of characters from the right window border where wrapping starts
-
-call plug#begin('$HOME/vimfiles/plugged')
-
-Plug 'racer-rust/vim-racer'
-Plug 'sheerun/vim-polyglot'
-Plug 'vim-scripts/editorconfig-vim'
-Plug 'dylon/vim-antlr'
-Plug 'majutsushi/tagbar'
->>>>>>> Stashed changes
 
 " Format JSON
 command! JSONFormat call JSONFormatter()
