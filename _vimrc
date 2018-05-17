@@ -18,15 +18,19 @@ call plug#begin('$HOME/vimfiles/plugged')
     Plug 'dylon/vim-antlr' " Syntax support for Antlr
     Plug 'majutsushi/tagbar' " Show functions and fields from live generated tags
     Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
-    Plug 'scrooloose/nerdtree' " Browse files in vim
-    Plug 'OrangeT/vim-csharp' " Syntax support for C#
-    Plug 'ctrlpvim/ctrlp.vim' " File search
-    Plug 'tpope/vim-dispatch' " Async script running
-    Plug 'vim-syntastic/syntastic' " Syntax helper
-    Plug 'racer-rust/vim-racer'
-    Plug 'Shougo/neocomplete.vim' " Autocomplete
 
-    Plug 'SirVer/ultisnips' " Insert snippets of code
+
+    Plug 'scrooloose/nerdtree' " Browse files in vim
+"    Plug 'Xuyuanp/nerdtree-git-plugin' " See GIT symbols in Nerdtree
+
+    Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
+    Plug 'OrangeT/vim-csharp' " Syntax support for C# things
+    Plug 'vim-syntastic/syntastic' " Syntax helper
+    Plug 'Shougo/neocomplete.vim' " Autocomplete
+    "
+    " Insert snippets of code
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
 
     " Language Server Protocol client
     Plug 'prabirshrestha/async.vim'
@@ -37,12 +41,17 @@ call plug#begin('$HOME/vimfiles/plugged')
     " Requires Vim compiled with python
     Plug 'OmniSharp/omnisharp-vim' " C# language server
 
-    " YouCompleteMe not windows compatible
-    "Plug 'Valloric/YouCompleteMe' " Multiprotocol language server
+    Plug 'tpope/vim-dispatch' " Async script running
+    Plug 'kien/ctrlp.vim' " File search
+
+    Plug 'Valloric/YouCompleteMe' " Polyglot code-completion engine
 call plug#end()
 
+" YouCompleteMe requires UTF-8
+set encoding=utf-8
+
 " OmniSharp settings
-let g:OmniSharp_server_type = 'roslyn'
+" let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_selector_ui = 'ctrlp'   " Use ctrlp.vim
 let g:OmniSharp_timeout = 1             " Timeout in seconds to wait for a response from the server
 set noshowmatch                         " Showmatch significantly slows down omnicomplete when the first match contains parentheses.
@@ -128,6 +137,20 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+" NERDtree settings
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "*",
+    \ "Staged"    : "+",
+    \ "Untracked" : "_",
+    \ "Renamed"   : "->",
+    \ "Unmerged"  : "=",
+    \ "Deleted"   : "X",
+    \ "Dirty"     : "@",
+    \ "Clean"     : ".",
+    \ 'Ignored'   : '[ ]',
+    \ "Unknown"   : "?"
+    \ }
+
 
 " Syntastic recommended settings
 set statusline+=%#warningmsg#
@@ -148,7 +171,7 @@ let g:EditorConfig_exec_path = 'U:/vimfiles/plugged/editorconfig-vim/plugin/edit
 " Eclim settings
 nnoremap <c-j><c-j> :JavaCorrect<cr>
 nnoremap <c-j><c-h> :JavaCallHierarchy<cr>
-nnoremap <c-j><c-f> ggVG:JavaFormat<cr>
+nnoremap <c-j><c-f> mjggVG:JavaFormat<cr>`j:delmarks j<cr>
 nnoremap <c-j><c-i> :JavaImpl<cr>
 nnoremap <c-j><c-d> :JavaDocPreview<cr>
 nnoremap <c-j><c-s> :JavaSearchContext<cr>
@@ -173,6 +196,24 @@ if executable('rls')
         \ 'name': 'rls',
         \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
         \ 'whitelist': ['rust'],
+        \ })
+endif
+if executable('java')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'java',
+        \ 'cmd': {server_info->['java',
+            \ '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044',
+            \ '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+            \ '-Dosgi.bundles.defaultStartLevel=4',
+            \ '-Declipse.product=org.eclipse.jdt.ls.core.product',
+            \ '-Dlog.protocol=true',
+            \ '-Dlog.level=ALL',
+            \ '-noverify',
+            \ '-Xmx1G',
+            \ '-jar D:\git\eclipse.jdt.ls/org.eclipse.jdt.ls.product\target\repository/plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar',
+            \ '-configuration D:\git\eclipse.jdt.ls/org.eclipse.jdt.ls.product\target\repository/config_win',
+            \ '-data D:\svn']},
+        \ 'whitelist': ['java'],
         \ })
 endif
 
