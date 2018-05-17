@@ -160,10 +160,10 @@ nnoremap <c-j><c-s> :JavaSearchContext<cr>
 nnoremap <c-j><c-r> :JavaRename 
 
 " Add status when working with Eclim projects
-set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
-let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
-let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
-"let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
+" set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
+" let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+" let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
+" let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
 
 " CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb'
