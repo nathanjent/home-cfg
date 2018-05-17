@@ -1,85 +1,14 @@
-# typical home storage directories
-Desktop
-Documents
-Downloads
-Music
-Pictures
-Videos
+# ignore everything
+*
+# whitelist
+!.gitignore
+!_vimrc
+!.vimrc
+!**/autoload/plug.vim
+!vimfiles/**/nasal.vim
 
-# Common Storage Apps
-Dropbox
-OneDrive
+!ginit.vim
+!init.vim
 
-# Windows stuff
-AppData
-Contacts
-Favorites
-Links
-Searches
-VirtualBox\ VMs
-*.lnk
-.thumbnails
-
-# file types to ignore
-*.swp
-*.old
-~*
-
-# other git repositories
-git/
-
-# security issues
-.ssh
-
-# Dependency manager repositories
-.cargo
-.ivy2
-.m2
-.p2
-
-# editor extensions
-.vscode/extensions
-
-# vim generated
-.vim/plugged
-vimfiles/plugged
-.viminfo
-_viminfo
-
-# other
-.subversion
-Documents_backup
-eclipse
-IzPack
-.atom
-ntuser.*
-.ant
-.eclipse
-.jmc
-.gimp*
-.nbi
-.nbprofiler
-.netbeans*
-.oracle*
-.VirtualBox
-.ICEauthority
-.Xauthority
-.Xclients
-.bash_history
-.bash_logout
-.bash_profile
-.bashrc
-.dir_colors
-.dmrc
-.esd_auth
-.extend.bashrc
-.lesshst
-.profile
-.steampath
-.steampid
-.xfce4-session.verbose-log
-.xfce4-session.verbose-log.last
-.xinitrc
-.xprofile
-.xsession-errors
-.xsession-errors.old
+!register_no_ext_editor.bat
+!user_path.bat
