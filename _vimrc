@@ -7,27 +7,17 @@ call plug#begin('$HOME/vimfiles/plugged')
     Plug 'majutsushi/tagbar' " Show functions and fields from live generated tags
     Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
 
-
     Plug 'scrooloose/nerdtree' " Browse files in vim
-"    Plug 'Xuyuanp/nerdtree-git-plugin' " See GIT symbols in Nerdtree
+    Plug 'Xuyuanp/nerdtree-git-plugin' " See GIT symbols in Nerdtree
 
     Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
     Plug 'OrangeT/vim-csharp' " Syntax support for C# things
-    Plug 'vim-syntastic/syntastic' " Syntax helper
+"    Plug 'vim-syntastic/syntastic' " Syntax helper
     Plug 'Shougo/neocomplete.vim' " Autocomplete
-    "
+    
     " Insert snippets of code
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-
-    " Language Server Protocol client
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
-    
-    " Requires Vim compiled with python
-    Plug 'OmniSharp/omnisharp-vim' " C# language server
 
     Plug 'tpope/vim-dispatch' " Async script running
     Plug 'kien/ctrlp.vim' " File search
@@ -35,129 +25,57 @@ call plug#begin('$HOME/vimfiles/plugged')
     Plug 'Valloric/YouCompleteMe' " Polyglot code-completion engine
 call plug#end()
 
+" Editor Config
+let g:EditorConfig_exec_path = '$HOME/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+
+" YouCompleteMe settings
+nnoremap <c-y>d :YcmDiags<cr>
+nnoremap <c-y>fd :YcmForceCompileAndDiagnostics<cr>
+nnoremap <c-y>f :YcmCompleter FixIt<cr>
+nnoremap <c-y>g :YcmCompleter GoTo<cr>
+nnoremap <c-y>fm :YcmCompleter Format<cr>
+nnoremap <c-y>gr :YcmCompleter GoToReferences<cr>
+nnoremap <c-y>do :YcmCompleter GetDoc<cr>
+nnoremap <c-y>t :YcmCompleter GetType<cr>
+nnoremap <c-y>i :YcmCompleter OrganizeImports<cr>
+" Rename requires input
+nnoremap <c-y>r :YcmCompleter RefactorRename 
+
 " YouCompleteMe requires UTF-8
 set encoding=utf-8
 
-" OmniSharp settings
-" let g:OmniSharp_server_type = 'roslyn'
-let g:OmniSharp_selector_ui = 'ctrlp'   " Use ctrlp.vim
-let g:OmniSharp_timeout = 1             " Timeout in seconds to wait for a response from the server
-augroup omnisharp_commands
-    autocmd!
-
-    "Set autocomplete function to OmniSharp (if not using YouCompleteMe completion plugin)
-    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-
-    " Synchronous build (blocks Vim)
-    "autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
-    " Builds can also run asynchronously with vim-dispatch installed
-    autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
-    " automatic syntax check on events (TextChanged requires Vim 7.4)
-    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-
-    " Automatically add new cs files to the nearest project on save
-    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-
-    "show type information automatically when the cursor stops moving
-    autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-
-    "The following commands are contextual, based on the current cursor position.
-
-    autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
-    autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
-    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
-    autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
-    autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
-    "finds members in the current buffer
-    autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
-    " cursor can be anywhere on the line containing an issue
-    autocmd FileType cs nnoremap <leader>x  :OmniSharpFixIssue<cr>
-    autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
-    autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
-    autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
-    "navigate up by method/property/field
-    autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
-    "navigate down by method/property/field
-    autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
-
-augroup END
-
-set updatetime=500 " this setting controls how long to wait (in ms) before fetching type / symbol information.
-set cmdheight=2 " Remove 'Press Enter to continue' message when type information is longer than one line.
-
-" Contextual code actions (requires CtrlP or unite.vim)
-nnoremap <leader><space> :OmniSharpGetCodeActions<cr>
-" Run code actions with text selected in visual mode to extract method
-vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<cr>
-
-" rename with dialog
-nnoremap <leader>nm :OmniSharpRename<cr>
-nnoremap <F2> :OmniSharpRename<cr>
-" rename without dialog - with cursor on the symbol to rename... ':Rename newname'
-command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
-
-" Force OmniSharp to reload the solution. Useful when switching branches etc.
-nnoremap <leader>rl :OmniSharpReloadSolution<cr>
-nnoremap <leader>cf :OmniSharpCodeFormat<cr>
-" Load the current .cs file to the nearest project
-nnoremap <leader>tp :OmniSharpAddToProject<cr>
-
-" (Experimental - uses vim-dispatch or vimproc plugin) - Start the omnisharp server for the current solution
-nnoremap <leader>ss :OmniSharpStartServer<cr>
-nnoremap <leader>sp :OmniSharpStopServer<cr>
-
-" Add syntax highlighting for types and interfaces
-nnoremap <leader>th :OmniSharpHighlightTypes<cr>
-"Don't ask to save when changing buffers (i.e. when jumping to a type definition)
-set hidden
-
-" Enable snippet completion, requires completeopt-=preview
-let g:OmniSharp_want_snippet=1
-
 " UltiSnips settings
-let g:UltiSnipsExpandTrigger="<tab>" " Incompatible with YouCompleteMe
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" let g:UltiSnipsExpandTrigger="<tab>" " Incompatible with YouCompleteMe
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" 
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 " NERDtree settings
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "*",
-    \ "Staged"    : "+",
-    \ "Untracked" : "_",
-    \ "Renamed"   : "->",
-    \ "Unmerged"  : "=",
-    \ "Deleted"   : "X",
-    \ "Dirty"     : "@",
-    \ "Clean"     : ".",
-    \ 'Ignored'   : '[ ]',
-    \ "Unknown"   : "?"
-    \ }
-
-
-" Syntastic recommended settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
-let g:syntastic_cs_checkers = ['code_checker'] " omnisharp-roslyn support
+     \ "Modified"  : "Mod",
+     \ "Staged"    : "Stg",
+     \ "Untracked" : "Untk",
+     \ "Renamed"   : "Ren",
+     \ "Unmerged"  : "Umrg",
+     \ "Deleted"   : "Del",
+     \ "Dirty"     : "Drt",
+     \ "Clean"     : "Cln",
+     \ 'Ignored'   : 'Ign',
+     \ "Unknown"   : "Unk"
+     \ }
 
 " Eclim settings
-let g:EclimCompletionMethod = 'omnifunc'
-nnoremap <c-j><c-j> :JavaCorrect<cr>
-nnoremap <c-j><c-h> :JavaCallHierarchy<cr>
-nnoremap <c-j><c-f> mjggVG:JavaFormat<cr>`j:delmarks j<cr>
-nnoremap <c-j><c-i> :JavaImpl<cr>
-nnoremap <c-j><c-d> :JavaDocPreview<cr>
-nnoremap <c-j><c-s> :JavaSearchContext<cr>
-" JavaRename requires input
-nnoremap <c-j><c-r> :JavaRename 
+" let g:EclimCompletionMethod = 'omnifunc'
+" nnoremap <c-j><c-j> :JavaCorrect<cr>
+" nnoremap <c-j><c-h> :JavaCallHierarchy<cr>
+" nnoremap <c-j><c-f> mjggVG:JavaFormat<cr>`j:delmarks j<cr>
+" nnoremap <c-j><c-i> :JavaImpl<cr>
+" nnoremap <c-j><c-d> :JavaDocPreview<cr>
+" nnoremap <c-j><c-s> :JavaSearchContext<cr>
+" " JavaRename requires input
+" nnoremap <c-j><c-r> :JavaRename 
 
 " Add status when working with Eclim projects
 " set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
@@ -170,36 +88,6 @@ let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
-
-" Language Server Client settings
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
-endif
-if executable('java')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'java',
-        \ 'cmd': {server_info->['java',
-            \ '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044',
-            \ '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-            \ '-Dosgi.bundles.defaultStartLevel=4',
-            \ '-Declipse.product=org.eclipse.jdt.ls.core.product',
-            \ '-Dlog.protocol=true',
-            \ '-Dlog.level=ALL',
-            \ '-noverify',
-            \ '-Xmx1G',
-            \ '-jar D:\git\eclipse.jdt.ls/org.eclipse.jdt.ls.product\target\repository/plugins/org.eclipse.equinox.launcher_1.4.0.v20161219-1356.jar',
-            \ '-configuration D:\git\eclipse.jdt.ls/org.eclipse.jdt.ls.product\target\repository/config_win',
-            \ '-data D:\svn']},
-        \ 'whitelist': ['java'],
-        \ })
-endif
-
-let g:lsp_async_completion = 1
-autocmd FileType rust setlocal omnifunc=lsp#complete
 
 " Pandoc syntax settings
 augroup pandoc_syntax

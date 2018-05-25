@@ -1,50 +1,78 @@
+"Vim-Plug plugin management
 call plug#begin('~/.vim/plugged')
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
     Plug 'vim-scripts/editorconfig-vim'
+"    Plug 'craigemery/vim-autotag' " Autogenerate tags
+    Plug 'peter-edge/vim-capnp'
     Plug 'majutsushi/tagbar' " Show functions and fields from live generated tags
     Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
-    Plug 'scrooloose/nerdtree' " Browse files in vim
-    Plug 'peter-edge/vim-capnp'
 
-    " Language Server Protocol client
-    Plug 'prabirshrestha/async.vim'
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'scrooloose/nerdtree' " Browse files in vim
+    Plug 'Xuyuanp/nerdtree-git-plugin' " See GIT symbols in Nerdtree
+
+    Plug 'OrangeT/vim-csharp' " Syntax support for C# things
+"    Plug 'vim-syntastic/syntastic' " Syntax helper
+    Plug 'Shougo/neocomplete.vim' " Autocomplete
+    
+    " Insert snippets of code
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+
+    Plug 'tpope/vim-dispatch' " Async script running
+    Plug 'kien/ctrlp.vim' " File search
 
     Plug 'Valloric/YouCompleteMe' " Multiprotocol language server
 call plug#end()
 
 " Editor Config
 let g:EditorConfig_exec_path = '$HOME/.vim/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+
+" YouCompleteMe settings
+nnoremap <c-y>d :YcmDiags<cr>
+nnoremap <c-y>fd :YcmForceCompileAndDiagnostics<cr>
+nnoremap <c-y>f :YcmCompleter FixIt<cr>
+nnoremap <c-y>g :YcmCompleter GoTo<cr>
+nnoremap <c-y>fm :YcmCompleter Format<cr>
+nnoremap <c-y>gr :YcmCompleter GoToReferences<cr>
+nnoremap <c-y>do :YcmCompleter GetDoc<cr>
+nnoremap <c-y>t :YcmCompleter GetType<cr>
+nnoremap <c-y>i :YcmCompleter OrganizeImports<cr>
+" Rename requires input
+nnoremap <c-y>r :YcmCompleter RefactorRename 
+
+" YouCompleteMe requires UTF-8
+set encoding=utf-8
+
+" UltiSnips settings
+" let g:UltiSnipsExpandTrigger="<tab>" " Incompatible with YouCompleteMe
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" 
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
+
 " Eclim settings
-let g:EclimCompletionMethod = 'omnifunc'
-nnoremap <c-j><c-j> :JavaCorrect<cr>
-nnoremap <c-j><c-h> :JavaCallHierarchy<cr>
-nnoremap <c-j><c-f> ggVG:JavaFormat<cr>
-nnoremap <c-j><c-i> :JavaImpl<cr>
-nnoremap <c-j><c-d> :JavaDocPreview<cr>
-nnoremap <c-j><c-s> :JavaSearchContext<cr>
-" JavaRename requires input
-nnoremap <c-j><c-r> :JavaRename 
+" let g:EclimCompletionMethod = 'omnifunc'
+" nnoremap <c-j><c-j> :JavaCorrect<cr>
+" nnoremap <c-j><c-h> :JavaCallHierarchy<cr>
+" nnoremap <c-j><c-f> mjggVG:JavaFormat<cr>`j:delmarks j<cr>
+" nnoremap <c-j><c-i> :JavaImpl<cr>
+" nnoremap <c-j><c-d> :JavaDocPreview<cr>
+" nnoremap <c-j><c-s> :JavaSearchContext<cr>
+" " JavaRename requires input
+" nnoremap <c-j><c-r> :JavaRename 
 
 " Add status when working with Eclim projects
-set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
-let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
-let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
-"let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
+" set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
+" let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
+" let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
+" let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
 
-" Language Server Client settings
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
-endif
-
-let g:lsp_async_completion = 1
-autocmd FileType rust setlocal omnifunc=lsp#complete
+" CtrlP settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
 
 " Pandoc syntax settings
 augroup pandoc_syntax
@@ -113,7 +141,7 @@ else
 endif
 
 colorscheme industry
-
+set guifont=Monoid:h9
 set ruler                   "Show the line and column number of the cursor position
 "set wrapmargin=1            "Number of characters from the right where wrapping starts
 
