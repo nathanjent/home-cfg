@@ -100,7 +100,7 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 set backspace   =indent,eol,start  " Make backspace work as you would expect.
 set hidden                  " Switch between buffers without having to save first.
 set showmatch               " Highlight matching [{()}]
-"CAUSES SLOWNESS IN WINDOWS CONSOLE"set laststatus  =2         " Always show statusline.
+set laststatus  =2          " Always show statusline.
 set display     =lastline   " Show as much as possible of the last line.
 
 set showmode                " Show current mode in command-line.
@@ -123,7 +123,7 @@ set synmaxcol   =200        " Only highlight the first 200 columns.
 set list                    " Show non-printable characters.
 
 set number                  " Include the line number column
-set cpoptions+=n            " Wrapped lines use line number column example ------------------------------------------------------------------------------------------------------------------------------
+set cpoptions+=n            " Wrapped lines use line number column; example->--------------------------------------------------------------------------------------------------------------------------->
 set wildmenu                " Lists autocomplete items above command input
 
 set foldenable              " Enable folding
