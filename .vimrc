@@ -21,7 +21,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-dispatch' " Async script running
     Plug 'kien/ctrlp.vim' " File search
 
-    Plug 'Valloric/YouCompleteMe' " Multiprotocol language server
+    Plug 'Valloric/YouCompleteMe' " Polyglot code-completion engine
 call plug#end()
 
 " Editor Config
