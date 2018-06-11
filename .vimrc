@@ -22,6 +22,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'kien/ctrlp.vim' " File search
 
     Plug 'Valloric/YouCompleteMe' " Polyglot code-completion engine
+
+    Plug 'w0rp/ale' " Asynchronous Linting Engine
 call plug#end()
 
 " Editor Config

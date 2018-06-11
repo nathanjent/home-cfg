@@ -23,23 +23,25 @@ call plug#begin('$HOME/vimfiles/plugged')
     Plug 'kien/ctrlp.vim' " File search
 
     Plug 'Valloric/YouCompleteMe' " Polyglot code-completion engine
+
+    Plug 'w0rp/ale' " Asynchronous Linting Engine
 call plug#end()
 
 " Editor Config
 let g:EditorConfig_exec_path = '$HOME/vimfiles/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
 
 " YouCompleteMe settings
-nnoremap <c-y>d :YcmDiags<cr>
-nnoremap <c-y>fd :YcmForceCompileAndDiagnostics<cr>
-nnoremap <c-y>f :YcmCompleter FixIt<cr>
-nnoremap <c-y>g :YcmCompleter GoTo<cr>
-nnoremap <c-y>fm :YcmCompleter Format<cr>
-nnoremap <c-y>gr :YcmCompleter GoToReferences<cr>
-nnoremap <c-y>do :YcmCompleter GetDoc<cr>
-nnoremap <c-y>t :YcmCompleter GetType<cr>
-nnoremap <c-y>i :YcmCompleter OrganizeImports<cr>
+nnoremap <leader>d :YcmDiags<cr>
+nnoremap <leader>fd :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>f :YcmCompleter FixIt<cr>
+nnoremap <leader>g :YcmCompleter GoTo<cr>
+nnoremap <leader>fm :YcmCompleter Format<cr>
+nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
+nnoremap <leader>do :YcmCompleter GetDoc<cr>
+nnoremap <leader>t :YcmCompleter GetType<cr>
+nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
 " Rename requires input
-nnoremap <c-y>r :YcmCompleter RefactorRename 
+nnoremap <leader>r :YcmCompleter RefactorRename 
 
 " YouCompleteMe requires UTF-8
 set encoding=utf-8
