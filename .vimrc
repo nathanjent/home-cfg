@@ -30,13 +30,13 @@ call plug#end()
 let g:EditorConfig_exec_path = '$HOME/.vim/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
 
 " YouCompleteMe settings
-nnoremap <leader>d :YcmDiags<cr>
-nnoremap <leader>fd :YcmForceCompileAndDiagnostics<cr>
+nnoremap <leader>y :YcmDiags<cr>
+nnoremap <leader>yf :YcmForceCompileAndDiagnostics<cr>
 nnoremap <leader>f :YcmCompleter FixIt<cr>
 nnoremap <leader>g :YcmCompleter GoTo<cr>
 nnoremap <leader>fm :YcmCompleter Format<cr>
 nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
-nnoremap <leader>do :YcmCompleter GetDoc<cr>
+nnoremap <leader>d :YcmCompleter GetDoc<cr>
 nnoremap <leader>t :YcmCompleter GetType<cr>
 nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
 " Rename requires input
@@ -78,8 +78,9 @@ let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
 
 " Pandoc syntax settings
 augroup pandoc_syntax
-    au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-    au! BufNewFile,BufFilePre,BufRead *.markdown set filetype=markdown.pandoc
+    au!
+    au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
+    au BufNewFile,BufFilePre,BufRead *.markdown set filetype=markdown.pandoc
 augroup END
 
 " AutoTag settings
