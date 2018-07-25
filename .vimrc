@@ -1,9 +1,14 @@
+if has('win32')
+    let $OSVIMDIR = expand('$HOME\vimfiles')
+else
+    let $OSVIMDIR = expand('$HOME/.vim')
+endif
+
 "Vim-Plug plugin management
-call plug#begin('~/.vim/plugged')
+call plug#begin(expand('$OSVIMDIR/plugged'))
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
     Plug 'vim-scripts/editorconfig-vim'
 "    Plug 'craigemery/vim-autotag' " Autogenerate tags
-    Plug 'peter-edge/vim-capnp'
     Plug 'majutsushi/tagbar' " Show functions and fields from live generated tags
     Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
 
@@ -24,10 +29,25 @@ call plug#begin('~/.vim/plugged')
     Plug 'Valloric/YouCompleteMe' " Polyglot code-completion engine
 
     Plug 'w0rp/ale' " Asynchronous Linting Engine
+
+    if has('win32')
+        Plug 'dylon/vim-antlr' " Syntax support for Antlr
+        Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
+    else
+        Plug 'peter-edge/vim-capnp'
+    endif
 call plug#end()
 
+" ALE settings
+let g:ale_linters = {
+            \'rust': ['rls']
+            \}
+let g:ale_fixers = {
+            \'rust': ['rustfmt']
+            \}
+
 " Editor Config
-let g:EditorConfig_exec_path = '$HOME/.vim/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+let g:EditorConfig_exec_path = expand('$OSVIMDIR/plugged/editorconfig-vim/plugin/editor-core-py/main.py')
 
 " YouCompleteMe settings
 nnoremap <leader>y :YcmDiags<cr>
@@ -46,29 +66,27 @@ nnoremap <leader>r :YcmCompleter RefactorRename
 set encoding=utf-8
 
 " UltiSnips settings
-" let g:UltiSnipsExpandTrigger="<tab>" " Incompatible with YouCompleteMe
-" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsExpandTrigger='<tab>' " Incompatible with YouCompleteMe
+" let g:UltiSnipsJumpForwardTrigger='<c-b>'
 " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" 
-" " If you want :UltiSnipsEdit to split your window.
+" If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 
-" Eclim settings
-" let g:EclimCompletionMethod = 'omnifunc'
-" nnoremap <c-j><c-j> :JavaCorrect<cr>
-" nnoremap <c-j><c-h> :JavaCallHierarchy<cr>
-" nnoremap <c-j><c-f> mjggVG:JavaFormat<cr>`j:delmarks j<cr>
-" nnoremap <c-j><c-i> :JavaImpl<cr>
-" nnoremap <c-j><c-d> :JavaDocPreview<cr>
-" nnoremap <c-j><c-s> :JavaSearchContext<cr>
-" " JavaRename requires input
-" nnoremap <c-j><c-r> :JavaRename 
-
-" Add status when working with Eclim projects
-" set statusline+=%<%f\ %M\ %h%r%=%-10.(%l,%c%V\ %{eclim#project#util#ProjectStatusLine()}%)\ %P
-" let g:EclimProjectStatusLine = 'eclim(p=${name}, n=${natures})'
-" let g:EclimHtmlValidate = 0 " Disabled because of issues with markdown files
-" let g:EclimFileTypeValidate = 0 " Disable Eclim validation when using syntastic
+" NERDtree settings
+if has('win32')
+    let g:NERDTreeIndicatorMapCustom = {
+        \ "Modified"  : "Mod",
+        \ "Staged"    : "Stg",
+        \ "Untracked" : "Untk",
+        \ "Renamed"   : "Ren",
+        \ "Unmerged"  : "Umrg",
+        \ "Deleted"   : "Del",
+        \ "Dirty"     : "Drt",
+        \ "Clean"     : "Cln",
+        \ 'Ignored'   : 'Ign',
+        \ "Unknown"   : "Unk"
+        \ }
+endif
 
 " CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb'
@@ -103,7 +121,9 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 set backspace   =indent,eol,start  " Make backspace work as you would expect.
 set hidden                  " Switch between buffers without having to save first.
 set showmatch               " Highlight matching [{()}]
-set laststatus  =2          " Always show statusline.
+if !has('win32')
+    set laststatus  =2          " Always show statusline.
+endif
 set display     =lastline   " Show as much as possible of the last line.
 
 set showmode                " Show current mode in command-line.
@@ -146,7 +166,9 @@ endif
 colorscheme industry
 set guifont=Monoid:h9
 set ruler                   "Show the line and column number of the cursor position
-"set wrapmargin=1            "Number of characters from the right where wrapping starts
+if has('win32')
+    set wrapmargin=1        "Number of characters from the right where wrapping starts
+endif
 
 " ------- Custom Commands ------------
 " Simple re-format for minified Javascript
