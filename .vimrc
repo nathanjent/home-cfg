@@ -4,6 +4,13 @@ else
     let $OSVIMDIR = expand('$HOME/.vim')
 endif
 
+let s:vim_plug_file = $OSVIMDIR . '/autoload/plug.vim'
+if !filereadable(s:vim_plug_file)
+    execute '!curl -fLo ' . s:vim_plug_file . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    echo 'Vim-Plug installed. Restarting Vim to load it.'
+    exit
+endif
+
 "Vim-Plug plugin management
 call plug#begin(expand('$OSVIMDIR/plugged'))
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
@@ -47,7 +54,7 @@ let g:ale_fixers = {
             \}
 
 " Editor Config
-let g:EditorConfig_exec_path = expand('$OSVIMDIR/plugged/editorconfig-vim/plugin/editor-core-py/main.py')
+let g:EditorConfig_exec_path = $OSVIMDIR . '/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
 
 " YouCompleteMe settings
 nnoremap <leader>y :YcmDiags<cr>
