@@ -7,8 +7,8 @@ endif
 let s:vim_plug_file = $OSVIMDIR . '/autoload/plug.vim'
 if !filereadable(s:vim_plug_file)
     execute '!curl -fLo ' . s:vim_plug_file . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-    echo 'Vim-Plug installed. Restarting Vim to load it.'
-    exit
+    echo 'Vim-Plug installed. Installing plugins'
+    autocmd VimEnter * PlugInstall
 endif
 
 "Vim-Plug plugin management
