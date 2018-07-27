@@ -1,10 +1,12 @@
-if has('win32')
-    let $OSVIMDIR = expand('$HOME\vimfiles')
+let s:is_win = has('win32')
+
+if s:is_win
+    let $VIMFILES = expand('$HOME\vimfiles')
 else
-    let $OSVIMDIR = expand('$HOME/.vim')
+    let $VIMFILES = expand('$HOME/.vim')
 endif
 
-let s:vim_plug_file = $OSVIMDIR . '/autoload/plug.vim'
+let s:vim_plug_file = $VIMFILES . '/autoload/plug.vim'
 if !filereadable(s:vim_plug_file)
     execute '!curl -fLo ' . s:vim_plug_file . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     echo 'Vim-Plug installed. Installing plugins'
@@ -12,7 +14,7 @@ if !filereadable(s:vim_plug_file)
 endif
 
 "Vim-Plug plugin management
-call plug#begin(expand('$OSVIMDIR/plugged'))
+call plug#begin(expand('$VIMFILES/plugged'))
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
     Plug 'vim-scripts/editorconfig-vim'
 "    Plug 'craigemery/vim-autotag' " Autogenerate tags
@@ -37,7 +39,7 @@ call plug#begin(expand('$OSVIMDIR/plugged'))
 
     Plug 'w0rp/ale' " Asynchronous Linting Engine
 
-    if has('win32')
+    if s:is_win
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
         Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
     else
@@ -54,7 +56,7 @@ let g:ale_fixers = {
             \}
 
 " Editor Config
-let g:EditorConfig_exec_path = $OSVIMDIR . '/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+let g:EditorConfig_exec_path = $VIMFILES . '/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
 
 " YouCompleteMe settings
 nnoremap <leader>y :YcmDiags<cr>
@@ -80,7 +82,7 @@ set encoding=utf-8
 " let g:UltiSnipsEditSplit="vertical"
 
 " NERDtree settings
-if has('win32')
+if s:is_win
     let g:NERDTreeIndicatorMapCustom = {
         \ "Modified"  : "Mod",
         \ "Staged"    : "Stg",
@@ -128,7 +130,7 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 set backspace   =indent,eol,start  " Make backspace work as you would expect.
 set hidden                  " Switch between buffers without having to save first.
 set showmatch               " Highlight matching [{()}]
-if !has('win32')
+if !s:is_win
     set laststatus  =2          " Always show statusline.
 endif
 set display     =lastline   " Show as much as possible of the last line.
@@ -173,7 +175,7 @@ endif
 colorscheme industry
 set guifont=Monoid:h9
 set ruler                   "Show the line and column number of the cursor position
-if has('win32')
+if s:is_win
     set wrapmargin=1        "Number of characters from the right where wrapping starts
 endif
 
