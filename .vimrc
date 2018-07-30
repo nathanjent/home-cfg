@@ -34,10 +34,18 @@ call plug#begin(expand('$VIMFILES/plugged'))
 
     Plug 'tpope/vim-dispatch' " Async script running
     Plug 'kien/ctrlp.vim' " File search
-
-    Plug 'Valloric/YouCompleteMe' " Polyglot code-completion engine
+    
+    " Polyglot code-completion engine
+    Plug 'Valloric/YouCompleteMe', {
+                \ 'do' : './install.py --clang-completer --rust-completer --java-completer --cs-completer'
+                \ }
 
     Plug 'w0rp/ale' " Asynchronous Linting Engine
+
+    Plug 'Shougo/vimproc.vim', { 'do' : 'make' } " Asynchronous library
+    Plug 'idanarye/vim-vebugger' " Vim debugger frontend
+
+    Plug 'hsanson/vim-android' " Gradle/Android support
 
     if s:is_win
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
@@ -46,6 +54,9 @@ call plug#begin(expand('$VIMFILES/plugged'))
         Plug 'peter-edge/vim-capnp'
     endif
 call plug#end()
+
+" Vebugger settings
+let g:vebugger_leader='<leader>d'
 
 " ALE settings
 let g:ale_linters = {
