@@ -45,13 +45,12 @@ call plug#begin(expand('$VIMFILES/plugged'))
     Plug 'Shougo/vimproc.vim', { 'do' : 'make' } " Asynchronous library
     Plug 'idanarye/vim-vebugger' " Vim debugger frontend
 
-    Plug 'hsanson/vim-android' " Gradle/Android support
-
     if s:is_win
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
         Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
     else
         Plug 'peter-edge/vim-capnp'
+        Plug 'hsanson/vim-android' " Gradle/Android support
     endif
 call plug#end()
 
@@ -59,12 +58,12 @@ call plug#end()
 let g:vebugger_leader='<leader>d'
 
 " ALE settings
-let g:ale_linters = {
-            \'rust': ['rls']
-            \}
-let g:ale_fixers = {
-            \'rust': ['rustfmt']
-            \}
+" let g:ale_linters = {
+"             \'rust': ['rls']
+"             \}
+" let g:ale_fixers = {
+"             \'rust': ['rustfmt']
+"             \}
 
 " Editor Config
 let g:EditorConfig_exec_path = $VIMFILES . '/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
