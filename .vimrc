@@ -116,11 +116,9 @@ let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
 
-" Pandoc syntax settings
-augroup pandoc_syntax
-    au!
-    au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-    au BufNewFile,BufFilePre,BufRead *.markdown set filetype=markdown.pandoc
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
 augroup END
 
 " AutoTag settings
