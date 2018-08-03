@@ -44,6 +44,9 @@ call plug#begin(expand('$VIMFILES/plugged'))
 
     Plug 'Shougo/vimproc.vim', { 'do' : 'make' } " Asynchronous library
     Plug 'idanarye/vim-vebugger' " Vim debugger frontend
+    Plug 'previm/previm' " Realtime preview of structured text documents {{{
+        let g:previm_open_cmd = 'open -a firefox'
+    "}}}
 
     if s:is_win
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
