@@ -16,113 +16,115 @@ endif
 "Vim-Plug plugin management
 call plug#begin(expand('$VIMFILES/plugged'))
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
-    Plug 'vim-scripts/editorconfig-vim'
-"    Plug 'craigemery/vim-autotag' " Autogenerate tags
+
+    Plug 'vim-scripts/editorconfig-vim' " Editor Config {{{
+        let g:EditorConfig_exec_path = $VIMFILES . '/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+    "}}}
+
+    "Plug 'craigemery/vim-autotag' " Autogenerate tags {{{
+        let g:autotagExcludeSuffixes    = "orig.swp"     " suffixes to not ctags on
+    "}}}
+
     Plug 'majutsushi/tagbar' " Show functions and fields from live generated tags
-    Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
+
+    "Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
 
     Plug 'scrooloose/nerdtree' " Browse files in vim
-    Plug 'Xuyuanp/nerdtree-git-plugin' " See GIT symbols in Nerdtree
+
+    Plug 'Xuyuanp/nerdtree-git-plugin' " Display GIT symbols in Nerdtree {{{
+        if s:is_win
+            let g:NERDTreeIndicatorMapCustom = {
+                \ "Modified"  : "Mod",
+                \ "Staged"    : "Stg",
+                \ "Untracked" : "Untk",
+                \ "Renamed"   : "Ren",
+                \ "Unmerged"  : "Umrg",
+                \ "Deleted"   : "Del",
+                \ "Dirty"     : "Drt",
+                \ "Clean"     : "Cln",
+                \ 'Ignored'   : 'Ign',
+                \ "Unknown"   : "Unk"
+                \ }
+        endif
+    "}}}
 
     Plug 'OrangeT/vim-csharp' " Syntax support for C# things
-"    Plug 'vim-syntastic/syntastic' " Syntax helper
+
+    "Plug 'vim-syntastic/syntastic' " Syntax helper
+    "
     Plug 'Shougo/neocomplete.vim' " Autocomplete
     
-    " Insert snippets of code
-    Plug 'SirVer/ultisnips'
+    Plug 'SirVer/ultisnips' " Insert snippets of code {{{
+        " let g:UltiSnipsExpandTrigger='<tab>' " Incompatible with YouCompleteMe
+        " let g:UltiSnipsJumpForwardTrigger='<c-b>'
+        " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+        " If you want :UltiSnipsEdit to split your window.
+        " let g:UltiSnipsEditSplit="vertical"
+    " }}}
+
     Plug 'honza/vim-snippets'
 
     Plug 'tpope/vim-dispatch' " Async script running
-    Plug 'kien/ctrlp.vim' " File search
+
+    Plug 'kien/ctrlp.vim' " File search {{{
+        let g:ctrlp_match_window = 'bottom,order:ttb'
+        let g:ctrlp_switch_buffer = 0
+        let g:ctrlp_working_path_mode = 0
+        let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
+    "}}}
     
-    " Polyglot code-completion engine
-    Plug 'Valloric/YouCompleteMe', {
+    " YouCompleteMe polyglot code-completion engine {{{
+    Plug 'Valloric/YouCompleteMe', { 
                 \ 'do' : './install.py --clang-completer --rust-completer --java-completer --cs-completer'
                 \ }
+        nnoremap <leader>y :YcmDiags<cr>
+        nnoremap <leader>yf :YcmForceCompileAndDiagnostics<cr>
+        nnoremap <leader>f :YcmCompleter FixIt<cr>
+        nnoremap <leader>g :YcmCompleter GoTo<cr>
+        nnoremap <leader>fm :YcmCompleter Format<cr>
+        nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
+        nnoremap <leader>d :YcmCompleter GetDoc<cr>
+        nnoremap <leader>t :YcmCompleter GetType<cr>
+        nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
+        " Rename requires input
+        nnoremap <leader>r :YcmCompleter RefactorRename 
 
-    Plug 'w0rp/ale' " Asynchronous Linting Engine
+        " YouCompleteMe requires UTF-8
+        set encoding=utf-8
+    "}}}
+
+    Plug 'w0rp/ale' " Asynchronous Linting Engine {{{
+        " let g:ale_linters = {
+        "             \'rust': ['rls']
+        "             \}
+        " let g:ale_fixers = {
+        "             \'rust': ['rustfmt']
+        "             \}
+    "}}}
 
     Plug 'Shougo/vimproc.vim', { 'do' : 'make' } " Asynchronous library
-    Plug 'idanarye/vim-vebugger' " Vim debugger frontend
+
+    Plug 'idanarye/vim-vebugger' " Vim debugger frontend {{{
+        let g:vebugger_leader='<leader>d'
+    "}}}
+
     Plug 'previm/previm' " Realtime preview of structured text documents {{{
         let g:previm_open_cmd = 'open -a firefox'
+        augroup PrevimSettings
+            autocmd!
+            autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+        augroup END
     "}}}
 
     if s:is_win
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
+
         Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
+
     else
         Plug 'peter-edge/vim-capnp'
-        Plug 'hsanson/vim-android' " Gradle/Android support
     endif
 call plug#end()
-
-" Vebugger settings
-let g:vebugger_leader='<leader>d'
-
-" ALE settings
-" let g:ale_linters = {
-"             \'rust': ['rls']
-"             \}
-" let g:ale_fixers = {
-"             \'rust': ['rustfmt']
-"             \}
-
-" Editor Config
-let g:EditorConfig_exec_path = $VIMFILES . '/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
-
-" YouCompleteMe settings
-nnoremap <leader>y :YcmDiags<cr>
-nnoremap <leader>yf :YcmForceCompileAndDiagnostics<cr>
-nnoremap <leader>f :YcmCompleter FixIt<cr>
-nnoremap <leader>g :YcmCompleter GoTo<cr>
-nnoremap <leader>fm :YcmCompleter Format<cr>
-nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
-nnoremap <leader>d :YcmCompleter GetDoc<cr>
-nnoremap <leader>t :YcmCompleter GetType<cr>
-nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
-" Rename requires input
-nnoremap <leader>r :YcmCompleter RefactorRename 
-
-" YouCompleteMe requires UTF-8
-set encoding=utf-8
-
-" UltiSnips settings
-" let g:UltiSnipsExpandTrigger='<tab>' " Incompatible with YouCompleteMe
-" let g:UltiSnipsJumpForwardTrigger='<c-b>'
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
-
-" NERDtree settings
-if s:is_win
-    let g:NERDTreeIndicatorMapCustom = {
-        \ "Modified"  : "Mod",
-        \ "Staged"    : "Stg",
-        \ "Untracked" : "Untk",
-        \ "Renamed"   : "Ren",
-        \ "Unmerged"  : "Umrg",
-        \ "Deleted"   : "Del",
-        \ "Dirty"     : "Drt",
-        \ "Clean"     : "Cln",
-        \ 'Ignored'   : 'Ign',
-        \ "Unknown"   : "Unk"
-        \ }
-endif
-
-" CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
-
-augroup PrevimSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
-
-" AutoTag settings
-let g:autotagExcludeSuffixes    = "orig.swp"     " suffixes to not ctags on
 
 " other settings
 set nocompatible            " Explicitly set not vi compatible mode.
@@ -227,3 +229,5 @@ function! HighlightRepeats() range
     endif
   endfor
 endfunction
+
+" vim:ts=4:sw=4:ai:foldmethod=marker:foldlevel=0
