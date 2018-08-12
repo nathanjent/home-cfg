@@ -4,11 +4,7 @@
 !.gitignore
 !_vimrc
 !.vimrc
-!**/autoload/plug.vim
 !vimfiles/**/nasal.vim
 
-!ginit.vim
-!init.vim
-
 !register_no_ext_editor.bat
-!user_path.bat
+!user_path.*
