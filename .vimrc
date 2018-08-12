@@ -74,9 +74,10 @@ call plug#begin(expand('$VIMFILES/plugged'))
     "}}}
     
     " YouCompleteMe polyglot code-completion engine {{{
-    Plug 'Valloric/YouCompleteMe', { 
-                \ 'do' : './install.py --clang-completer --rust-completer --java-completer --cs-completer'
-                \ }
+    if has('python_compiled')
+        Plug 'Valloric/YouCompleteMe', { 
+                    \ 'do' : './install.py --clang-completer --rust-completer --java-completer --cs-completer'
+                    \ }
         nnoremap <leader>y :YcmDiags<cr>
         nnoremap <leader>yf :YcmForceCompileAndDiagnostics<cr>
         nnoremap <leader>f :YcmCompleter FixIt<cr>
@@ -91,21 +92,7 @@ call plug#begin(expand('$VIMFILES/plugged'))
 
         " YouCompleteMe requires UTF-8
         set encoding=utf-8
-    "}}}
-
-    Plug 'w0rp/ale' " Asynchronous Linting Engine {{{
-        " let g:ale_linters = {
-        "             \'rust': ['rls']
-        "             \}
-        " let g:ale_fixers = {
-        "             \'rust': ['rustfmt']
-        "             \}
-    "}}}
-
-    Plug 'Shougo/vimproc.vim', { 'do' : 'make' } " Asynchronous library
-
-    Plug 'idanarye/vim-vebugger' " Vim debugger frontend {{{
-        let g:vebugger_leader='<leader>d'
+    endif
     "}}}
 
     Plug 'previm/previm' " Realtime preview of structured text documents {{{
@@ -123,6 +110,23 @@ call plug#begin(expand('$VIMFILES/plugged'))
 
     else
         Plug 'peter-edge/vim-capnp'
+
+        Plug 'w0rp/ale' " Asynchronous Linting Engine {{{
+                " let g:ale_linters = {
+                "             \'rust': ['rls']
+                "             \}
+                " let g:ale_fixers = {
+                "             \'rust': ['rustfmt']
+                "             \}
+            "}}}
+
+        Plug 'hsanson/vim-android' " Gradle/Android support
+
+        Plug 'Shougo/vimproc.vim', { 'do' : 'make' } " Asynchronous library
+
+        Plug 'idanarye/vim-vebugger' " Vim debugger frontend {{{
+            let g:vebugger_leader='<leader>d'
+        "}}}
     endif
 call plug#end()
 
