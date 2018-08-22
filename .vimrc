@@ -96,7 +96,11 @@ call plug#begin(expand('$VIMFILES/plugged'))
     "}}}
 
     Plug 'previm/previm' " Realtime preview of structured text documents {{{
-        let g:previm_open_cmd = 'open -a firefox'
+        if s:is_win
+            let g:previm_open_cmd = 'firefox'
+        else
+            let g:previm_open_cmd = 'open -a firefox'
+        endif
         augroup PrevimSettings
             autocmd!
             autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
