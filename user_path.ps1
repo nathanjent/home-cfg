@@ -1,8 +1,5 @@
 # Set your custom application paths before running this script
 
-# My bin path for miscellaneous local apps
-$binPath = "$ENV:USERPROFILE\bin"
-
 # My Scoop app path
 $scoopPath = "$ENV:USERPROFILE\scoop\apps"
 
@@ -40,7 +37,7 @@ $rustSrcPath = "$scoopPath\rustup\current\.rustup\toolchains\nightly-x86_64-pc-w
 # Get the previous value of the user's Path environment variable
 $oldPath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::User)
 
-$newPath = "$oldPath;$binPath;$msbuildPath"
+$newPath = "$oldPath;$msbuildPath"
 
 # Append the dynamic paths to the user's Path
 [System.Environment]::SetEnvironmentVariable("Path", $newPath, [System.EnvironmentVariableTarget]::User)
