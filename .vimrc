@@ -49,9 +49,40 @@ call plug#begin(expand('$VIMFILES/plugged'))
     "}}}
 
     Plug 'OrangeT/vim-csharp' " Syntax support for C# things
+    Plug 'OmniSharp/omnisharp-vim' " C# language server {{{
+        let g:OmniSharp_selector_ui = 'ctrlp'
+        let g:OmniSharp_timeout = 5
+        set previewheight=8
+
+        augroup omnisharp_commands
+            autocmd!
+            " Show type information automatically when the cursor stops moving
+            autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+
+            " The following commands are contextual, based on the cursor position.
+            autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+
+            " Finds members in the current buffer
+            autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
+
+            autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+            autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+            autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+
+
+            " Navigate up and down by method/property/field
+            autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
+            autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
+        augroup end
+    "}}}
 
     "Plug 'vim-syntastic/syntastic' " Syntax helper
-    "
+    
     Plug 'Shougo/neocomplete.vim' " Autocomplete
     
     Plug 'SirVer/ultisnips' " Insert snippets of code {{{
@@ -76,7 +107,7 @@ call plug#begin(expand('$VIMFILES/plugged'))
     " YouCompleteMe polyglot code-completion engine {{{
     if has('python_compiled')
         Plug 'Valloric/YouCompleteMe', { 
-                    \ 'do' : './install.py --clang-completer --rust-completer --java-completer --cs-completer'
+                    \ 'do' : './install.py --clang-completer --rust-completer --java-completer --go-completer'
                     \ }
         nnoremap <leader>y :YcmDiags<cr>
         nnoremap <leader>yf :YcmForceCompileAndDiagnostics<cr>
@@ -107,6 +138,18 @@ call plug#begin(expand('$VIMFILES/plugged'))
         augroup END
     "}}}
 
+    Plug 'w0rp/ale' " Asynchronous Linting Engine {{{
+             let g:ale_linters = {
+                         \'cs': ['OmniSharp']
+                         \}
+
+            "             \'rust': ['rls']
+            "             \}
+            " let g:ale_fixers = {
+            "             \'rust': ['rustfmt']
+            "             \}
+        "}}}
+            
     if s:is_win
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
 
@@ -115,14 +158,6 @@ call plug#begin(expand('$VIMFILES/plugged'))
     else
         Plug 'peter-edge/vim-capnp'
 
-        Plug 'w0rp/ale' " Asynchronous Linting Engine {{{
-                " let g:ale_linters = {
-                "             \'rust': ['rls']
-                "             \}
-                " let g:ale_fixers = {
-                "             \'rust': ['rustfmt']
-                "             \}
-            "}}}
 
         Plug 'hsanson/vim-android' " Gradle/Android support
 
