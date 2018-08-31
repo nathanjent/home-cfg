@@ -6,14 +6,17 @@ else
     let $VIMFILES = expand('$HOME/.vim')
 endif
 
+"Vim-Plug plugin management {{{
+
+" Download Vim-Plug if not available {{{
 let s:vim_plug_file = $VIMFILES . '/autoload/plug.vim'
 if !filereadable(s:vim_plug_file)
     execute '!curl -fLo ' . s:vim_plug_file . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     echo 'Vim-Plug installed. Installing plugins'
     autocmd VimEnter * PlugInstall
 endif
+" }}}
 
-"Vim-Plug plugin management
 call plug#begin(expand('$VIMFILES/plugged'))
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
 
@@ -59,21 +62,23 @@ call plug#begin(expand('$VIMFILES/plugged'))
             " Show type information automatically when the cursor stops moving
             autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
 
-            " The following commands are contextual, based on the cursor position.
-            autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-            autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+            " Goto commands
+            autocmd FileType cs nnoremap <buffer> <Leader>gd :OmniSharpGotoDefinition<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>gi :OmniSharpFindImplementations<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>gr :OmniSharpFindUsages<CR>
+
+            " Information commands
+            autocmd FileType cs nnoremap <buffer> <Leader>gt :OmniSharpTypeLookup<CR>
             autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
-            autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-
-            " Finds members in the current buffer
             autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>d :OmniSharpDocumentation<CR>
 
-            autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
-            autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
-            autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+            " Refactoring commands
+            autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpCodeFormat<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>i :OmniSharpFixUsings<CR>
+            autocmd FileType cs nnoremap <buffer> <Leader>r :OmniSharpRename<CR>
             autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
             autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
-
 
             " Navigate up and down by method/property/field
             autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
@@ -81,6 +86,45 @@ call plug#begin(expand('$VIMFILES/plugged'))
         augroup end
     "}}}
 
+    " YouCompleteMe polyglot code-completion engine {{{
+    if has('python_compiled')
+        Plug 'Valloric/YouCompleteMe', { 
+                    \ 'do' : './install.py --clang-completer --rust-completer --java-completer --go-completer'
+                    \ }
+        nnoremap <leader>y :YcmDiags<cr>
+        nnoremap <F5> :YcmForceCompileAndDiagnostics<cr>
+
+        " Goto commands
+        nnoremap <leader>gd :YcmCompleter GoTo<cr>
+        nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
+
+        " Information commands
+        nnoremap <leader>gt :YcmCompleter GetType<cr>
+        nnoremap <leader>d :YcmCompleter GetDoc<cr>
+
+        " Refactoring commands
+        nnoremap <leader>fm :YcmCompleter Format<cr>
+        nnoremap <leader>f :YcmCompleter FixIt<cr>
+        nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
+        nnoremap <leader>r :YcmCompleter RefactorRename 
+
+        " YouCompleteMe requires UTF-8
+        set encoding=utf-8
+    endif
+    "}}}
+    
+    Plug 'w0rp/ale' " Asynchronous Linting Engine {{{
+             let g:ale_linters = {
+                         \'cs': ['OmniSharp']
+                         \}
+
+            "             \'rust': ['rls']
+            "             \}
+            " let g:ale_fixers = {
+            "             \'rust': ['rustfmt']
+            "             \}
+        "}}}
+            
     "Plug 'vim-syntastic/syntastic' " Syntax helper
     
     Plug 'Shougo/neocomplete.vim' " Autocomplete
@@ -110,53 +154,6 @@ call plug#begin(expand('$VIMFILES/plugged'))
         let g:ctrlp_working_path_mode = 0
         let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
     "}}}
-    
-    " YouCompleteMe polyglot code-completion engine {{{
-    if has('python_compiled')
-        Plug 'Valloric/YouCompleteMe', { 
-                    \ 'do' : './install.py --clang-completer --rust-completer --java-completer --go-completer'
-                    \ }
-        nnoremap <F5> :YcmForceCompileAndDiagnostics<cr>
-        nnoremap <leader>y :YcmDiags<cr>
-        nnoremap <leader>f :YcmCompleter FixIt<cr>
-        nnoremap <leader>g :YcmCompleter GoTo<cr>
-        nnoremap <leader>fm :YcmCompleter Format<cr>
-        nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
-        nnoremap <leader>d :YcmCompleter GetDoc<cr>
-        nnoremap <leader>t :YcmCompleter GetType<cr>
-        nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
-
-        " Rename requires input
-        nnoremap <leader>r :YcmCompleter RefactorRename 
-        
-        " YouCompleteMe requires UTF-8
-        set encoding=utf-8
-    endif
-    "}}}
-
-    Plug 'previm/previm' " Realtime preview of structured text documents {{{
-        if s:is_win
-            let g:previm_open_cmd = 'firefox'
-        else
-            let g:previm_open_cmd = 'open -a firefox'
-        endif
-        augroup PrevimSettings
-            autocmd!
-            autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-        augroup END
-    "}}}
-
-    Plug 'w0rp/ale' " Asynchronous Linting Engine {{{
-             let g:ale_linters = {
-                         \'cs': ['OmniSharp']
-                         \}
-
-            "             \'rust': ['rls']
-            "             \}
-            " let g:ale_fixers = {
-            "             \'rust': ['rustfmt']
-            "             \}
-        "}}}
             
     Plug 'stephpy/vim-yaml' " YAML syntax
 
@@ -164,10 +161,8 @@ call plug#begin(expand('$VIMFILES/plugged'))
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
 
         Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
-
     else
         Plug 'peter-edge/vim-capnp'
-
 
         Plug 'hsanson/vim-android' " Gradle/Android support
 
@@ -177,9 +172,9 @@ call plug#begin(expand('$VIMFILES/plugged'))
             let g:vebugger_leader='<leader>d'
         "}}}
     endif
-call plug#end()
+call plug#end() "}}}
 
-" other settings
+" other settings {{{
 set nocompatible            " Explicitly set not vi compatible mode.
 set guioptions-=T           " Remove toolbar option in gui vim
 
@@ -231,22 +226,28 @@ set foldnestmax=10          " 10 nested fold max
 set noshowmatch             " Showmatch significantly slows down omnicomplete when the first match contains parentheses.
 set completeopt=longest,menuone,preview
 set splitbelow              " New split window below current
+if s:is_win
+    set wrapmargin=1        "Number of characters from the right where wrapping starts
+endif
+" }}}
 
+" Sometimes utf-8 is required {{{
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:? ,extends:?,precedes:?,nbsp:±'
 else
   let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
 endif
+" }}}
 
+" GUI {{{
 colorscheme industry
 set guifont=Monoid:h9
 set ruler                   "Show the line and column number of the cursor position
-if s:is_win
-    set wrapmargin=1        "Number of characters from the right where wrapping starts
-endif
+" }}}
 
-" ------- Custom Commands ------------
-" Simple re-format for minified Javascript
+" Custom Commands {{{
+
+" Simple re-format for minified Javascript {{{
 command! UnMinify call UnMinify()
 function! UnMinify()
     %s/{\ze[^\r\n]/{\r/g
@@ -256,14 +257,16 @@ function! UnMinify()
     %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
     normal ggVG=
 endfunction
+" }}}
 
-" Format JSON
+" Format JSON with a command included with Python {{{
 command! JSONFormat call JSONFormatter()
 function! JSONFormatter()
     %!python -m json.tool
 endfunction
+" }}}
 
-" Highlight repeated lines
+" Highlight repeated lines {{{
 command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
 function! HighlightRepeats() range
   let lineCounts = {}
@@ -282,5 +285,7 @@ function! HighlightRepeats() range
     endif
   endfor
 endfunction
+" }}}
+" }}}
 
 " vim:ts=4:sw=4:ai:foldmethod=marker:foldlevel=0
