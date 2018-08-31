@@ -34,16 +34,16 @@ call plug#begin(expand('$VIMFILES/plugged'))
     Plug 'Xuyuanp/nerdtree-git-plugin' " Display GIT symbols in Nerdtree {{{
         if s:is_win
             let g:NERDTreeIndicatorMapCustom = {
-                \ "Modified"  : "Mod",
-                \ "Staged"    : "Stg",
-                \ "Untracked" : "Untk",
-                \ "Renamed"   : "Ren",
-                \ "Unmerged"  : "Umrg",
-                \ "Deleted"   : "Del",
-                \ "Dirty"     : "Drt",
-                \ "Clean"     : "Cln",
-                \ 'Ignored'   : 'Ign',
-                \ "Unknown"   : "Unk"
+                \ "Modified"  : "|*|",
+                \ "Staged"    : "|S|",
+                \ "Untracked" : "|_|",
+                \ "Renamed"   : "|R|",
+                \ "Unmerged"  : "|~|",
+                \ "Deleted"   : "|-|",
+                \ "Dirty"     : "|+|",
+                \ "Clean"     : "|=|",
+                \ 'Ignored'   : '|I|',
+                \ "Unknown"   : "| |"
                 \ }
         endif
     "}}}
@@ -84,16 +84,23 @@ call plug#begin(expand('$VIMFILES/plugged'))
     "Plug 'vim-syntastic/syntastic' " Syntax helper
     
     Plug 'Shougo/neocomplete.vim' " Autocomplete
-    
-    Plug 'SirVer/ultisnips' " Insert snippets of code {{{
-        " let g:UltiSnipsExpandTrigger='<tab>' " Incompatible with YouCompleteMe
-        " let g:UltiSnipsJumpForwardTrigger='<c-b>'
-        " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-        " If you want :UltiSnipsEdit to split your window.
-        " let g:UltiSnipsEditSplit="vertical"
-    " }}}
 
-    Plug 'honza/vim-snippets'
+    " Snip tools {{{
+        Plug 'honza/vim-snippets'
+
+        Plug 'SirVer/ultisnips' " Insert snippets of code {{{
+            let g:UltiSnipsExpandTrigger='<c-e>' " <tab> conflicts with YouCompleteMe
+            " let g:UltiSnipsJumpForwardTrigger='<c-b>'
+            " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+            " If you want :UltiSnipsEdit to split your window.
+            let g:UltiSnipsEditSplit="vertical"
+        " }}}
+
+        "Plug 'garbas/vim-snipmate' " Insert snippets of code {{{
+        "    Plug 'tomtom/tlib_vim'
+        "    Plug 'MarcWeber/vim-addon-mw-utils'
+        "" }}}
+    " }}}
 
     Plug 'tpope/vim-dispatch' " Async script running
 
@@ -109,8 +116,8 @@ call plug#begin(expand('$VIMFILES/plugged'))
         Plug 'Valloric/YouCompleteMe', { 
                     \ 'do' : './install.py --clang-completer --rust-completer --java-completer --go-completer'
                     \ }
+        nnoremap <F5> :YcmForceCompileAndDiagnostics<cr>
         nnoremap <leader>y :YcmDiags<cr>
-        nnoremap <leader>yf :YcmForceCompileAndDiagnostics<cr>
         nnoremap <leader>f :YcmCompleter FixIt<cr>
         nnoremap <leader>g :YcmCompleter GoTo<cr>
         nnoremap <leader>fm :YcmCompleter Format<cr>
@@ -118,9 +125,10 @@ call plug#begin(expand('$VIMFILES/plugged'))
         nnoremap <leader>d :YcmCompleter GetDoc<cr>
         nnoremap <leader>t :YcmCompleter GetType<cr>
         nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
+
         " Rename requires input
         nnoremap <leader>r :YcmCompleter RefactorRename 
-
+        
         " YouCompleteMe requires UTF-8
         set encoding=utf-8
     endif
@@ -150,6 +158,8 @@ call plug#begin(expand('$VIMFILES/plugged'))
             "             \}
         "}}}
             
+    Plug 'stephpy/vim-yaml' " YAML syntax
+
     if s:is_win
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
 
