@@ -96,6 +96,7 @@ call plug#begin(expand('$VIMFILES/plugged'))
 
         " Goto commands
         nnoremap <leader>gd :YcmCompleter GoTo<cr>
+        nnoremap <leader>g :YcmCompleter GoTo<cr>
         nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
 
         " Information commands
@@ -242,6 +243,10 @@ endif
 " GUI {{{
 colorscheme industry
 set guifont=Monoid:h9
+if s:is_win 
+    set renderoptions=type:directx
+endif
+    
 set ruler                   "Show the line and column number of the cursor position
 " }}}
 
