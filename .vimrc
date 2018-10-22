@@ -89,7 +89,7 @@ call plug#begin(expand('$VIMFILES/plugged'))
     " YouCompleteMe polyglot code-completion engine {{{
     if has('python_compiled')
         Plug 'Valloric/YouCompleteMe', { 
-                    \ 'do' : './install.py --clang-completer --rust-completer --java-completer --go-completer'
+                    \ 'do' : 'python ./install.py --clang-completer --rust-completer --java-completer --go-completer'
                     \ }
         nnoremap <leader>y :YcmDiags<cr>
         nnoremap <F5> :YcmForceCompileAndDiagnostics<cr>
@@ -155,8 +155,16 @@ call plug#begin(expand('$VIMFILES/plugged'))
         let g:ctrlp_working_path_mode = 0
         let g:ctrlp_user_command = 'rg %s -l --hidden -g ""'
     "}}}
-            
+
     Plug 'stephpy/vim-yaml' " YAML syntax
+
+    "lh-vim {{{ Refactoring support for C, C++, Java, Pascal, VimL
+        " Plug 'LucHermitte/lh-vim-lib' 
+        " Plug 'LucHermitte/lh-tags'
+        " Plug 'LucHermitte/lh-dev'
+        " Plug 'LucHermitte/lh-brackets'
+        " Plug 'LucHermitte/vim-refactor'
+    " }}}
 
     if s:is_win
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
