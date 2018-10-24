@@ -32,7 +32,7 @@ call plug#begin(expand('$VIMFILES/plugged'))
 
     "Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
 
-    Plug 'scrooloose/nerdtree' " Browse files in vim
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTree' } " Browse files in vim
 
     Plug 'Xuyuanp/nerdtree-git-plugin' " Display GIT symbols in Nerdtree {{{
         if s:is_win
@@ -87,7 +87,7 @@ call plug#begin(expand('$VIMFILES/plugged'))
     "}}}
 
     " YouCompleteMe polyglot code-completion engine {{{
-    if has('python_compiled')
+    if has('python_compiled') || has('python3_compiled')
         Plug 'Valloric/YouCompleteMe', { 
                     \ 'do' : 'python ./install.py --clang-completer --rust-completer --java-completer --go-completer'
                     \ }
