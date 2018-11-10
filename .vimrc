@@ -32,7 +32,7 @@ call plug#begin(expand('$VIMFILES/plugged'))
 
     "Plug 'vim-pandoc/vim-pandoc-syntax' " Syntax support for markdown, has some extra features
 
-    Plug 'scrooloose/nerdtree' " Browse files in vim
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTree' } " Browse files in vim
 
     Plug 'Xuyuanp/nerdtree-git-plugin' " Display GIT symbols in Nerdtree {{{
         if s:is_win
@@ -170,6 +170,11 @@ call plug#begin(expand('$VIMFILES/plugged'))
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
 
         Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
+
+        Plug 'vim-scripts/confluencewiki.vim' " Confluence wiki syntax
+        Plug 'lusis/confluence-vim' " Edit confluence wiki pages {{{
+            source $HOME\set_confluence_url.vim
+        "}}}
     else
         Plug 'peter-edge/vim-capnp'
 
