@@ -87,7 +87,7 @@ call plug#begin(expand('$VIMFILES/plugged'))
     "}}}
 
     " YouCompleteMe polyglot code-completion engine {{{
-    if has('python_compiled') || has('python3_compiled')
+    if or(has('python_compiled'), has('python3_compiled'))
         Plug 'Valloric/YouCompleteMe', { 
                     \ 'do' : 'python ./install.py --clang-completer --rust-completer --java-completer --go-completer'
                     \ }
