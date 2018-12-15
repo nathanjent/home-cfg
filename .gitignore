@@ -1,10 +1,17 @@
 # ignore everything
 *
+
 # whitelist
 !.gitignore
-!_vimrc
+!.gitmodules
 !.vimrc
-!/.vim/
+!.gvimrc
+!.vim/
+!.vim/*
+!.vim/**/*
+
+# Vim-Plug
+.vim/plugged
 
 !register_no_ext_editor.bat
 !user_path.*

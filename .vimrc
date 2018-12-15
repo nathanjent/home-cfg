@@ -1,12 +1,106 @@
-let s:is_win = has('win32')
+" Nathan's vimrc file.
+"
+" Maintainer:   Nathan Jent <nathanjent@gmail.com>
 
-if s:is_win
-    let $VIMFILES = expand('$HOME\vimfiles')
-else
-    let $VIMFILES = expand('$HOME/.vim')
+" When started as "evim", evim.vim will already have done these settings.
+if v:progname =~? "evim"
+  finish
 endif
 
+source $VIMRUNTIME/defaults.vim
+
+colorscheme industry
+
+let s:is_win = has('win32') || has('win64')
+
+if s:is_win
+	set rtp^=$HOME/.vim
+	set rtp+=$HOME/.vim/after
+endif
+    
+" Basic settings {{{
+set autoindent              " Indent according to previous line.
+set expandtab               " Use spaces instead of tabs.
+set tabstop     =4          " Spaces per tab
+set softtabstop =4          " Tab key indents by 4 spaces.
+set shiftwidth  =4          " >> indents by 4 spaces.
+set shiftround              " >> indents to next multiple of 'shiftwidth'.
+
+set hidden                  " Switch between buffers without having to save first.
+set showmatch               " Highlight matching [{()}]
+if !s:is_win
+    set laststatus  =2          " Always show statusline.
+endif
+set display     =lastline   " Show as much as possible of the last line.
+
+set showmode                " Show current mode in command-line.
+
+set incsearch               " Highlight while searching with / or ?.
+set hlsearch                " Keep matches highlighted.
+
+set ttyfast                 " Faster redrawing.
+set lazyredraw              " Only redraw when necessary.
+
+set splitbelow              " Open new windows below the current window.
+set splitright              " Open new windows right of the current window.
+
+"set cursorline              " Highlight the current line
+set wrapscan                " Searches wrap around end-of-file.
+set report      =0          " Always report changed lines.
+set synmaxcol   =200        " Only highlight the first 200 columns.
+
+set list                    " Show non-printable characters.
+
+set number                  " Include the line number column
+set cpoptions+=n            " Wrapped lines use line number column; example->--------------------------------------------------------------------------------------------------------------------------->
+
+set foldenable              " Enable folding
+set foldlevelstart=5        " Open folds to this level for new buffer
+set foldnestmax=10          " 10 nested fold max
+
+set noshowmatch             " Showmatch significantly slows down omnicomplete when the first match contains parentheses.
+set completeopt=longest,menuone,preview
+set splitbelow              " New split window below current
+if s:is_win
+    set wrapmargin=1        "Number of characters from the right where wrapping starts
+endif
+" }}}
+
+" Sometimes utf-8 is required {{{
+if has('multi_byte') && &encoding ==# 'utf-8'
+  let &listchars = 'tab:? ,extends:?,precedes:?,nbsp:±'
+else
+  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
+endif
+" }}}
+
+" Highlight repeated lines {{{
+command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
+function! HighlightRepeats() range
+  let lineCounts = {}
+  let lineNum = a:firstline
+  while lineNum <= a:lastline
+    let lineText = getline(lineNum)
+    if lineText != ""
+      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
+    endif
+    let lineNum = lineNum + 1
+  endwhile
+  exe 'syn clear Repeat'
+  for lineText in keys(lineCounts)
+    if lineCounts[lineText] >= 2
+      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
+    endif
+  endfor
+endfunction
+" }}}
+
+packadd! nerdtree
+
+finish " break here temporarily
+
 "Vim-Plug plugin management {{{
+let $VIMFILES = expand('$HOME/.vim')
 
 " Download Vim-Plug if not available {{{
 let s:vim_plug_file = $VIMFILES . '/autoload/plug.vim'
@@ -170,11 +264,6 @@ call plug#begin(expand('$VIMFILES/plugged'))
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
 
         Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
-
-        Plug 'vim-scripts/confluencewiki.vim' " Confluence wiki syntax
-        Plug 'lusis/confluence-vim' " Edit confluence wiki pages {{{
-            source $HOME\set_confluence_url.vim
-        "}}}
     else
         Plug 'peter-edge/vim-capnp'
 
@@ -187,123 +276,5 @@ call plug#begin(expand('$VIMFILES/plugged'))
         "}}}
     endif
 call plug#end() "}}}
-
-" other settings {{{
-set nocompatible            " Explicitly set not vi compatible mode.
-set guioptions-=T           " Remove toolbar option in gui vim
-
-filetype plugin indent on   " Load plugins & indent according to detected filetype.
-syntax on                   " Enable syntax highlighting.
-
-set autoindent              " Indent according to previous line.
-set expandtab               " Use spaces instead of tabs.
-set tabstop     =4          " Spaces per tab
-set softtabstop =4          " Tab key indents by 4 spaces.
-set shiftwidth  =4          " >> indents by 4 spaces.
-set shiftround              " >> indents to next multiple of 'shiftwidth'.
-
-set backspace   =indent,eol,start  " Make backspace work as you would expect.
-set hidden                  " Switch between buffers without having to save first.
-set showmatch               " Highlight matching [{()}]
-if !s:is_win
-    set laststatus  =2          " Always show statusline.
-endif
-set display     =lastline   " Show as much as possible of the last line.
-
-set showmode                " Show current mode in command-line.
-set showcmd                 " Show already typed keys when more are expected.
-
-set incsearch               " Highlight while searching with / or ?.
-set hlsearch                " Keep matches highlighted.
-
-set ttyfast                 " Faster redrawing.
-set lazyredraw              " Only redraw when necessary.
-
-set splitbelow              " Open new windows below the current window.
-set splitright              " Open new windows right of the current window.
-
-"set cursorline              " Highlight the current line
-set wrapscan                " Searches wrap around end-of-file.
-set report      =0          " Always report changed lines.
-set synmaxcol   =200        " Only highlight the first 200 columns.
-
-set list                    " Show non-printable characters.
-
-set number                  " Include the line number column
-set cpoptions+=n            " Wrapped lines use line number column; example->--------------------------------------------------------------------------------------------------------------------------->
-set wildmenu                " Lists autocomplete items above command input
-
-set foldenable              " Enable folding
-set foldlevelstart=5        " Open folds to this level for new buffer
-set foldnestmax=10          " 10 nested fold max
-
-set noshowmatch             " Showmatch significantly slows down omnicomplete when the first match contains parentheses.
-set completeopt=longest,menuone,preview
-set splitbelow              " New split window below current
-if s:is_win
-    set wrapmargin=1        "Number of characters from the right where wrapping starts
-endif
-" }}}
-
-" Sometimes utf-8 is required {{{
-if has('multi_byte') && &encoding ==# 'utf-8'
-  let &listchars = 'tab:? ,extends:?,precedes:?,nbsp:±'
-else
-  let &listchars = 'tab:> ,extends:>,precedes:<,nbsp:.'
-endif
-" }}}
-
-" GUI {{{
-colorscheme industry
-set guifont=Monoid:h9
-if s:is_win 
-    set renderoptions=type:directx
-endif
-    
-set ruler                   "Show the line and column number of the cursor position
-" }}}
-
-" Custom Commands {{{
-
-" Simple re-format for minified Javascript {{{
-command! UnMinify call UnMinify()
-function! UnMinify()
-    %s/{\ze[^\r\n]/{\r/g
-    %s/){/) {/g
-    %s/};\?\ze[^\r\n]/\0\r/g
-    %s/;\ze[^\r\n]/;\r/g
-    %s/[^\s]\zs[=&|]\+\ze[^\s]/ \0 /g
-    normal ggVG=
-endfunction
-" }}}
-
-" Format JSON with a command included with Python {{{
-command! JSONFormat call JSONFormatter()
-function! JSONFormatter()
-    %!python -m json.tool
-endfunction
-" }}}
-
-" Highlight repeated lines {{{
-command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
-function! HighlightRepeats() range
-  let lineCounts = {}
-  let lineNum = a:firstline
-  while lineNum <= a:lastline
-    let lineText = getline(lineNum)
-    if lineText != ""
-      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
-    endif
-    let lineNum = lineNum + 1
-  endwhile
-  exe 'syn clear Repeat'
-  for lineText in keys(lineCounts)
-    if lineCounts[lineText] >= 2
-      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
-    endif
-  endfor
-endfunction
-" }}}
-" }}}
 
 " vim:ts=4:sw=4:ai:foldmethod=marker:foldlevel=0
