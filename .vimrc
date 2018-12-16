@@ -12,6 +12,7 @@ source $VIMRUNTIME/defaults.vim
 colorscheme industry
 
 let s:is_win = has('win32') || has('win64')
+let s:is_python = has('python_compiled') || has('python3_compiled')
 
 if s:is_win
     set runtimepath^=$HOME/.vim
@@ -102,18 +103,22 @@ let s:vimfiles = expand('$HOME/.vim')
 " Tool Plugins {{{
 packadd! nerdtree
 packadd! nerdtree-git-plugin
-packadd! editorconfig-vim
-let g:EditorConfig_exec_path = s:vimfiles . '/pack/submodules/start/editorconfig-vim/plugin/editor-core-py/main.py'
+if s:is_python
+    packadd! editorconfig-vim
+    let g:EditorConfig_exec_path = s:vimfiles . '/pack/submodules/start/editorconfig-vim/plugin/editor-core-py/main.py'
+endif
 " }}}
 
 " Snip tools {{{
 packadd! vim-snippets
-packadd! ultisnips
-let g:UltiSnipsExpandTrigger='<c-e>' " <tab> conflicts with YouCompleteMe
-" let g:UltiSnipsJumpForwardTrigger='<c-b>'
-" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+if s:is_python
+    packadd! ultisnips
+    let g:UltiSnipsExpandTrigger='<c-e>' " <tab> conflicts with YouCompleteMe
+    " let g:UltiSnipsJumpForwardTrigger='<c-b>'
+    " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+    " If you want :UltiSnipsEdit to split your window.
+    let g:UltiSnipsEditSplit="vertical"
+endif
 " }}}
 
 " Syntax Plugins {{{
@@ -206,7 +211,7 @@ call plug#begin(s:vim_plugged)
     "}}}
 
     " YouCompleteMe polyglot code-completion engine {{{
-    if or(has('python_compiled'), has('python3_compiled'))
+    if s:is_python
         Plug 'Valloric/YouCompleteMe', { 
                     \ 'do' : 'python ./install.py --clang-completer --rust-completer --java-completer --go-completer'
                     \ }
