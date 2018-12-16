@@ -7,18 +7,9 @@
 [submodule ".vim/pack/submodules/start/nerdtree-git-plugin"]
 	path = .vim/pack/submodules/start/nerdtree-git-plugin
 	url = https://github.com/Xuyuanp/nerdtree-git-plugin
-[submodule ".vim/pack/submodules/start/windows-powershell-syntax-plugin"]
-	path = .vim/pack/submodules/start/windows-powershell-syntax-plugin
-	url = https://github.com/vim-scripts/Windows-PowerShell-Syntax-Plugin
 [submodule ".vim/pack/submodules/start/editorconfig-vim"]
 	path = .vim/pack/submodules/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim
 [submodule ".vim/pack/submodules/start/vim-snippets"]
 	path = .vim/pack/submodules/start/vim-snippets
 	url = https://github.com/honza/vim-snippets
-[submodule ".vim/pack/submodules/start/ultisnips"]
-	path = .vim/pack/submodules/start/ultisnips
-	url = https://github.com/SirVer/ultisnips
-[submodule ".\\.vim\\pack\\submodules\\start\\editorconfig-vim"]
-	path = .\\.vim\\pack\\submodules\\start\\editorconfig-vim
-	url = https://github.com/editorconfig/editorconfig-vim
