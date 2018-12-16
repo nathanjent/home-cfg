@@ -14,8 +14,10 @@ colorscheme industry
 let s:is_win = has('win32') || has('win64')
 
 if s:is_win
-	set rtp^=$HOME/.vim
-	set rtp+=$HOME/.vim/after
+    set runtimepath^=$HOME/.vim
+    set runtimepath+=$HOME/.vim/after
+    set packpath^=$HOME/.vim
+    set packpath+=$HOME/.vim/after
 endif
     
 " Basic settings {{{
@@ -95,15 +97,35 @@ function! HighlightRepeats() range
 endfunction
 " }}}
 
+let s:vimfiles = expand('$HOME/.vim')
+
+" Tool Plugins {{{
 packadd! nerdtree
+packadd! nerdtree-git-plugin
+packadd! editorconfig-vim
+let g:EditorConfig_exec_path = s:vimfiles . '/pack/submodules/start/editorconfig-vim/plugin/editor-core-py/main.py'
+" }}}
+
+" Snip tools {{{
+packadd! vim-snippets
+packadd! ultisnips
+let g:UltiSnipsExpandTrigger='<c-e>' " <tab> conflicts with YouCompleteMe
+" let g:UltiSnipsJumpForwardTrigger='<c-b>'
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" }}}
+
+" Syntax Plugins {{{
+packadd! vim-polyglot " Support for many languages
+packadd! windows-powershell-syntax-plugin " Support for Powershell
+" }}}
 
 finish " break here temporarily
 
 "Vim-Plug plugin management {{{
-let $VIMFILES = expand('$HOME/.vim')
-
 " Download Vim-Plug if not available {{{
-let s:vim_plug_file = $VIMFILES . '/autoload/plug.vim'
+let s:vim_plug_file = s:vimfiles . '/autoload/plug.vim'
 if !filereadable(s:vim_plug_file)
     execute '!curl -fLo ' . s:vim_plug_file . ' --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
     echo 'Vim-Plug installed. Installing plugins'
@@ -111,11 +133,12 @@ if !filereadable(s:vim_plug_file)
 endif
 " }}}
 
-call plug#begin(expand('$VIMFILES/plugged'))
+let s:vim_plugged = s:vimfiles . '/plugged'
+call plug#begin(s:vim_plugged)
     Plug 'sheerun/vim-polyglot' " Syntax support for many languages
 
     Plug 'vim-scripts/editorconfig-vim' " Editor Config {{{
-        let g:EditorConfig_exec_path = $VIMFILES . '/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
+        let g:EditorConfig_exec_path = s:vimfiles . '/plugged/editorconfig-vim/plugin/editor-core-py/main.py'
     "}}}
 
     "Plug 'craigemery/vim-autotag' " Autogenerate tags {{{
