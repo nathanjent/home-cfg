@@ -118,7 +118,9 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Syntax Plugins {{{
 packadd! vim-polyglot " Support for many languages
-packadd! windows-powershell-syntax-plugin " Support for Powershell
+if s:is_win
+    packadd! windows-powershell-syntax-plugin " Support for Powershell
+endif
 " }}}
 
 finish " break here temporarily
