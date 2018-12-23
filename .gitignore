@@ -7,8 +7,7 @@
 !.vimrc
 !.gvimrc
 !.vim/
-!.vim/*
-!.vim/**/*
+!.vim/**
 
 # Vim-Plug
 .vim/plugged

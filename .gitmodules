@@ -22,3 +22,6 @@
 [submodule ".vim/pack/submodules/opt/tagbar"]
 	path = .vim/pack/submodules/opt/tagbar
 	url = https://github.com/majutsushi/tagbar
+[submodule ".vim/pack/submodules/opt/ale"]
+	path = .vim/pack/submodules/opt/ale
+	url = https://github.com/w0rp/ale

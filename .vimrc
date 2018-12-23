@@ -100,16 +100,15 @@ endfunction
 
 let s:vimfiles = expand('$HOME/.vim')
 
-" Tool Plugins {{{
+" Plugins {{{
 packadd! nerdtree
 packadd! nerdtree-git-plugin
+
 if s:is_python
     packadd! editorconfig-vim
     let g:EditorConfig_exec_path = s:vimfiles . '/pack/submodules/start/editorconfig-vim/plugin/editor-core-py/main.py'
 endif
-" }}}
 
-" Snip tools {{{
 packadd! vim-snippets
 if s:is_python
     packadd! ultisnips
@@ -119,15 +118,20 @@ if s:is_python
     " If you want :UltiSnipsEdit to split your window.
     let g:UltiSnipsEditSplit="vertical"
 endif
-" }}}
 
-" Syntax Plugins {{{
 packadd! vim-polyglot " Support for many languages
+
+packadd! vim-gradle " Gradle support
+
+packadd! ale
+let g:ale_completion_enable = 1
+
 if s:is_win
     packadd! windows-powershell-syntax-plugin " Support for Powershell
 endif
 " }}}
 
+silent! helptags ALL
 finish " break here temporarily
 
 "Vim-Plug plugin management {{{
