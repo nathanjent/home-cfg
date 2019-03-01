@@ -4,7 +4,7 @@
 !.gitignore
 !_vimrc
 !.vimrc
-!vimfiles/**/nasal.vim
+!/.vim/
 
 !register_no_ext_editor.bat
 !user_path.*
