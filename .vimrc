@@ -85,33 +85,39 @@ call plug#begin(expand('$VIMFILES/plugged'))
             autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
         augroup end
     "}}}
+    
+    " Conqure of Completion {{{
+    Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install() } }
+        " Smaller updatetime for CursorHold & CursorHoldI
+        set updatetime=300
+    "}}}
 
     " YouCompleteMe polyglot code-completion engine {{{
-    if has('python_compiled') || has('python3_compiled')
-        Plug 'Valloric/YouCompleteMe', { 
-                    \ 'do' : 'python ./install.py --clang-completer --rust-completer --java-completer --go-completer'
-                    \ }
-        nnoremap <leader>y :YcmDiags<cr>
-        nnoremap <F5> :YcmForceCompileAndDiagnostics<cr>
+    "if has('python_compiled') || has('python3_compiled')
+    "    Plug 'Valloric/YouCompleteMe', { 
+    "                \ 'do' : 'python ./install.py --clang-completer --rust-completer --java-completer --go-completer'
+    "                \ }
+    "    nnoremap <leader>y :YcmDiags<cr>
+    "    nnoremap <F5> :YcmForceCompileAndDiagnostics<cr>
 
-        " Goto commands
-        nnoremap <leader>gd :YcmCompleter GoTo<cr>
-        nnoremap <leader>g :YcmCompleter GoTo<cr>
-        nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
+    "    " Goto commands
+    "    nnoremap <leader>gd :YcmCompleter GoTo<cr>
+    "    nnoremap <leader>g :YcmCompleter GoTo<cr>
+    "    nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
 
-        " Information commands
-        nnoremap <leader>gt :YcmCompleter GetType<cr>
-        nnoremap <leader>d :YcmCompleter GetDoc<cr>
+    "    " Information commands
+    "    nnoremap <leader>gt :YcmCompleter GetType<cr>
+    "    nnoremap <leader>d :YcmCompleter GetDoc<cr>
 
-        " Refactoring commands
-        nnoremap <leader>fm :YcmCompleter Format<cr>
-        nnoremap <leader>f :YcmCompleter FixIt<cr>
-        nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
-        nnoremap <leader>r :YcmCompleter RefactorRename 
+    "    " Refactoring commands
+    "    nnoremap <leader>fm :YcmCompleter Format<cr>
+    "    nnoremap <leader>f :YcmCompleter FixIt<cr>
+    "    nnoremap <leader>i :YcmCompleter OrganizeImports<cr>
+    "    nnoremap <leader>r :YcmCompleter RefactorRename 
 
-        " YouCompleteMe requires UTF-8
-        set encoding=utf-8
-    endif
+    "    " YouCompleteMe requires UTF-8
+    "    set encoding=utf-8
+    "endif
     "}}}
     
     Plug 'w0rp/ale' " Asynchronous Linting Engine {{{
@@ -170,17 +176,17 @@ call plug#begin(expand('$VIMFILES/plugged'))
         Plug 'dylon/vim-antlr' " Syntax support for Antlr
 
         Plug 'vim-scripts/Windows-PowerShell-Syntax-Plugin' " Syntax support for Powershell
-
-        Plug 'vim-scripts/confluencewiki.vim' " Confluence wiki syntax
-        Plug 'lusis/confluence-vim' " Edit confluence wiki pages {{{
-            source $HOME\set_confluence_url.vim
-        "}}}
     else
         Plug 'peter-edge/vim-capnp'
 
         Plug 'hsanson/vim-android' " Gradle/Android support
 
         Plug 'Shougo/vimproc.vim', { 'do' : 'make' } " Asynchronous library
+
+        Plug 'vim-scripts/confluencewiki.vim' " Confluence wiki syntax
+        Plug 'lusis/confluence-vim' " Edit confluence wiki pages {{{
+            source $HOME/set_confluence_url.vim
+        "}}}
 
         Plug 'idanarye/vim-vebugger' " Vim debugger frontend {{{
             let g:vebugger_leader='<leader>d'
@@ -255,7 +261,14 @@ endif
 
 " GUI {{{
 colorscheme industry
-set guifont=Monoid:h9
+if has("gui_running")
+    if has("gui_gtk2")
+        set guifont=Monoid\ 9,\ Monospace\ 10
+    elseif has("gui_win32")
+        set guifont=Monoid:h9
+    endif
+endif
+
 if s:is_win 
     set renderoptions=type:directx
 endif
