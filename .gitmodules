@@ -25,3 +25,12 @@
 [submodule ".vim/pack/submodules/opt/ale"]
 	path = .vim/pack/submodules/opt/ale
 	url = https://github.com/w0rp/ale
+[submodule "vim-ghost"]
+	path = .\\.vim\\pack\\submodules\\opt\\vim-ghost
+	url = https://github.com/raghur/vim-ghost
+[submodule ".\\.vim\\pack\\submodules\\opt\\vim-hug-neovim-rpc"]
+	path = .\\.vim\\pack\\submodules\\opt\\vim-hug-neovim-rpc
+	url = https://github.com/roxma/vim-hug-neovim-rpc
+[submodule ".\\.vim\\pack\\submodules\\opt\\nvim-yarp"]
+	path = .\\.vim\\pack\\submodules\\opt\\nvim-yarp
+	url = https://github.com/roxma/nvim-yarp

@@ -67,6 +67,9 @@ set splitbelow              " New split window below current
 if s:is_win
     set wrapmargin=1        "Number of characters from the right where wrapping starts
 endif
+
+filetype plugin on
+filetype plugin indent on
 " }}}
 
 " Sometimes utf-8 is required {{{
@@ -107,6 +110,12 @@ packadd! nerdtree-git-plugin
 if s:is_python
     packadd! editorconfig-vim
     let g:EditorConfig_exec_path = s:vimfiles . '/pack/submodules/start/editorconfig-vim/plugin/editor-core-py/main.py'
+
+    packadd! vim-ghost
+    packadd! nvim-yarp
+
+    set encoding=utf-8 " Required for plugin
+    packadd! vim-hug-neovim-rpc
 endif
 
 packadd! vim-snippets
