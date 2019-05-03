@@ -22,9 +22,6 @@
 [submodule ".vim/pack/submodules/opt/tagbar"]
 	path = .vim/pack/submodules/opt/tagbar
 	url = https://github.com/majutsushi/tagbar
-[submodule ".vim/pack/submodules/opt/ale"]
-	path = .vim/pack/submodules/opt/ale
-	url = https://github.com/w0rp/ale
 [submodule ".vim/pack/submodules/opt/vim-ghost"]
 	path = .vim/pack/submodules/opt/vim-ghost
 	url = https://github.com/raghur/vim-ghost
@@ -34,3 +31,6 @@
 [submodule ".vim/pack/submodules/opt/nvim-yarp"]
 	path = .vim/pack/submodules/opt/nvim-yarp
 	url = https://github.com/roxma/nvim-yarp
+[submodule ".vim/pack/submodules/start/coc.nvim"]
+	path = .vim/pack/submodules/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim

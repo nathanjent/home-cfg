@@ -130,13 +130,15 @@ endif
 
 packadd! vim-polyglot " Support for many languages
 
-packadd! ale
-let g:ale_completion_enabled = 1
-let g:ale_pattern_options = {
-    \   '\.min.js$': {
-    \       'ale_enabled': 0
-    \   }
-    \ }
+packadd! coc.nvim
+
+" packadd! ale
+" let g:ale_completion_enabled = 1
+" let g:ale_pattern_options = {
+"     \   '\.min.js$': {
+"     \       'ale_enabled': 0
+"     \   }
+"     \ }
 
 if s:is_win
     packadd! windows-powershell-syntax-plugin " Support for Powershell
