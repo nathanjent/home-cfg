@@ -1,0 +1,8 @@
+{
+  /*
+   * Use ":CocConfig" to edit coc-settings.json
+   * Run ":CocInstall coc-json" to get completion support.
+   */
+  "languageserver": {}
+  // vim:ft=jsonc
+}
