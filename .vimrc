@@ -133,6 +133,8 @@ packadd! vim-polyglot " Support for many languages
 " CoC {{{
 packadd! coc.nvim
 
+let g:coc_global_extensions=['coc-json','coc-tsserver','coc-html','coc-css','coc-java','coc-rls','coc-yaml','coc-snippets']
+
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
