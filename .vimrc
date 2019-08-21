@@ -70,6 +70,9 @@ endif
 
 filetype plugin on
 filetype plugin indent on
+
+" Put all swp in same directory
+set directory^=$HOME/.vim/swapfiles//
 " }}}
 
 " Sometimes utf-8 is required {{{
