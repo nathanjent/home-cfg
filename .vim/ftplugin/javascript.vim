@@ -1,10 +1,13 @@
 " Vim filetype plugin file
-" Language:	Javascript
+" Language:	 Javascript
 
 if exists("b:did_ftplugin")
   finish
 endif
 let b:did_ftplugin = 1
+
+setlocal foldmethod=syntax
+setlocal foldlevel=0
 
 " Simple re-format for minified Javascript
 if !exists('*s:UnMinify')

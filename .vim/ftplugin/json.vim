@@ -6,6 +6,9 @@ if exists('b:did_ftplugin')
 endif
 let b:did_ftplugin = 1
 
+setlocal foldmethod=syntax
+setlocal foldlevel=0
+
 " Format JSON with a command included with Python
 if !exists('*s:JSONFormatter')
   function s:JSONFormatter()
@@ -15,4 +18,3 @@ endif
 if !exists(':JSONFormat')
   command JSONFormat call s:JSONFormatter()
 endif
-
