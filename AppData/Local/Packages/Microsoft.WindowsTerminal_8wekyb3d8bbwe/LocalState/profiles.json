@@ -15,6 +15,7 @@
             "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
             "name": "Windows PowerShell",
             "commandline": "powershell.exe",
+            "colorScheme": "Shapeshifter Dark",
             "fontFace": "Monoid",
             "fontSize": 9,
             "hidden": false
@@ -45,7 +46,50 @@
     ],
 
     // Add custom color schemes to this array
-    "schemes": [],
+    "schemes": [
+        {
+            "name": "Codeschool Dark",
+            "foreground": "#9ea7a6",
+            "background": "#232c31",
+            "black": "#232c31",
+            "red": "#2a5491",
+            "green": "#237986",
+            "yellow": "#a03b1e",
+            "blue": "#484d79",
+            "purple": "#c59820",
+            "cyan": "#b02f30",
+            "white": "#9ea7a6",
+            "brightBlack": "#3f4944",
+            "brightRed": "#2a5491",
+            "brightGreen": "#237986",
+            "brightYellow": "#a03b1e",
+            "brightBlue": "#484d79",
+            "brightPurple": "#c59820",
+            "brightCyan": "#b02f30",
+            "brightWhite": "#b5d8f6"
+        },
+        {
+            "name": "Shapeshifter Dark",
+            "foreground": "#ababab",
+            "background": "#000000",
+            "black": "#000000",
+            "red": "#e92f2f",
+            "green": "#0ed839",
+            "yellow": "#dddd13",
+            "blue": "#3b48e3",
+            "magenta": "#f996e2",
+            "cyan": "#23edda",
+            "white": "#ababab",
+            "brightBlack": "#343434",
+            "brightRed": "#e92f2f",
+            "brightGreen": "#0ed839",
+            "brightYellow": "#dddd13",
+            "brightBlue": "#3b48e3",
+            "brightMagenta": "#f996e2",
+            "brightCyan": "#23edda",
+            "brightWhite": "#f9f9f9"
+        }
+    ],
 
     // Add any keybinding overrides to this array.
     // To unbind a default keybinding, set the command to "unbound"
