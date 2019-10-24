@@ -34,6 +34,7 @@
 [submodule ".vim/pack/submodules/start/coc.nvim"]
 	path = .vim/pack/submodules/start/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
+	branch = release
 [submodule ".vim/pack/submodules/opt/vim-mipssyntax"]
 	path = .vim/pack/submodules/opt/vim-mipssyntax
 	url = git://github.com/HarnoRanaivo/vim-mipssyntax.git
