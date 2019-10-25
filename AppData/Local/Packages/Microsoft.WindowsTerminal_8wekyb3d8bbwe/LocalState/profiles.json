@@ -1,0 +1,99 @@
+
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "launchMode": "maximized",
+
+    "profiles":
+    [
+        {
+            // Make changes here to the powershell.exe profile
+            "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+            "name": "Windows PowerShell",
+            "commandline": "powershell.exe",
+            "colorScheme": "Shapeshifter Dark",
+            "fontFace": "Monoid",
+            "fontSize": 9,
+            "hidden": false
+        },
+        {
+            // Make changes here to the cmd.exe profile
+            "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+            "name": "cmd",
+            "commandline": "cmd.exe",
+            "fontFace": "Monoid",
+            "fontSize": 9,
+            "hidden": false
+        },
+        {
+            "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+            "hidden": false,
+            "name": "Ubuntu-18.04",
+            "fontFace": "Monoid",
+            "fontSize": 9,
+            "source": "Windows.Terminal.Wsl"
+        },
+        {
+            "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+            "hidden": true,
+            "name": "Azure Cloud Shell",
+            "source": "Windows.Terminal.Azure"
+        }
+    ],
+
+    // Add custom color schemes to this array
+    "schemes": [
+        {
+            "name": "Codeschool Dark",
+            "foreground": "#9ea7a6",
+            "background": "#232c31",
+            "black": "#232c31",
+            "red": "#2a5491",
+            "green": "#237986",
+            "yellow": "#a03b1e",
+            "blue": "#484d79",
+            "purple": "#c59820",
+            "cyan": "#b02f30",
+            "white": "#9ea7a6",
+            "brightBlack": "#3f4944",
+            "brightRed": "#2a5491",
+            "brightGreen": "#237986",
+            "brightYellow": "#a03b1e",
+            "brightBlue": "#484d79",
+            "brightPurple": "#c59820",
+            "brightCyan": "#b02f30",
+            "brightWhite": "#b5d8f6"
+        },
+        {
+            "name": "Shapeshifter Dark",
+            "foreground": "#ababab",
+            "background": "#000000",
+            "black": "#000000",
+            "red": "#e92f2f",
+            "green": "#0ed839",
+            "yellow": "#dddd13",
+            "blue": "#3b48e3",
+            "magenta": "#f996e2",
+            "cyan": "#23edda",
+            "white": "#ababab",
+            "brightBlack": "#343434",
+            "brightRed": "#e92f2f",
+            "brightGreen": "#0ed839",
+            "brightYellow": "#dddd13",
+            "brightBlue": "#3b48e3",
+            "brightMagenta": "#f996e2",
+            "brightCyan": "#23edda",
+            "brightWhite": "#f9f9f9"
+        }
+    ],
+
+    // Add any keybinding overrides to this array.
+    // To unbind a default keybinding, set the command to "unbound"
+    "keybindings": [
+        { "command": null, "keys": ["ctrl+shift+w"] }
+    ]
+}
