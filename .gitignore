@@ -12,5 +12,8 @@
 # Vim-Plug
 .vim/plugged
 
+# Swap file cache
+.vim/swapfiles
+
 !register_no_ext_editor.bat
 !user_path.*

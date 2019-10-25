@@ -22,9 +22,6 @@
 [submodule ".vim/pack/submodules/opt/tagbar"]
 	path = .vim/pack/submodules/opt/tagbar
 	url = https://github.com/majutsushi/tagbar
-[submodule ".vim/pack/submodules/opt/vim-ghost"]
-	path = .vim/pack/submodules/opt/vim-ghost
-	url = https://github.com/raghur/vim-ghost
 [submodule ".vim/pack/submodules/opt/vim-hug-neovim-rpc"]
 	path = .vim/pack/submodules/opt/vim-hug-neovim-rpc
 	url = https://github.com/roxma/vim-hug-neovim-rpc
