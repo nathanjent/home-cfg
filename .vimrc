@@ -114,7 +114,6 @@ if s:is_python
     packadd! editorconfig-vim
     let g:EditorConfig_exec_path = s:vimfiles . '/pack/submodules/start/editorconfig-vim/plugin/editor-core-py/main.py'
 
-    packadd! vim-ghost
     packadd! nvim-yarp
 
     set encoding=utf-8 " Required for plugin
