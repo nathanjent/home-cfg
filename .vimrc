@@ -72,6 +72,7 @@ filetype plugin on
 filetype plugin indent on
 
 " Put all swp in same directory
+silent call mkdir($HOME . "/.vim/swapfiles", "p")
 set directory^=$HOME/.vim/swapfiles//
 " }}}
 
