@@ -19,6 +19,7 @@
             //"colorScheme": "Dark Ocean",
             //"colorScheme": "Von Count",
             //"colorScheme": "Shapeshifter Dark",
+            "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
             "hidden": false
@@ -28,6 +29,7 @@
             "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
             "name": "cmd",
             "commandline": "cmd.exe",
+            "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
             "hidden": false
@@ -38,6 +40,7 @@
             "name": "Ubuntu-18.04",
             //"colorScheme": "Von Count",
             "colorScheme": "Shapeshifter Dark",
+            "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
             "source": "Windows.Terminal.Wsl"
