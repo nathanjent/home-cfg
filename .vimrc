@@ -124,6 +124,11 @@ if s:is_python
     packadd! vim-hug-neovim-rpc
 endif
 
+if has('nvim') || has('patch-8.0.902')
+    packadd! vim-signify
+    set updatetime=100
+endif
+
 packadd! vim-snippets
 if s:is_python
     packadd! ultisnips
