@@ -19,6 +19,7 @@
             //"colorScheme": "Dark Ocean",
             //"colorScheme": "Von Count",
             //"colorScheme": "Shapeshifter Dark",
+            "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
             "hidden": false
@@ -28,6 +29,7 @@
             "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
             "name": "cmd",
             "commandline": "cmd.exe",
+            "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
             "hidden": false
@@ -37,7 +39,9 @@
             "hidden": false,
             "name": "Ubuntu-18.04",
             //"colorScheme": "Von Count",
-            "colorScheme": "Shapeshifter Dark",
+            //"colorScheme": "Shapeshifter Dark",
+            "colorScheme": "hund",
+            "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
             "source": "Windows.Terminal.Wsl"
@@ -93,6 +97,27 @@
             "brightCyan": "#63E7F0",
             "white": "#E5E5E5",
             "brightWhite": "#F3F3F3"
+        },
+        {
+            "name": "hund",
+            "foreground": "#FFFFFF",
+            "background": "#161616",
+            "black": "#222222",
+            "red": "#E84F4F",
+            "green": "#B7CE42",
+            "yellow": "#FEA63C",
+            "blue": "#66AABB",
+            "purple": "#B7416E",
+            "cyan": "#6D878D",
+            "white": "#DDDDDD",
+            "brightBlack": "#666666",
+            "brightRed": "#D23D3D",
+            "brightGreen": "#BDE077",
+            "brightYellow": "#FFE863",
+            "brightBlue": "#AACCBB",
+            "brightPurple": "#E16A98",
+            "brightCyan": "#42717B",
+            "brightWhite": "#CCCCCC"
         },
         {
             "name": "Shapeshifter Dark",
