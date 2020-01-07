@@ -10,7 +10,7 @@
 [submodule ".vim/pack/submodules/start/editorconfig-vim"]
 	path = .vim/pack/submodules/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim
-    branch = master
+	branch = master
 [submodule ".vim/pack/submodules/start/vim-snippets"]
 	path = .vim/pack/submodules/start/vim-snippets
 	url = https://github.com/honza/vim-snippets
@@ -39,4 +39,8 @@
 [submodule ".vim/pack/submodules/opt/vim-signify"]
 	path = .vim/pack/submodules/opt/vim-signify
 	url = https://github.com/mhinz/vim-signify
+	branch = master
+[submodule ".vim/pack/submodules/opt/vimspector"]
+	path = .vim/pack/submodules/opt/vimspector
+	url = https://github.com/puremourning/vimspector
 	branch = master
