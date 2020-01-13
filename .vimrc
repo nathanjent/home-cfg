@@ -158,11 +158,11 @@ let g:coc_global_extensions=[
             \ 'coc-omnisharp',
             \ 'coc-snippets',
             \ ]
-if s:is_win
-    let g:coc_global_extensions+=[
-                \ 'coc-powershell',
-                \ ]
-endif
+" if s:is_win
+"     let g:coc_global_extensions+=[
+"                 \ 'coc-powershell',
+"                 \ ]
+" endif
 
 " Some servers have issues with backup files, see #649
 set nobackup
