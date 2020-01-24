@@ -42,3 +42,7 @@
 	path = .vim/pack/submodules/opt/vim-signify
 	url = https://github.com/mhinz/vim-signify
 	branch = master
+[submodule ".vim/pack/submodules/opt/vimspector"]
+	path = .vim/pack/submodules/opt/vimspector
+	url = https://github.com/puremourning/vimspector
+	branch = master
