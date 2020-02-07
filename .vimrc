@@ -15,6 +15,7 @@ let s:is_win = has('win32') || has('win64')
 let s:is_python = has('python_compiled') || has('python3_compiled')
 
 if s:is_win
+    " Use same vim folder on Windows
     set runtimepath^=$HOME/.vim
     set runtimepath+=$HOME/.vim/after
     set packpath^=$HOME/.vim
@@ -32,7 +33,7 @@ set shiftround              " >> indents to next multiple of 'shiftwidth'.
 set hidden                  " Switch between buffers without having to save first.
 set showmatch               " Highlight matching [{()}]
 if !s:is_win
-    set laststatus  =2          " Always show statusline.
+    set laststatus  =2      " Always show statusline.
 endif
 set display     =lastline   " Show as much as possible of the last line.
 
@@ -71,7 +72,7 @@ endif
 filetype plugin on
 filetype plugin indent on
 
-" Put all swp in same directory
+" Put all swp files in same directory
 silent call mkdir($HOME . "/.vim/swapfiles", "p")
 set directory^=$HOME/.vim/swapfiles//
 " }}}
@@ -84,41 +85,20 @@ else
 endif
 " }}}
 
-" Highlight repeated lines {{{
-command! -range=% HighlightRepeats <line1>,<line2>call HighlightRepeats()
-function! HighlightRepeats() range
-  let lineCounts = {}
-  let lineNum = a:firstline
-  while lineNum <= a:lastline
-    let lineText = getline(lineNum)
-    if lineText != ""
-      let lineCounts[lineText] = (has_key(lineCounts, lineText) ? lineCounts[lineText] : 0) + 1
-    endif
-    let lineNum = lineNum + 1
-  endwhile
-  exe 'syn clear Repeat'
-  for lineText in keys(lineCounts)
-    if lineCounts[lineText] >= 2
-      exe 'syn match Repeat "^' . escape(lineText, '".\^$*[]') . '$"'
-    endif
-  endfor
-endfunction
-" }}}
-
 let s:vimfiles = expand('$HOME/.vim')
 
 " Netrw Nerdtree like settings
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
-let g:netrw_winsize = 25
+let g:netrw_winsize = 18
 let g:netrw_dirhistmax = 0
 
 " Plugins {{{
-if s:is_python
-    packadd! editorconfig-vim
-    let g:EditorConfig_exec_path = s:vimfiles . '/pack/submodules/start/editorconfig-vim/plugin/editor-core-py/main.py'
+packadd! editorconfig-vim
+let g:EditorConfig_exclude_patterns = ['scp://.*']
 
+if s:is_python
     packadd! nvim-yarp
 
     set encoding=utf-8 " Required for plugin
@@ -131,38 +111,27 @@ if has('nvim') || has('patch-8.0.902')
 endif
 
 packadd! vim-snippets
-if s:is_python
-    packadd! ultisnips
-    let g:UltiSnipsExpandTrigger='<c-e>' " <tab> conflicts with YouCompleteMe
-    " let g:UltiSnipsJumpForwardTrigger='<c-b>'
-    " let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-    " If you want :UltiSnipsEdit to split your window.
-    let g:UltiSnipsEditSplit="vertical"
-endif
-
 packadd! vim-polyglot " Support for many languages
 
 " CoC {{{
 packadd! coc.nvim
-
 let g:coc_global_extensions=[
             \ 'coc-json',
             \ 'coc-tsserver',
             \ 'coc-html',
             \ 'coc-css',
             \ 'coc-java',
-            \ 'coc-rls',
+            \ 'coc-rust-analyzer',
             \ 'coc-yaml',
             \ 'coc-highlight',
-            \ 'coc-svg',
-            \ 'coc-omnisharp',
             \ 'coc-snippets',
+            \ 'coc-fsharp',
+            \ 'coc-svg',
+            \ 'coc-vimlsp',
+            \ 'coc-xml',
+            \ 'coc-omnisharp',
+            \ 'coc-markdownlint',
             \ ]
-" if s:is_win
-"     let g:coc_global_extensions+=[
-"                 \ 'coc-powershell',
-"                 \ ]
-" endif
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -247,7 +216,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " }}}
 
 if s:is_win
-    packadd! windows-powershell-syntax-plugin " Support for Powershell
+    " Support for Powershell
+    packadd! windows-powershell-syntax-plugin
 endif
 " }}}
 
