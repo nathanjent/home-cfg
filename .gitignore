@@ -1,10 +1,20 @@
 # ignore everything
 *
+
 # whitelist
 !.gitignore
-!_vimrc
+!.gitmodules
 !.vimrc
-!/.vim/
+!.gvimrc
+!.vim/
+!.vim/**
+!./AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json
+
+# Vim-Plug
+.vim/plugged
+
+# Swap file cache
+.vim/swapfiles
 
 !register_no_ext_editor.bat
 !user_path.*

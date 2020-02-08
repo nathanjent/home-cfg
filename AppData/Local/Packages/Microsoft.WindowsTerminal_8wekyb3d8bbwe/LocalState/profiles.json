@@ -1,0 +1,194 @@
+
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "launchMode": "maximized",
+    "requestedTheme": "dark",
+
+    "profiles":
+    [
+        {
+            // Make changes here to the powershell.exe profile
+            "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+            "name": "Windows PowerShell",
+            "commandline": "powershell.exe",
+            "colorScheme": "GJM",
+            //"colorScheme": "Dark Ocean",
+            //"colorScheme": "Von Count",
+            //"colorScheme": "Shapeshifter Dark",
+            "cursorShape": "vintage",
+            "fontFace": "Monoid",
+            "fontSize": 9,
+            "hidden": false
+        },
+        {
+            // Make changes here to the cmd.exe profile
+            "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+            "experimental.retroTerminalEffect": true,
+            "name": "cmd",
+            "commandline": "cmd.exe",
+            "cursorShape": "vintage",
+            "fontFace": "Monoid",
+            "fontSize": 9,
+            "hidden": false
+        },
+        {
+            "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+            "hidden": false,
+            "name": "Ubuntu-18.04",
+            //"colorScheme": "Von Count",
+            //"colorScheme": "Shapeshifter Dark",
+            "colorScheme": "hund",
+            "cursorShape": "vintage",
+            "fontFace": "Monoid",
+            "fontSize": 9,
+            "source": "Windows.Terminal.Wsl"
+        },
+        {
+            "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+            "hidden": true,
+            "name": "Azure Cloud Shell",
+            "source": "Windows.Terminal.Azure"
+        }
+    ],
+
+    // Add custom color schemes to this array
+    "schemes": [
+        {
+            "name": "Codeschool Dark",
+            "foreground": "#9EA7A6",
+            "background": "#232C31",
+            "black": "#232C31",
+            "red": "#2A5491",
+            "green": "#237986",
+            "yellow": "#A03B1E",
+            "blue": "#484D79",
+            "purple": "#C59820",
+            "cyan": "#B02F30",
+            "white": "#9EA7A6",
+            "brightBlack": "#3F4944",
+            "brightRed": "#2A5491",
+            "brightGreen": "#237986",
+            "brightYellow": "#A03B1E",
+            "brightBlue": "#484D79",
+            "brightPurple": "#C59820",
+            "brightCyan": "#B02F30",
+            "brightWhite": "#B5D8F6"
+        },
+        {
+            "name": "GJM",
+            "foreground":"#C5C5C5",
+            "background": "#1C1C1C",
+            "black": "#1C1C1C",
+            "brightBlack": "#666666",
+            "red": "#FF005B",
+            "brightRed": "#FF00A0",
+            "green": "#CEE318",
+            "brightGreen": "#CCFF00",
+            "yellow": "#FFE755",
+            "brightYellow": "#FF9F00",
+            "blue": "#048AC7",
+            "brightBlue": "#48C6FF",
+            "purple": "#833C9F",
+            "brightPurple": "#BE67E1",
+            "cyan": "#0AC1CD",
+            "brightCyan": "#63E7F0",
+            "white": "#E5E5E5",
+            "brightWhite": "#F3F3F3"
+        },
+        {
+            "name": "hund",
+            "foreground": "#FFFFFF",
+            "background": "#161616",
+            "black": "#222222",
+            "red": "#E84F4F",
+            "green": "#B7CE42",
+            "yellow": "#FEA63C",
+            "blue": "#66AABB",
+            "purple": "#B7416E",
+            "cyan": "#6D878D",
+            "white": "#DDDDDD",
+            "brightBlack": "#666666",
+            "brightRed": "#D23D3D",
+            "brightGreen": "#BDE077",
+            "brightYellow": "#FFE863",
+            "brightBlue": "#AACCBB",
+            "brightPurple": "#E16A98",
+            "brightCyan": "#42717B",
+            "brightWhite": "#CCCCCC"
+        },
+        {
+            "name": "Shapeshifter Dark",
+            "foreground": "#ABABAB",
+            "background": "#000000",
+            "black": "#858585",
+            "red": "#E92F2F",
+            "green": "#0ED839",
+            "yellow": "#DDDD13",
+            "blue": "#3B48E3",
+            "purple": "#F996E2",
+            "cyan": "#23EDDA",
+            "white": "#ABABAB",
+            "brightBlack": "#343434",
+            "brightRed": "#E92F2F",
+            "brightGreen": "#0ED839",
+            "brightYellow": "#DDDD13",
+            "brightBlue": "#3B48E3",
+            "brightPurple": "#F996E2",
+            "brightCyan": "#23EDDA",
+            "brightWhite": "#F9F9F9"
+        },
+        {
+            "name": "Von Count",
+            "foreground": "#919191",
+            "background": "#000000",
+            "black": "#303030",
+            "brightBlack": "#5E5E5E",
+            "red": "#C10023",
+            "brightRed": "#FF8781",
+            "green": "#A83334",
+            "brightGreen": "#FFA095",
+            "yellow": "#B51D2C",
+            "brightYellow": "#FF948B",
+            "blue": "#8C4B46",
+            "brightBlue": "#FEB2AA",
+            "purple": "#7D534F",
+            "brightPurple": "#EBBBB5",
+            "cyan": "#9A413D",
+            "brightCyan": "#FFAAA0",
+            "white": "#C6C6C6",
+            "brightWhite": "#FFFFFF"
+        },
+        {
+            "name": "Dark Ocean",
+            "foreground": "#FFFFFF",
+            "background": "#000000",
+            "black": "#000000",
+            "brightBlack": "#38372C",
+            "red": "#571DC2",
+            "brightRed": "#7C54B0",
+            "green": "#14DB49",
+            "brightGreen": "#A2E655",
+            "yellow": "#403D70",
+            "brightYellow": "#9C6F59",
+            "blue": "#385A70",
+            "brightBlue": "#323F5C",
+            "purple": "#384894",
+            "brightPurple": "#5E6C99",
+            "cyan": "#4F3A5E",
+            "brightCyan": "#667D77",
+            "white": "#999999",
+            "brightWhite": "#FFFFFF"
+        }
+    ],
+
+    // Add any keybinding overrides to this array.
+    // To unbind a default keybinding, set the command to "unbound"
+    "keybindings": [
+        { "command": null, "keys": ["ctrl+shift+w"] }
+    ]
+}
