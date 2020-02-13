@@ -110,7 +110,7 @@ let s:vimfiles = expand('$HOME/.vim')
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
-let g:netrw_winsize = 25
+let g:netrw_winsize = 18
 let g:netrw_dirhistmax = 0
 
 " Plugins {{{
@@ -247,6 +247,11 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 if s:is_win
     packadd! windows-powershell-syntax-plugin " Support for Powershell
+else
+    if has('patch-8.1.1264')
+        packadd! vimspector
+        let g:vimspector_enable_mappings = 'HUMAN'
+    endif
 endif
 " }}}
 
