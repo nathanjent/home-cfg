@@ -16,5 +16,7 @@
 # Swap file cache
 .vim/swapfiles
 
+.vim/.netrwhist
+
 !register_no_ext_editor.bat
 !user_path.*
