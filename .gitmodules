@@ -1,12 +1,6 @@
-[submodule ".vim/pack/submodules/start/nerdtree"]
-	path = .vim/pack/submodules/start/nerdtree
-	url = https://github.com/scrooloose/nerdtree
 [submodule ".vim/pack/submodules/start/vim-polyglot"]
 	path = .vim/pack/submodules/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot
-[submodule ".vim/pack/submodules/start/nerdtree-git-plugin"]
-	path = .vim/pack/submodules/start/nerdtree-git-plugin
-	url = https://github.com/Xuyuanp/nerdtree-git-plugin
 [submodule ".vim/pack/submodules/start/editorconfig-vim"]
 	path = .vim/pack/submodules/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim
@@ -14,10 +8,6 @@
 [submodule ".vim/pack/submodules/start/vim-snippets"]
 	path = .vim/pack/submodules/start/vim-snippets
 	url = https://github.com/honza/vim-snippets
-	branch = master
-[submodule ".vim/pack/submodules/opt/ultisnips"]
-	path = .vim/pack/submodules/opt/ultisnips
-	url = https://github.com/SirVer/ultisnips
 	branch = master
 [submodule ".vim/pack/submodules/opt/windows-powershell-syntax-plugin"]
 	path = .vim/pack/submodules/opt/windows-powershell-syntax-plugin
@@ -35,9 +25,6 @@
 	path = .vim/pack/submodules/start/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
 	branch = release
-[submodule ".vim/pack/submodules/opt/vim-mipssyntax"]
-	path = .vim/pack/submodules/opt/vim-mipssyntax
-	url = git://github.com/HarnoRanaivo/vim-mipssyntax.git
 [submodule ".vim/pack/submodules/opt/vim-signify"]
 	path = .vim/pack/submodules/opt/vim-signify
 	url = https://github.com/mhinz/vim-signify
