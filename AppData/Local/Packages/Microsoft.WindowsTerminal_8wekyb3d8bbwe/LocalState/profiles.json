@@ -16,17 +16,20 @@
             "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
             "name": "Windows PowerShell",
             "commandline": "powershell.exe",
-            "colorScheme": "GJM",
+            //"colorScheme": "GJM",
             //"colorScheme": "Dark Ocean",
             //"colorScheme": "Von Count",
             //"colorScheme": "Shapeshifter Dark",
             //"colorScheme": "X::DotShare",
             //"colorScheme": "Visibone",
-            "colorScheme": "Orangish",
+            //"colorScheme": "Orangish",
+            "colorScheme": "Codeschool Dark",
             "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
-            "hidden": false
+            // Set a link to a work directory
+            // ex. mklink \J git D:\git
+            "startingDirectory": "%USERPROFILE%/git"
         },
         {
             // Make changes here to the cmd.exe profile
@@ -37,11 +40,10 @@
             "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
-            "hidden": false
+            "startingDirectory": "%USERPROFILE%/git"
         },
         {
             "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
-            "hidden": false,
             "name": "Ubuntu-18.04",
             //"colorScheme": "Von Count",
             //"colorScheme": "Shapeshifter Dark",
@@ -49,7 +51,29 @@
             "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
-            "source": "Windows.Terminal.Wsl"
+            "source": "Windows.Terminal.Wsl",
+            "startingDirectory": "%USERPROFILE%/git"
+        },
+        {
+            "guid":"{8fbb2302-f68e-4d69-85f9-8d5393d304e7}",
+            "name": "Python3",
+            "colorScheme": "GJM",
+            "commandline": "%PYTHONHOME%/python.exe",
+            "fontFace": "Monoid",
+            "fontSize": 9,
+            "cursorShape": "vintage",
+            "startingDirectory": "%USERPROFILE%/git"
+        },
+        {
+            "guid": "{dc17ea48-51b2-4569-945b-257e2c5cb275}",
+            "name": "F#",
+            //"colorScheme": "GJM",
+            "colorScheme": "Von Count",
+            "commandline": "%PROGRAMFILES%/dotnet/dotnet.exe fsi",
+            "fontFace": "Monoid",
+            "fontSize": 9,
+            "cursorShape": "vintage",
+            "startingDirectory": "%USERPROFILE%/git"
         },
         {
             "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
