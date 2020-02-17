@@ -39,8 +39,8 @@
             "name": "cmd",
             "commandline": "cmd.exe",
             "cursorShape": "vintage",
-            "fontFace": "Monoid",
-            "fontSize": 9,
+            "fontFace": "Consolas",
+            "fontSize": 12,
             "startingDirectory": "%USERPROFILE%/git"
         },
         {
