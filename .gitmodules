@@ -39,3 +39,7 @@
 [submodule ".vim/pack/submodules/start/fzf"]
 	path = .vim/pack/submodules/start/fzf
 	url = https://github.com/junegunn/fzf
+[submodule ".vim/pack/submodules/opt/vCooler.vim"]
+	path = .vim/pack/submodules/opt/vCooler.vim
+	url = https://github.com/KabbAmine/vCoolor.vim
+	branch = master
