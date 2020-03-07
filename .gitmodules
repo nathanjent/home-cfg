@@ -33,9 +33,11 @@
 	path = .vim/pack/submodules/opt/vimspector
 	url = https://github.com/puremourning/vimspector
 	branch = master
-[submodule ".\\.vim\\pack\\submodules\\start\\fzf.vim"]
-	path = .\\.vim\\pack\\submodules\\start\\fzf.vim
+[submodule ".vim/pack/submodules/start/fzf.vim"]
+	path = .vim/pack/submodules/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
-[submodule ".\\.vim\\pack\\submodules\\start\\fzf"]
-	path = .\\.vim\\pack\\submodules\\start\\fzf
+	branch = master
+[submodule ".vim/pack/submodules/start/fzf"]
+	path = .vim/pack/submodules/start/fzf
 	url = https://github.com/junegunn/fzf
+	branch = master
