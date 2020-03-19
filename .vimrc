@@ -18,6 +18,7 @@ if s:is_win
     set runtimepath+=$HOME/.vim/after
     set packpath^=$HOME/.vim
     set packpath+=$HOME/.vim/after
+    nmap <C-z> <Nop>
 endif
 
 colorscheme industry
