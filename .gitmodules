@@ -43,3 +43,6 @@
 	path = .vim/pack/submodules/opt/vCooler.vim
 	url = https://github.com/KabbAmine/vCoolor.vim
 	branch = master
+[submodule ".vim/pack/submodules/start/vim-dim"]
+	path = .vim/pack/submodules/start/vim-dim
+	url = https://github.com/jeffkreeftmeijer/vim-dim

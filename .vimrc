@@ -21,7 +21,7 @@ if s:is_win
     nmap <C-z> <Nop>
 endif
 
-colorscheme industry
+colorscheme dim
     
 " Basic settings {{{
 set autoindent              " Indent according to previous line.
