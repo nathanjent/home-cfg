@@ -2,6 +2,8 @@
 "
 " Maintainer:   Nathan Jent <nathanjent@gmail.com>
 
+colorscheme industry
+
 let s:is_win = has('win32') || has('win64')
 
 if s:is_win 

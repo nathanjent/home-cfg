@@ -15,7 +15,7 @@
             "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
             "name": "Windows PowerShell",
             "commandline": "powershell.exe",
-            "colorScheme": "Epiphany",
+            "colorScheme": "Monokai",
             "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
@@ -190,7 +190,7 @@
             "brightWhite": "#FFFFFF"
         },
         {
-            "name": "Brewer (Dark)",
+            "name": "Brewer Dark",
             "foreground": "#b7b8b9",
             "background": "#0c0d0e",
             "black": "#0c0d0e",
