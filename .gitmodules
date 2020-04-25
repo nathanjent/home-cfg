@@ -46,3 +46,6 @@
 [submodule ".vim/pack/submodules/start/vim-dim"]
 	path = .vim/pack/submodules/start/vim-dim
 	url = https://github.com/jeffkreeftmeijer/vim-dim
+[submodule ".vim/pack/submodules/start/omnisharp-vim"]
+	path = .vim/pack/submodules/start/omnisharp-vim
+	url = https://github.com/OmniSharp/omnisharp-vim
