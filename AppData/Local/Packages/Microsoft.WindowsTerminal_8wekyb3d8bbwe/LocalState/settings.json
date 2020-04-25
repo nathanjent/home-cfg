@@ -31,7 +31,7 @@
         "defaults":
         {
             // Put settings here that you want to apply to all profiles.
-            "colorScheme": "hund",
+            "colorScheme": "Tango Dark",
             "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
@@ -54,6 +54,7 @@
                 "name": "Command Prompt",
                 "commandline": "cmd.exe",
                 "experimental.retroTerminalEffect": true,
+                "colorScheme": "Greenscreen Dark",
                 "fontFace": "Cascadia Code",
                 "fontSize": 14,
                 "hidden": false
