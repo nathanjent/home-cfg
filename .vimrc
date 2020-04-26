@@ -196,6 +196,8 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader><Space>  <Plug>(coc-codeaction)
+
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
@@ -219,7 +221,6 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " }}}
 
 " Omnisharp {{{
-packadd! omnisharp-vim
 " Use the stdio OmniSharp-roslyn server
 let g:OmniSharp_server_stdio = 1
 
@@ -252,8 +253,14 @@ augroup omnisharp_commands
     " The following commands are contextual, based on the cursor position.
     autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
     autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+    autocmd FileType cs nnoremap <buffer> gi :OmniSharpFindImplementations<CR>
     autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
     autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+    autocmd FileType cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>pd :OmniSharpPreviewDefinition<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>pi :OmniSharpPreviewImplementations<CR>
+    autocmd FileType cs nnoremap <buffer> <Leader>rn :OmniSharpRename<CR>
+
 
     " Finds members in the current buffer
     autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
@@ -261,6 +268,7 @@ augroup omnisharp_commands
     autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
     autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
     autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+    autocmd FileType cs nnoremap <silent> K :OmniSharpDocumentation<CR>
     autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
     autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
 
@@ -274,6 +282,7 @@ augroup END
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
 nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
+nnoremap <Leader>ac :OmniSharpGetCodeActions<CR>
 " Run code actions with text selected in visual mode to extract method
 xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
 
@@ -290,7 +299,7 @@ nnoremap <Leader>ss :OmniSharpStartServer<CR>
 nnoremap <Leader>sp :OmniSharpStopServer<CR>
 
 " Enable snippet completion
-" let g:OmniSharp_want_snippet=1
+let g:OmniSharp_want_snippet=1
 " }}}
 
 if s:is_win
