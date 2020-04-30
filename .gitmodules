@@ -49,3 +49,6 @@
 [submodule ".vim/pack/submodules/start/omnisharp-vim"]
 	path = .vim/pack/submodules/start/omnisharp-vim
 	url = https://github.com/OmniSharp/omnisharp-vim
+[submodule ".vim/pack/submodules/start/ultisnips"]
+	path = .vim/pack/submodules/start/ultisnips
+	url = https://github.com/SirVer/ultisnips
