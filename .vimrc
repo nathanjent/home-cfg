@@ -278,11 +278,11 @@ augroup omnisharp_commands
 
     " Find all code errors/warnings for the current solution and populate the quickfix window
     autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
+    autocmd FileType cs nnoremap <Leader>ac :OmniSharpGetCodeActions<CR>
 augroup END
 
 " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
 nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
-nnoremap <Leader>ac :OmniSharpGetCodeActions<CR>
 " Run code actions with text selected in visual mode to extract method
 xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
 
