@@ -96,8 +96,10 @@ let g:netrw_winsize = 20
 let g:netrw_dirhistmax = 0
 
 " Plugins {{{
+" EditorConfig {{{
 packadd! editorconfig-vim
 let g:EditorConfig_exclude_patterns = ['scp://.*']
+" }}}
 
 if s:is_python
     packadd! nvim-yarp
@@ -122,6 +124,7 @@ let g:coc_global_extensions=[
             \ 'coc-html',
             \ 'coc-css',
             \ 'coc-java',
+            \ 'coc-java-debug',
             \ 'coc-rust-analyzer',
             \ 'coc-yaml',
             \ 'coc-highlight',
@@ -302,6 +305,9 @@ nnoremap <Leader>sp :OmniSharpStopServer<CR>
 let g:OmniSharp_want_snippet=1
 " }}}
 
+" Vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+" }}}
 if s:is_win
     " Support for Powershell
     packadd! windows-powershell-syntax-plugin
