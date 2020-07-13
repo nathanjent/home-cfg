@@ -66,9 +66,9 @@
                 "source": "Windows.Terminal.PowershellCore"
             },
             {
-                "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
                 "hidden": false,
-                "name": "Ubuntu-18.04",
+                "name": "Ubuntu",
                 "source": "Windows.Terminal.Wsl"
             },
             {
@@ -88,6 +88,12 @@
                 "name": "F#",
                 "colorScheme": "Von Count",
                 "commandline": "%PROGRAMFILES%/dotnet/dotnet.exe fsi"
+            },
+            {
+                "guid": "{c6eaf9f4-32a7-5fdc-b5cf-066e8a4b1e40}",
+                "hidden": false,
+                "name": "Ubuntu-18.04",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
