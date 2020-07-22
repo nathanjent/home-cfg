@@ -1,13 +1,13 @@
-" Clear defaults
-syntax clear javaFold
-syntax clear javaBraces
-syntax clear javaDocComment
-syntax clear javaExternal
+" Clear default folds
+syn clear javaFold
+syn clear javaBraces
+syn clear javaDocComment
 
-" Redefine javaExternal as separate case from imports
-syn keyword javaExternal    native package
-syn region foldImports start="^\s*import\s*.*;$" end="^\s*\(import\)\@!\s*.*$" transparent fold keepend
+" Redefine without 'import' keyword so we can define a fold
+syn clear javaExternal
+syn keyword javaExternal native package
+syn region javaFoldImports start="^\s*import\s\+.*;$" end="^\s*\(import\)\@!\s\+.*$" transparent fold keepend
 
-" Block comment regions
+" Define block comment regions
 syn region javaDocComment start="^\s*/\*\*" end="^.*\*/" keepend contains=javaCommentTitle,@javaHtml,javaDocTags,javaDocSeeTag,javaTodo,@Spell fold
 syn region javaBlockComment start="^\s*/\*" end="^.*\*/" transparent fold keepend
