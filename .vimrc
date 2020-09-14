@@ -64,8 +64,14 @@ set foldlevelstart=5        " Open folds to this level for new buffer
 set foldnestmax=10          " 10 nested fold max
 
 set noshowmatch             " Showmatch significantly slows down omnicomplete when the first match contains parentheses.
-set completeopt=longest,menuone,preview,popuphidden
-set completepopup=highlight:Pmenu,border:off
+if has('textprop')
+    set completeopt=longest,menuone,preview,popuphidden
+    set completepopup=highlight:Pmenu,border:off
+else
+    set completeopt=longest,menuone,preview
+    set previewheight=5
+endif
+
 set splitbelow              " New split window below current
 if s:is_win
     set wrapmargin=1        "Number of characters from the right where wrapping starts
@@ -238,10 +244,6 @@ let g:OmniSharp_timeout = 5
 " still be fetched when you need it with the :OmniSharpDocumentation command.
 let g:omnicomplete_fetch_full_documentation = 1
 
-" Set desired preview window height for viewing documentation.
-" You might also want to look at the echodoc plugin.
-set previewheight=5
-
 " Update semantic highlighting on BufEnter, InsertLeave and TextChanged
 let g:OmniSharp_highlight_types = 2
 
@@ -254,51 +256,41 @@ augroup omnisharp_commands
     autocmd CursorHold *.cs OmniSharpTypeLookup
 
     " The following commands are contextual, based on the cursor position.
-    autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
-    autocmd FileType cs nnoremap <buffer> gi :OmniSharpFindImplementations<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
-    autocmd FileType cs nnoremap <buffer> gr :OmniSharpFindUsages<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>pd :OmniSharpPreviewDefinition<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>pi :OmniSharpPreviewImplementations<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>rn :OmniSharpRename<CR>
-
-
-    " Finds members in the current buffer
-    autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
-
-    autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
-    autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
-    autocmd FileType cs nnoremap <silent> K :OmniSharpDocumentation<CR>
-    autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
-    autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+    autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>fu <Plug>(omnisharp_find_usages)
+    autocmd FileType cs nmap <silent> <buffer> gr <Plug>(omnisharp_find_usages)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>fi <Plug>(omnisharp_find_implementations)
+    autocmd FileType cs nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementations)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>pd <Plug>(omnisharp_preview_definition)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>pi <Plug>(omnisharp_preview_implementations)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>tl <Plug>(omnisharp_type_lookup)
+    autocmd FileType cs nmap <silent> <buffer> K <Plug>(omnisharp_documentation)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>fs <Plug>(omnisharp_find_symbol)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>fx <Plug>(omnisharp_fix_usings)
+    autocmd FileType cs nmap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
+    autocmd FileType cs imap <silent> <buffer> <C-\> <Plug>(omnisharp_signature_help)
 
     " Navigate up and down by method/property/field
-    autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
-    autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
-
+    autocmd FileType cs nmap <silent> <buffer> [[ <Plug>(omnisharp_navigate_up)
+    autocmd FileType cs nmap <silent> <buffer> ]] <Plug>(omnisharp_navigate_down)
     " Find all code errors/warnings for the current solution and populate the quickfix window
-    autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
+    autocmd FileType cs nmap <silent> <buffer> <Leader>cc <Plug>(omnisharp_global_code_check)
+    " Contextual code actions (uses fzf, CtrlP or unite.vim selector when available)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>ca <Plug>(omnisharp_code_actions)
+    autocmd FileType cs nmap <silent> <buffer> <Leader><Space> <Plug>(omnisharp_code_actions)
+    autocmd FileType cs xmap <silent> <buffer> <Leader>ca <Plug>(omnisharp_code_actions)
+    autocmd FileType cs xmap <silent> <buffer> <Leader><Space> <Plug>(omnisharp_code_actions)
+    " Repeat the last code action performed (does not use a selector)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>ca. <Plug>(omnisharp_code_action_repeat)
+    autocmd FileType cs xmap <silent> <buffer> <Leader>ca. <Plug>(omnisharp_code_action_repeat)
 
-    " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
-    autocmd FileType cs nnoremap <Leader><Space> :OmniSharpGetCodeActions<CR>
-    " Run code actions with text selected in visual mode to extract method
-    autocmd FileType cs xnoremap <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+    autocmd FileType cs nmap <silent> <buffer> <Leader>cf <Plug>(omnisharp_code_format)
 
-    " Rename with dialog
-    autocmd FileType cs nnoremap <Leader>nm :OmniSharpRename<CR>
-    autocmd FileType cs nnoremap <F2> :OmniSharpRename<CR>
+    autocmd FileType cs nmap <silent> <buffer> <Leader>rn <Plug>(omnisharp_rename)
 
-    " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
-    command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
-
-    autocmd FileType cs nnoremap <Leader>cf :OmniSharpCodeFormat<CR>
-
-    " Start the omnisharp server for the current solution
-    autocmd FileType cs nnoremap <Leader>ss :OmniSharpStartServer<CR>
-    autocmd FileType cs nnoremap <Leader>sp :OmniSharpStopServer<CR>
+    autocmd FileType cs nmap <silent> <buffer> <Leader>osre <Plug>(omnisharp_restart_server)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>osst <Plug>(omnisharp_start_server)
+    autocmd FileType cs nmap <silent> <buffer> <Leader>ossp <Plug>(omnisharp_stop_server)
 augroup END
 
 " Enable snippet completion
