@@ -210,23 +210,39 @@ nmap <leader><Space>  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
 
+" Select in and around function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
 " Using CocList
 " Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList --number-select diagnostics<cr>
+nnoremap <silent><nowait> <space>a  :<C-u>CocList --number-select diagnostics<cr>
 " Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " }}}
 
 " Omnisharp {{{
@@ -302,10 +318,13 @@ let g:OmniSharp_diagnostic_overrides = {
             \}
 let g:OmniSharp_diagnostic_showid = 1
 let g:OmniSharp_diagnostic_exclude_paths = [
-            \ 'obj\\',
-            \ '[Tt]emp\\',
-            \ '\.nuget\\',
-            \ '\<AssemblyInfo\.cs\>'
+            \ '\<[Bb]in\>[\/\\]',
+            \ '\<[Oo]bj\>[\/\\]',
+            \ '\<[Tt]emp\>[\/\\]',
+            \ '\<tmp\>[\/\\]',
+            \ '\.\<nuget\>[\/\\]',
+            \ '\<AssemblyInfo\.cs\>',
+            \ '\<AssemblyAttributes\.cs\>'
             \]
 " }}}
 
