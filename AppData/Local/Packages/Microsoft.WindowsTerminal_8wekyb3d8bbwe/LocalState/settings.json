@@ -23,6 +23,8 @@
     "launchMode": "maximized",
     "useTabSwitcher": false,
 
+    "useTabSwitcher": false,
+
     // A profile specifies a command to execute paired with information about how it should look and feel.
     // Each one of them will appear in the 'New Tab' dropdown,
     //   and can be invoked from the commandline with `wt.exe -p xxx`
@@ -46,6 +48,7 @@
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "name": "Windows PowerShell",
                 "commandline": "powershell.exe",
+                "colorScheme": "jmbi",
                 "hidden": false
             },
             {
@@ -604,6 +607,48 @@
             "brightCyan": "#43bfe0",
             "white": "#c2b9a1",
             "brightWhite": "#f2e8c9"
+        },
+        {
+            "name": "jmbi",
+            "foreground": "#ffffff",
+            "background": "#1e1e1e",
+            "black": "#5a7260",
+            "brightBlack": "#8da691",
+            "red": "#8f423c",
+            "brightRed": "#eeaa88",
+            "green": "#bbbb88",
+            "brightGreen": "#ccc68d",
+            "yellow": "#f9d25b",
+            "brightYellow": "#eedd99",
+            "blue": "#e0ba69",
+            "brightBlue": "#c9b957",
+            "purple": "#709289",
+            "brightPurple": "#ffcbab",
+            "cyan": "#d13516",
+            "brightCyan": "#c25431",
+            "white": "#efe2e0",
+            "brightWhite": "#f9f1ed"
+        },
+        {
+            "name": "PencilDark",
+            "black": "#212121",
+            "red": "#c30771",
+            "green": "#10a778",
+            "yellow": "#a89c14",
+            "blue": "#008ec4",
+            "purple": "#523c79",
+            "cyan": "#20a5ba",
+            "white": "#d9d9d9",
+            "brightBlack": "#424242",
+            "brightRed": "#fb007a",
+            "brightGreen": "#5fd7af",
+            "brightYellow": "#f3e430",
+            "brightBlue": "#20bbfc",
+            "brightPurple": "#6855de",
+            "brightCyan": "#4fb8cc",
+            "brightWhite": "#f1f1f1",
+            "background": "#212121",
+            "foreground": "#f1f1f1"
         }
     ],
 
