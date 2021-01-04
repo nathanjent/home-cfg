@@ -205,7 +205,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 " Remap for do codeAction of current line
 nmap <leader>ac  <Plug>(coc-codeaction)
-nmap <leader><Space>  <Plug>(coc-codeaction)
 
 " Fix autofix problem of current line
 nmap <leader>qf  <Plug>(coc-fix-current)
@@ -313,9 +312,9 @@ augroup END
 let g:OmniSharp_want_snippet=1
 
 " Diagnostic overrides
-let g:OmniSharp_diagnostic_overrides = {
-            \ 'CS1591': {'type': 'None'},
-            \}
+" let g:OmniSharp_diagnostic_overrides = {
+"             \ 'CS1591': {'type': 'None'},
+"             \}
 let g:OmniSharp_diagnostic_showid = 1
 let g:OmniSharp_diagnostic_exclude_paths = [
             \ '\<[Bb]in\>[\/\\]',
@@ -330,6 +329,12 @@ let g:OmniSharp_diagnostic_exclude_paths = [
 
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
+
+" FZF Subversion Files
+command! -bang -nargs=* SvnFiles
+  \ call fzf#vim#grep(
+  \   'svn ls --depth=infinity'.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 " }}}
 if s:is_win
     " Support for Powershell
