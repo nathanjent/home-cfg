@@ -32,7 +32,6 @@ set shiftwidth  =4          " >> indents by 4 spaces.
 set shiftround              " >> indents to next multiple of 'shiftwidth'.
 
 set hidden                  " Switch between buffers without having to save first.
-set showmatch               " Highlight matching [{()}]
 if !s:is_win
     set laststatus  =2      " Always show statusline.
 endif
@@ -52,12 +51,12 @@ set splitright              " Open new windows right of the current window.
 "set cursorline              " Highlight the current line
 set wrapscan                " Searches wrap around end-of-file.
 set report      =0          " Always report changed lines.
-set synmaxcol   =200        " Only highlight the first 200 columns.
+set synmaxcol   =2048        " Only highlight the first 200 columns.
 
 set list                    " Show non-printable characters.
 
 set number                  " Include the line number column
-set cpoptions+=n            " Wrapped lines use line number column; example->--------------------------------------------------------------------------------------------------------------------------->
+set cpoptions   +=n         " Wrapped lines use line number column; example->--------------------------------------------------------------------------------------------------------------------------->
 
 set foldenable              " Enable folding
 set foldlevelstart=5        " Open folds to this level for new buffer
@@ -72,7 +71,6 @@ else
     set previewheight=5
 endif
 
-set splitbelow              " New split window below current
 if s:is_win
     set wrapmargin=1        "Number of characters from the right where wrapping starts
 endif
