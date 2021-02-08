@@ -32,7 +32,7 @@
         "defaults":
         {
             // Put settings here that you want to apply to all profiles.
-            "colorScheme": "Tango Dark",
+            "colorScheme": "navy-and-ivory",
             "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
@@ -46,7 +46,7 @@
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "name": "Windows PowerShell",
                 "commandline": "powershell.exe",
-                "colorScheme": "jmbi",
+                //"colorScheme": "jmbi",
                 "hidden": false
             },
             {
@@ -74,18 +74,18 @@
                 "startingDirectory": "//wsl$/Ubuntu/home/njent/"
             },
             {
-                "guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
-                "hidden": false,
-                "name": "Arch",
-                "source": "Windows.Terminal.Wsl",
-                "startingDirectory": "//wsl$/Arch/home/njent/"
-            },
-            {
                 "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
                 "hidden": false,
                 "name": "Debian",
                 "source": "Windows.Terminal.Wsl",
                 "startingDirectory": "//wsl$/Debian/home/njent/"
+            },
+            {
+                "guid": "{a5a97cb8-8961-5535-816d-772efe0c6a3f}",
+                "hidden": false,
+                "name": "Arch",
+                "source": "Windows.Terminal.Wsl",
+                "startingDirectory": "//wsl$/Arch/home/njent/"
             },
             {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
@@ -285,6 +285,27 @@
             "brightCyan": "#42717B",
             "white": "#DDDDDD",
             "brightWhite": "#DDDDDD"
+        },
+        {
+            "name": "Visiblue",
+            "black": "#333366",
+            "red": "#6666cc",
+            "green": "#0099cc",
+            "yellow": "#3366cc",
+            "blue": "#006699",
+            "purple": "#0066ff",
+            "cyan": "#669999",
+            "white": "#99cccc",
+            "brightBlack": "#333399",
+            "brightRed": "#9999ff",
+            "brightGreen": "#00ccff",
+            "brightYellow": "#6699ff",
+            "brightBlue": "#0099cc",
+            "brightPurple": "#0099ff",
+            "brightCyan": "#66cccc",
+            "brightWhite": "#ccffff",
+            "foreground": "#666699",
+            "background": "#000000"
         },
         {
             "name": "Visibone",
@@ -663,6 +684,90 @@
             "brightWhite": "#f1f1f1",
             "background": "#212121",
             "foreground": "#f1f1f1"
+        },
+        {
+            "name": "astromouse",
+            "black": "#1c1c1c",
+            "red": "#d770af",
+            "green": "#9acc79",
+            "yellow": "#d0d26b",
+            "blue": "#77b6c5",
+            "purple": "#a488d9",
+            "cyan": "#7fcab3",
+            "white": "#8d8d8d",
+            "brightBlack": "#3d3a3a",
+            "brightRed": "#d28abf",
+            "brightGreen": "#8fb676",
+            "brightYellow": "#c8bc45",
+            "brightBlue": "#8fa7b9",
+            "brightPurple": "#bd89de",
+            "brightCyan": "#6ec2a8",
+            "brightWhite": "#dad3d3",
+            "foreground": "#ffffff",
+            "background": "#000000"
+        },
+        {
+            "name": "catchmeifyoucan",
+            "black": "#130f0c",
+            "red": "#604c38",
+            "green": "#8d7f85",
+            "yellow": "#907256",
+            "blue": "#aa8d70",
+            "purple": "#b9a38d",
+            "cyan": "#c4bfbf",
+            "white": "#c4ae99",
+            "brightBlack": "#c69f77",
+            "brightRed": "#cab9a8",
+            "brightGreen": "#d5c6b8",
+            "brightYellow": "#dcd1c7",
+            "brightBlue": "#e0e0e2",
+            "brightPurple": "#e4dad2",
+            "brightCyan": "#eae3dc",
+            "brightWhite": "#f6f2f0",
+            "foreground": "#f9f9f9",
+            "background": "#170f0d"
+        },
+        {
+            "name": "vacuous2",
+            "black": "#202020",
+            "red": "#b91e2e",
+            "green": "#81957c",
+            "yellow": "#f9bb80",
+            "blue": "#356579",
+            "purple": "#2d2031",
+            "cyan": "#0b3452",
+            "white": "#909090",
+            "brightBlack": "#606060",
+            "brightRed": "#d14548",
+            "brightGreen": "#a7b79a",
+            "brightYellow": "#fae3a0",
+            "brightBlue": "#7491a1",
+            "brightPurple": "#87314e",
+            "brightCyan": "#0f829d",
+            "brightWhite": "#fff0f0",
+            "foreground": "#d2c5bc",
+            "background": "#101010"
+        },
+        {
+            "name": "navy-and-ivory",
+            "black": "#032c36",
+            "red": "#c2454e",
+            "green": "#7cbf9e",
+            "yellow": "#8a7a63",
+            "blue": "#2e3340",
+            "purple": "#ff5879",
+            "cyan": "#44b5b1",
+            "white": "#f2f1b9",
+            "brightBlack": "#065f73",
+            "brightRed": "#ef5847",
+            "brightGreen": "#a2d9b1",
+            "brightYellow": "#beb090",
+            "brightBlue": "#61778d",
+            "brightPurple": "#ff99a1",
+            "brightCyan": "#9ed9d8",
+            "brightWhite": "#f6f6c9",
+            "foreground": "#e8dfd6",
+            "background": "#021b21"
         }
     ],
 
