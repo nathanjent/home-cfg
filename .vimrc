@@ -18,9 +18,13 @@ if s:is_win
     set runtimepath+=$HOME/.vim/after
     set packpath^=$HOME/.vim
     set packpath+=$HOME/.vim/after
+    let g:coc_config_home=split(&runtimepath, ',')[0]
+
+    " There is no jobs support on Windows
     nmap <C-z> <Nop>
 endif
 
+" A defaults theme to allow theming in terminal application instead
 colorscheme dim
     
 " Basic settings {{{
