@@ -32,7 +32,7 @@
         "defaults":
         {
             // Put settings here that you want to apply to all profiles.
-            "colorScheme": "navy-and-ivory",
+            "colorScheme": "PencilDark",
             "cursorShape": "vintage",
             "fontFace": "Monoid",
             "fontSize": 9,
