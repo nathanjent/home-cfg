@@ -35,9 +35,7 @@
             "colorScheme": "PencilDark",
             "cursorShape": "vintage",
             "fontFace": "Monoid",
-            "fontSize": 9,
-            // Set a link to a work directory, ex. "mklink \J git D:\git"
-            "startingDirectory": "%USERPROFILE%/git"
+            "fontSize": 9
         },
         "list":
         [
