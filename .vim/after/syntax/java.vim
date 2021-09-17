@@ -1,3 +1,6 @@
+" Vim syntax plugin
+" Language:     Java
+"
 " Clear default folds
 syn clear javaFold
 syn clear javaBraces
