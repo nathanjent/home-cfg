@@ -18,6 +18,7 @@
 .vim/swapfiles
 
 .vim/.netrwhist
+.vim/view
 
 !register_no_ext_editor.bat
 !user_path.*
