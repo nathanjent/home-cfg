@@ -314,9 +314,9 @@ augroup END
 let g:OmniSharp_want_snippet=1
 
 " Diagnostic overrides
-" let g:OmniSharp_diagnostic_overrides = {
-"             \ 'CS1591': {'type': 'None'},
-"             \}
+let g:OmniSharp_diagnostic_overrides = {
+            \ 'CS1591': {'type': 'None'},
+            \}
 let g:OmniSharp_diagnostic_showid = 1
 let g:OmniSharp_diagnostic_exclude_paths = [
             \ '\<[Bb]in\>[\/\\]',
