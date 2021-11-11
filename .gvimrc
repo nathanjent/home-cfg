@@ -10,7 +10,7 @@ if s:is_win
     set guifont=Monoid:h9,Consolas:h11
     set renderoptions=type:directx
 else
-    set guifont=Monospace\ 10
+    set guifont=Monoid\ 9,Monospace\ 10
 endif
 
 set guioptions-=T           " Remove toolbar option in gui vim
