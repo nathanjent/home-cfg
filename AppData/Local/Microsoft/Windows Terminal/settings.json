@@ -24,9 +24,19 @@
     "copyFormatting": "none",
     "copyOnSelect": true,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "launchMode": "maximized",
     "profiles": 
     {
-        "defaults": {},
+        "defaults": 
+        {
+            "colorScheme": "PencilDark",
+            "cursorShape": "vintage",
+            "font": 
+            {
+                "face": "Monoid",
+                "size": 9
+            }
+        },
         "list": 
         [
             {
@@ -37,7 +47,13 @@
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
+                "colorScheme": "Greenscreen Dark",
                 "experimental.retroTerminalEffect": true,
+                "font": 
+                {
+                    "face": "Cascadia Code",
+                    "size": 14
+                },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
@@ -89,6 +105,18 @@
                 "hidden": false,
                 "name": "OracleLinux_8_5",
                 "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "colorScheme": "GJM",
+                "commandline": "%PYTHONHOME%/python.exe",
+                "guid": "{8fbb2302-f68e-4d69-85f9-8d5393d304e7}",
+                "name": "Python3"
+            },
+            {
+                "colorScheme": "Von Count",
+                "commandline": "%PROGRAMFILES%/dotnet/dotnet.exe fsi",
+                "guid": "{dc17ea48-51b2-4569-945b-257e2c5cb275}",
+                "name": "F#"
             }
         ]
     },
