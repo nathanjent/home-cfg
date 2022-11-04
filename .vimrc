@@ -67,6 +67,8 @@ set foldlevelstart=5        " Open folds to this level for new buffer
 set foldnestmax=10          " 10 nested fold max
 
 set noshowmatch             " Showmatch significantly slows down omnicomplete when the first match contains parentheses.
+set visualbell              " Flash for bell 
+
 if has('textprop')
     set completeopt=longest,menuone,preview,popuphidden
     set completepopup=highlight:Pmenu,border:off
