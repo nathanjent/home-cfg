@@ -3,6 +3,7 @@
    * Use ":CocConfig" to edit coc-settings.json
    * Run ":CocInstall coc-json" to get completion support.
    */
-  "languageserver": {}
+  "languageserver": {},
+  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/Users/njent/.config/coc/extensions/coc-lombok-data/server/lombok.jar\""
   // vim:ft=jsonc
 }
