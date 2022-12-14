@@ -3,6 +3,10 @@
    * Use ":CocConfig" to edit coc-settings.json
    * Run ":CocInstall coc-json" to get completion support.
    */
-  "languageserver": {}
+   "yaml.schemaStore.enable": true,
+   "diagnostic-languageserver.formatFiletypes": {
+     "python": ["black", "isort"]
+   },
+  "java.format.settings.url": "/home/njent/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
   // vim:ft=jsonc
 }
