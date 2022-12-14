@@ -9,9 +9,6 @@
 	path = .vim/pack/submodules/start/vim-snippets
 	url = https://github.com/honza/vim-snippets
 	branch = master
-[submodule ".vim/pack/submodules/opt/windows-powershell-syntax-plugin"]
-	path = .vim/pack/submodules/opt/windows-powershell-syntax-plugin
-	url = https://github.com/vim-scripts/Windows-PowerShell-Syntax-Plugin
 [submodule ".vim/pack/submodules/opt/tagbar"]
 	path = .vim/pack/submodules/opt/tagbar
 	url = https://github.com/majutsushi/tagbar
