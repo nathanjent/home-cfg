@@ -56,6 +56,7 @@ set splitright              " Open new windows right of the current window.
 set wrapscan                " Searches wrap around end-of-file.
 set report      =0          " Always report changed lines.
 set synmaxcol   =2048        " Only highlight the first 200 columns.
+set termguicolors
 
 set list                    " Show non-printable characters.
 
