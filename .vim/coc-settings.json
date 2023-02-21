@@ -3,11 +3,14 @@
    * Use ":CocConfig" to edit coc-settings.json
    * Run ":CocInstall coc-json" to get completion support.
    */
-   "yaml.schemaStore.enable": true,
-   "diagnostic-languageserver.formatFiletypes": {
-     "python": ["black", "isort"]
-   },
-  "java.format.settings.url": "/home/njent/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
+  "yaml.schemaStore.enable": true,
+  "diagnostic-languageserver.formatFiletypes": {
+    "python": [
+      "black",
+      "isort"
+    ]
+  },
+  "java.format.settings.url": "/home/njent/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
   "languageserver": {},
   "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/Users/njent/.config/coc/extensions/coc-lombok-data/server/lombok.jar\""
   // vim:ft=jsonc

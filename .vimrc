@@ -282,6 +282,24 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Run jest for current project
+command! -nargs=0 Jest :call  CocAction('runCommand', 'jest.projectTest')
+
+" Run jest for current file
+command! -nargs=0 JestCurrent :call  CocAction('runCommand', 'jest.fileTest', ['%'])
+
+" Run jest for current test
+nnoremap <leader>jt :call CocAction('runCommand', 'jest.singleTest')<CR>
+
+" Run Vitest for current project
+command! -nargs=0 Vitest :call CocAction('runCommand', 'vitest.projectTest')
+
+" Run Vitest for current file
+command! -nargs=0 VitestCurrent :call  CocAction('runCommand', 'vitest.fileTest', ['%'])
+
+" Run Vitest for single (nearest) test
+nnoremap <leader>vt :call CocAction('runCommand', 'vitest.singleTest')<CR>
 " }}}
 
 " Omnisharp {{{
