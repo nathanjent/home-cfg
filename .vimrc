@@ -139,7 +139,6 @@ let g:coc_global_extensions=[
             \ 'coc-css',
             \ 'coc-java',
             \ 'coc-java-debug',
-            \ 'coc-lombok',
             \ 'coc-rust-analyzer',
             \ 'coc-yaml',
             \ 'coc-highlight',
