@@ -4,7 +4,9 @@
    * Run ":CocInstall coc-json" to get completion support.
    */
   "yaml.schemaStore.enable": true,
-  "java.format.settings.url": "/home/njent/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
+  "java.format.settings.url": "${COC_DATA_HOME}/extensions/node_modules/coc-java/formatters/eclipse-formatter.xml",
   "languageserver": {},
+  "java.jdt.ls.lombokSupport.enabled": false,
+  "java.jdt.ls.vmargs": "-javaagent:\"/Users/njent/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.28/a2ff5da8bcd8b1b26f36b806ced63213362c6dcc/lombok-1.18.28.jar\" -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable"
   // vim:ft=jsonc
 }
