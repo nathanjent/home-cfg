@@ -1,0 +1,3 @@
+exec nm-applet --indicator
+exec volumeicon
+exec pamac-tray

@@ -1,0 +1,9 @@
+mode=drun
+insensitive=true
+allow_images=true
+width=500
+height=500
+allow_markup=true
+layer=overlay
+prompt=
+print_command=true
