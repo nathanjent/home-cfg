@@ -13,8 +13,12 @@
 !.config/alacritty/**
 !.config/sway/
 !.config/sway/**
+!.config/sway*/
+!.config/sway*/**
 !.config/wofi/
 !.config/wofi/**
+!.config/awesome/
+!.config/awesome/**
 !.config/waybar/
 !.config/waybar/**
 
