@@ -1,3 +1,11 @@
+# Auth with mate-polkit
+exec /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+
+# GTK3 applications take a long time to start
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 exec nm-applet --indicator
 exec volumeicon
 exec pamac-tray

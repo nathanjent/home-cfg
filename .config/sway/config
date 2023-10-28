@@ -1,7 +1,5 @@
 # Default config for sway
 #
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
@@ -174,6 +172,10 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # Move focus to the parent container
     bindsym $mod+a focus parent
+
+    # Move focus to next output to the right
+    bindsym $mod+o focus output right
+
 #
 # Scratchpad:
 #
@@ -216,23 +218,24 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    position top
+    swaybar_command waybar
+    #position top
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%a %b %d %Y %H:%M:%S'; do sleep 1; done
-    #status_command i3status
-    #status_command waybar
+    ## When the status_command prints a new line to stdout, swaybar updates.
+    ## The default just shows the current date and time.
+    #status_command while date +'%a %b %d %Y %H:%M:%S'; do sleep 1; done
+    ##status_command i3status
+    ##status_command waybar
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
+    #colors {
+    #    statusline #ffffff
+    #    background #323232
+    #    inactive_workspace #32323200 #32323200 #5c5c5c
+    #}
 }
 
 for_window [app_id="firefox"] inhibit_idle fullscreen
 
 include /etc/sway/config.d/*
-
 include $HOME/.config/sway/config.d/*
+
