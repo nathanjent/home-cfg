@@ -89,8 +89,6 @@ silent call mkdir($HOME . "/.vim/swapfiles", "p")
 set directory^=$HOME/.vim/swapfiles//
 " }}}
 
-set termguicolors
-
 " Sometimes utf-8 is required {{{
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:? ,extends:?,precedes:?,nbsp:±'

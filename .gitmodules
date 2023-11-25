@@ -50,3 +50,6 @@
 [submodule ".vim/pack/submodules/start/ultisnips"]
 	path = .vim/pack/submodules/start/ultisnips
 	url = https://github.com/SirVer/ultisnips
+[submodule ".config/alacritty/alacritty-theme"]
+	path = .config/alacritty/alacritty-theme
+	url = https://github.com/alacritty/alacritty-theme
