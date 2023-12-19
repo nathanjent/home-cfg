@@ -34,6 +34,8 @@ set $launcher wofi | xargs swaymsg exec --
 
 set $powermenu wofi
 
+bindsym $mod+Control+q exec swaylock 
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
