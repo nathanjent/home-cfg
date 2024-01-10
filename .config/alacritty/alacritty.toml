@@ -1,0 +1,19 @@
+import = ["/home/njent/.config/alacritty/alacritty-theme/themes/solarized_dark.toml"]
+
+[font]
+size = 10.0
+
+[font.bold]
+family = "Monoid"
+
+[font.bold_italic]
+family = "Monoid"
+
+[font.italic]
+family = "Monoid"
+
+[font.normal]
+family = "Monoid"
+
+[window]
+startup_mode = "Windowed"
