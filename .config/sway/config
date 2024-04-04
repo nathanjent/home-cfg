@@ -14,12 +14,24 @@ set $up k
 set $right l
 
 # audio control
-set $sink_volume pactl get-sink-volume @DEFAULT_SINK@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
-set $source_volume pactl get-source-volume @DEFAULT_SOURCE@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
-set $volume_down $(pactl set-sink-volume @DEFAULT_SINK@ -5% && $sink_volume)
-set $volume_up $(pactl set-sink-volume @DEFAULT_SINK@ +5% && $sink_volume)
-set $volume_mute $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | sed -En "/no/ s/.*/$($sink_volume)/p; /yes/ s/.*/0/p")
-set $mic_mute $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
+#set $sink_volume pactl get-sink-volume @DEFAULT_SINK@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
+#set $source_volume pactl get-source-volume @DEFAULT_SOURCE@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
+#set $volume_down $(pactl set-sink-volume @DEFAULT_SINK@ -5% && $sink_volume)
+#set $volume_up $(pactl set-sink-volume @DEFAULT_SINK@ +5% && $sink_volume)
+#set $volume_mute $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | sed -En "/no/ s/.*/$($sink_volume)/p; /yes/ s/.*/0/p")
+#set $mic_mute $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
+
+# media control
+
+# display in waybar instead
+#set $media $(playerctl metadata --format '{{ artist }} - {{ title }}')
+set $play_pause playerctl play-pause
+set $play_prev playerctl previous
+set $play_next playerctl next
+# TODO volume not working
+set $volume_up playerctl volume "$(( $(playerctl volume) + 0.1 ))"
+set $volume_down playerctl volume "$(( $(playerctl volume) - 0.1 ))"
+
 set $screenshot grim -g "$(slurp)"
 
 # Your preferred terminal emulator
@@ -41,7 +53,8 @@ bindsym $mod+Shift+p exec $screenshot
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+#output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg #232323 solid_color
 
 # Example configuration:
 #
@@ -182,6 +195,14 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
     # Move focus to next output to the right
     bindsym $mod+o focus output right
+#
+# Media controls:
+#
+    bindsym $mod+F8 exec $play_pause
+    bindsym $mod+F6 exec $play_prev
+    bindsym $mod+F7 exec $play_next
+    bindsym $mod+Shift+F6 exec $volume_down
+    bindsym $mod+Shift+F7 exec $volume_up
 
 #
 # Scratchpad:
@@ -233,15 +254,25 @@ bar {
     #status_command while date +'%a %b %d %Y %H:%M:%S'; do sleep 1; done
     ##status_command i3status
     ##status_command waybar
+    #status_padding 3
 
     #colors {
     #    statusline #ffffff
     #    background #323232
     #    inactive_workspace #32323200 #32323200 #5c5c5c
     #}
+
+    #height 30
+
+    #tray {
+    #    tray_padding 3
+    #}
 }
 
 for_window [app_id="firefox"] inhibit_idle fullscreen
+for_window [class=".*.x86_64"] inhibit_idle fullscreen
+for_window [class="Ingression"] inhibit_idle fullscreen
+for_window [class="ArkovsTower"] inhibit_idle fullscreen
 
 include /etc/sway/config.d/*
 include $HOME/.config/sway/config.d/*

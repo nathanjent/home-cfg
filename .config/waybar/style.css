@@ -13,9 +13,6 @@
 /*
 Arc-Dark Color Scheme
 */
-@define-color highlight #5294e2 ;
-@define-color base1  #404552 ;
-
 @keyframes blink-warning {
     70% {
         color: white;
@@ -55,7 +52,7 @@ Arc-Dark Color Scheme
 #waybar {
     background: transparent;
     color: #bebebe;
-    background-color: @base1;
+    background-color: #404552;
     font-family: UbuntuMono;
     font-size: 14px;
 }
@@ -74,6 +71,7 @@ Arc-Dark Color Scheme
 #temperature,
 #tray,
 #idle_inhibitor,
+#custom-media,
 #custom-PBPbattery {
     padding:0.5rem 0.6rem;
     margin: 1px 0px;
@@ -134,7 +132,7 @@ Arc-Dark Color Scheme
 }
 
 #mode {
-    background: @highlight;
+    background: #5294e2;
     border-bottom: 3px transparent;
     color:white;
     margin-left: 5px;
@@ -150,7 +148,7 @@ Arc-Dark Color Scheme
 }
 
 #pulseaudio.muted {
-    color: @highlight;
+    color: #5294e2;
 }
 
 #temperature.critical {
@@ -172,7 +170,7 @@ Arc-Dark Color Scheme
 }
 
 #workspaces button.focused {
-    border-bottom: 3px solid  @highlight;
+    border-bottom: 3px solid #5294e2;
     margin-bottom: 1px;
     padding-left:0;
 }

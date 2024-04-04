@@ -1,18 +1,12 @@
-/*
-Arc-Dark Color Scheme
-*/
-
-@define-color highlight #5294e2;
-@define-color base1  #404552;
-@define-color base2 #40455;
-@define-color base3  #4b5160;
-
-*{
-    font-family: UbuntuMono;
+* {
+    font-family: DejavuMono;
 }
 
 #window {
-    border: 1px solid @highlight;
+    border: 3px solid --wofi-color0;
+    margin: auto;
+    padding: 10px;
+    border-radius: 20px;
 }
 
 #input {
@@ -24,13 +18,13 @@ Arc-Dark Color Scheme
 }
 
 #inner-box {
-    background-color: @base3;
+    background-color: --wofi-color3;
 }
 
 #outer-box {
     margin: 5px;
     padding:15px;
-    background-color: @base2;
+    background-color: --wofi-color2;
 }
 
 #text {
@@ -39,9 +33,9 @@ Arc-Dark Color Scheme
 }
 
 #entry:nth-child(even) {
-    background-color: @base1;
+    background-color: --wofi-color1;
 }
 
 #entry:selected {
-    background-color: @highlight;
+    background-color: --wofi-color0;
 }

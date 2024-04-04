@@ -7,3 +7,5 @@ allow_markup=true
 layer=overlay
 prompt=
 print_command=true
+gtk_dark=true
+colors=colors
