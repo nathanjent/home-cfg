@@ -192,6 +192,26 @@ Arc-Dark Color Scheme
     margin-right:10px;
 }
 
+#custom-playerctl {
+    background-color: #232323;
+    padding-top: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 8px;
+    margin-right: 5px;
+    color: #808080;
+}
+
+#custom-playerctl.playing {
+    background-color: #808080;
+    color: black;
+}
+
+#custom-playerctl.paused {
+    background-color: #232323;
+    color: white;
+}
+
 #backlight.icon {
     padding-right:1px;
     font-size: 13px;
