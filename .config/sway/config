@@ -13,6 +13,9 @@ set $down j
 set $up k
 set $right l
 
+# Your preferred terminal emulator
+set $term alacritty
+
 # audio control
 #set $sink_volume pactl get-sink-volume @DEFAULT_SINK@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
 #set $source_volume pactl get-source-volume @DEFAULT_SOURCE@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
@@ -22,6 +25,9 @@ set $right l
 #set $mic_mute $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
 
 # media control
+
+## Pulse Audio Mixer
+set $mixer $term -e ncpamixer
 
 # display in waybar instead
 #set $media $(playerctl metadata --format '{{ artist }} - {{ title }}')
@@ -33,10 +39,6 @@ set $volume_up playerctl volume "$(( $(playerctl volume) + 0.1 ))"
 set $volume_down playerctl volume "$(( $(playerctl volume) - 0.1 ))"
 
 set $screenshot grim -g "$(slurp)"
-
-# Your preferred terminal emulator
-set $term alacritty
-
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -198,6 +200,9 @@ output * bg #232323 solid_color
 #
 # Media controls:
 #
+
+    bindsym $mod+p exec $mixer
+
     bindsym $mod+F8 exec $play_pause
     bindsym $mod+F6 exec $play_prev
     bindsym $mod+F7 exec $play_next
@@ -268,11 +273,6 @@ bar {
     #    tray_padding 3
     #}
 }
-
-for_window [app_id="firefox"] inhibit_idle fullscreen
-for_window [class=".*.x86_64"] inhibit_idle fullscreen
-for_window [class="Ingression"] inhibit_idle fullscreen
-for_window [class="ArkovsTower"] inhibit_idle fullscreen
 
 include /etc/sway/config.d/*
 include $HOME/.config/sway/config.d/*

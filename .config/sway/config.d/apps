@@ -1,0 +1,10 @@
+# Configure app specifics here
+
+for_window [app_id="firefox"] inhibit_idle fullscreen
+
+# Steam Games
+for_window [class=".*.x86_64"] inhibit_idle fullscreen
+for_window [class="Ingression"] inhibit_idle fullscreen
+for_window [class="ArkovsTower"] inhibit_idle fullscreen
+for_window [class="revolution"] inhibit_idle fullscreen
+

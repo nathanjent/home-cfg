@@ -97,7 +97,10 @@
         "format-icons": {
             "activated": "",
             "deactivated": ""
-        }
+        },
+        "timeout": 90,
+        "tooltip-format-activated": "Idle Inhibitor Active",
+        "tooltip-format-deactivated": "Idle Inhibitor Inactive",
     },
     "tray": {
         // "icon-size": 21,
