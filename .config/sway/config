@@ -14,20 +14,13 @@ set $up k
 set $right l
 
 # Your preferred terminal emulator
-set $term alacritty
-
-# audio control
-#set $sink_volume pactl get-sink-volume @DEFAULT_SINK@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
-#set $source_volume pactl get-source-volume @DEFAULT_SOURCE@ | grep '^Volume:' | cut -d / -f 2 | tr -d ' ' | sed 's/%//'
-#set $volume_down $(pactl set-sink-volume @DEFAULT_SINK@ -5% && $sink_volume)
-#set $volume_up $(pactl set-sink-volume @DEFAULT_SINK@ +5% && $sink_volume)
-#set $volume_mute $(pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl get-sink-mute @DEFAULT_SINK@ | sed -En "/no/ s/.*/$($sink_volume)/p; /yes/ s/.*/0/p")
-#set $mic_mute $(pactl set-source-mute @DEFAULT_SOURCE@ toggle && pactl get-source-mute @DEFAULT_SOURCE@ | sed -En "/no/ s/.*/$($source_volume)/p; /yes/ s/.*/0/p")
+#set $term alacritty
+set $term pgrep -x alacritty >/dev/null && alacritty msg create-window || alacritty
 
 # media control
 
 ## Pulse Audio Mixer
-set $mixer $term -e ncpamixer
+set $mixer pgrep -x alacritty >/dev/null && alacritty msg create-window -e ncpamixer || alacritty -e ncpamixer
 
 # display in waybar instead
 #set $media $(playerctl metadata --format '{{ artist }} - {{ title }}')
@@ -46,8 +39,6 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 #set $launcher rofi -show drun -modi drun | xargs swaymsg exec --
 set $launcher wofi | xargs swaymsg exec --
-
-set $powermenu wofi
 
 bindsym $mod+Control+q exec swaylock 
 bindsym $mod+Shift+p exec $screenshot
