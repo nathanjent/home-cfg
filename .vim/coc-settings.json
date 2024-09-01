@@ -8,6 +8,12 @@
   "java.jdt.ls.lombokSupport.enabled": false,
   "java.jdt.ls.vmargs": "-javaagent:\"/Users/njent/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.28/a2ff5da8bcd8b1b26f36b806ced63213362c6dcc/lombok-1.18.28.jar\" -XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -Xlog:disable",
   "inlayHint.enable": false,
-  "languageserver": {}
+  "languageserver": {
+    "godot": {
+      "host": "127.0.0.1",
+      "filetypes": ["gdscript"],
+      "port": 6005
+    }
+  },
 }
 // vim:ft=jsonc
