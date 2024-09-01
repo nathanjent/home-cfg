@@ -15,12 +15,14 @@ set $right l
 
 # Your preferred terminal emulator
 #set $term alacritty
-set $term pgrep -x alacritty >/dev/null && alacritty msg create-window || alacritty
+#set $term pgrep -x alacritty >/dev/null && alacritty msg create-window || alacritty
+set $term footclient
 
 # media control
 
 ## Pulse Audio Mixer
-set $mixer pgrep -x alacritty >/dev/null && alacritty msg create-window -e ncpamixer || alacritty -e ncpamixer
+#set $mixer pgrep -x alacritty >/dev/null && alacritty msg create-window -e ncpamixer || alacritty -e ncpamixer
+set $mixer $term -e ncpamixer
 
 # display in waybar instead
 #set $media $(playerctl metadata --format '{{ artist }} - {{ title }}')
@@ -266,5 +268,5 @@ bar {
 }
 
 include /etc/sway/config.d/*
-include $HOME/.config/sway/config.d/*
+include ~/.config/sway/config.d/*
 

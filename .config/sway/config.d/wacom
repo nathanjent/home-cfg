@@ -1,0 +1,5 @@
+# map wacom to one monitor
+# get inputs `swaymsg -t get_inputs`
+# get outputs `swaymsg -t get_outputs`
+# `input <input Identifier> map_to_output <output name>
+input 1386:23:Wacom_BambooFun_4x5_Pen map_to_output HDMI-A-1
