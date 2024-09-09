@@ -2,8 +2,6 @@
 " Language:     Java
 "
 " Clear default folds
-syn clear javaFold
-syn clear javaBraces
 syn clear javaDocComment
 
 " Redefine without 'import' keyword so we can define a fold
