@@ -1,7 +1,7 @@
 import = ["/home/njent/.config/alacritty/alacritty-theme/themes/solarized_dark.toml"]
 
 [font]
-size = 10.0
+size = 12.0
 
 [font.bold]
 family = "Monoid"
@@ -17,3 +17,11 @@ family = "Monoid"
 
 [window]
 startup_mode = "Windowed"
+padding.x = 15
+padding.y = 15
+
+[keyboard]
+bindings = [
+    { key = "N", mods = "Command", action = "CreateNewWindow" },
+    { key = "N", mods = "Command | Shift", action = "CreateNewTab" },
+]
