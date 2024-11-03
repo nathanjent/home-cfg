@@ -10,5 +10,3 @@ if [ "$status" = "Playing" ]; then
 elif [ "$status" = "Paused" ]; then
     echo "{ \"percentage\": 0, \"text\": \"$metadata\", \"tooltip\": \"$status\", \"class\": \"${status,,}\" }"
 fi
-
-

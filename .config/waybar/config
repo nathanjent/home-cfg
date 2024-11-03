@@ -181,7 +181,7 @@
         "on-click": "pavucontrol"
     },
     "custom/playerctl": {
-        "format": "🎜 {icon}  {}",
+        "format": "🎜 {} ( {icon} )",
         "return-type": "json",
         "max-length": 50,
         "format-icons": {
