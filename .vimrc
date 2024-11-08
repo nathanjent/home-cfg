@@ -136,7 +136,6 @@ let g:coc_global_extensions=[
             \ 'coc-html',
             \ 'coc-css',
             \ 'coc-java',
-            \ 'coc-java-debug',
             \ 'coc-yaml',
             \ 'coc-highlight',
             \ 'coc-svg',
