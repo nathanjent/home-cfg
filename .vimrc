@@ -169,7 +169,7 @@ if !empty($LOMBOK_JAR)
     call LspAddServer([#{
             \ name: 'jdtls',
             \ filetype: ['java'],
-            \ path: '/opt/homebrew/bin/jdtls',
+            \ path: 'jdtls',
             \ args: [
             \   '--validate-java-version',
             \   '--jvm-arg=-Dlog.level=ALL',
@@ -181,6 +181,13 @@ if !empty($LOMBOK_JAR)
 else
     echoerr 'LOMBOK_JAR environment variable not set!'
 endif
+
+call LspAddServer([#{
+            \ name: 'tsserver',
+            \ filetype: ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+            \ path: 'typescript-language-server',
+            \ args: ['--stdio'],
+            \ }])
 
 " Remap keys for gotos
 nmap <silent> gc :<C-u>LspGotoDeclaration<CR>
