@@ -57,3 +57,6 @@
 [submodule ".vim/pack/submodules/start/vim-lsc"]
 	path = .vim/pack/submodules/start/vim-lsc
 	url = https://github.com/natebosch/vim-lsc.git
+[submodule ".vim/pack/submodules/opt/lsp"]
+	path = .vim/pack/submodules/opt/lsp
+	url = https://github.com/yegappan/lsp
