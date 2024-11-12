@@ -165,12 +165,22 @@ endif
 if has('vim9script')
 packadd lsp
 
-call LspAddServer([#{
+if !empty($LOMBOK_JAR)
+    call LspAddServer([#{
             \ name: 'jdtls',
             \ filetype: ['java'],
             \ path: '/opt/homebrew/bin/jdtls',
-            \ args: ['--validate-java-version', '--jvm-arg=-Dlog.level=ALL', '--jvm-arg=-Dlog.protocol=true', '-data ' . getcwd()],
+            \ args: [
+            \   '--validate-java-version',
+            \   '--jvm-arg=-Dlog.level=ALL',
+            \   '--jvm-arg=-Dlog.protocol=true',
+            \   '--jvm-arg=-javaagent:' . $LOMBOK_JAR,
+            \   '-data ' . getcwd(),
+            \ ],
             \ }])
+else
+    echoerr 'LOMBOK_JAR environment variable not set!'
+endif
 
 " Remap keys for gotos
 nmap <silent> gc :<C-u>LspGotoDeclaration<CR>
