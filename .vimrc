@@ -139,22 +139,59 @@ command! -bang -nargs=* SvnFiles
   \   fzf#vim#with_preview(), <bang>0)
 " }}}
 
-" vim-lsc {{{
-packadd! vim-lsc
-let g:lsc_server_commands = {
-            \ 'javascript': 'typescript-language-server --stdio',
-            \ 'typescript': 'typescript-language-server --stdio',
-            \ 'java': 'jdtls --validate-java-version --jvm-arg=-Dlog.level=ALL --jvm-arg=-Dlog.protocol=true -data ' . getcwd(),
-            \ }
+" lsp {{{
 
-let g:lsc_auto_map = {
-            \ 'defaults': v:true,
-            \ 'GoToDefinition': 'gd',
-            \ }
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
 
-let g:lsc_trace = 'messages'
-" Show all diagnostics
-nnoremap <silent><nowait> <space>a  :<C-u>LSClientAllDiagnostics<cr>
+set cmdheight=2
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+if has('vim9script')
+packadd lsp
+
+call LspAddServer([#{
+            \ name: 'jdtls',
+            \ filetype: ['java'],
+            \ path: '/opt/homebrew/bin/jdtls',
+            \ args: ['--validate-java-version', '--jvm-arg=-Dlog.level=ALL', '--jvm-arg=-Dlog.protocol=true', '-data ' . getcwd()],
+            \ }])
+
+" Remap keys for gotos
+nmap <silent> gc :<C-u>LspGotoDeclaration<CR>
+nmap <silent> gd :<C-u>LspGotoDefinition<CR>
+nmap <silent> gi :<C-u>LspGotoImpl<CR>
+nmap <silent> gr :<C-u>LspShowReferences<CR>
+nmap <silent> gj :<C-u>LspDocumentSymbol<CR>
+
+nmap <silent> K :<C-u>LspHover<CR>
+
+xmap <leader>a  :<C-u>LspCodeAction<CR>
+nmap <leader>a  :<C-u>LspCodeAction<CR>
+xmap <leader>c  :<C-u>LspCodeLens<CR>
+nmap <leader>c  :<C-u>LspCodeLens<CR>
+
+nmap <leader>rn  :<C-u>LspRename<CR>
+
+nnoremap <silent><nowait> <space>a  :<C-u>LspDiag show<cr>
+nnoremap <silent><nowait> <space>o  :<C-u>LspOutline<cr>
+
+endif
 " }}}
 
 " }}}
