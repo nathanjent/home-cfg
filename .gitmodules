@@ -54,3 +54,6 @@
 [submodule ".vim/pack/submodules/start/vim-godot"]
 	path = .vim/pack/submodules/start/vim-godot
 	url = https://github.com/habamax/vim-godot
+[submodule ".vim/pack/submodules/start/vim-lsc"]
+	path = .vim/pack/submodules/start/vim-lsc
+	url = https://github.com/natebosch/vim-lsc.git
