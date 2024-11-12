@@ -166,7 +166,12 @@ if has('vim9script')
 packadd lsp
 
 if !empty($LOMBOK_JAR)
-    call LspAddServer([#{
+    let lombok_arg = '--jvm-arg=-javaagent:' . $LOMBOK_JAR
+else
+    let lombok_arg = ''
+endif
+
+call LspAddServer([#{
             \ name: 'jdtls',
             \ filetype: ['java'],
             \ path: 'jdtls',
@@ -174,13 +179,10 @@ if !empty($LOMBOK_JAR)
             \   '--validate-java-version',
             \   '--jvm-arg=-Dlog.level=ALL',
             \   '--jvm-arg=-Dlog.protocol=true',
-            \   '--jvm-arg=-javaagent:' . $LOMBOK_JAR,
+            \   lombok_arg,
             \   '-data ' . getcwd(),
             \ ],
             \ }])
-else
-    echoerr 'LOMBOK_JAR environment variable not set!'
-endif
 
 call LspAddServer([#{
             \ name: 'tsserver',
