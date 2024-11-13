@@ -165,15 +165,16 @@ endif
 if has('vim9script')
 packadd lsp
 
-if !empty($LOMBOK_JAR)
-    let lombok_arg = '--jvm-arg=-javaagent:' . $LOMBOK_JAR
-else
-    let lombok_arg = ''
-endif
+if executable('jdtls')
+    if !empty($LOMBOK_JAR)
+        let lombok_arg = '--jvm-arg=-javaagent:' . $LOMBOK_JAR
+    else
+        let lombok_arg = ''
+    endif
 
-call LspAddServer([#{
-            \ name: 'jdtls',
-            \ filetype: ['java'],
+    call LspAddServer([#{
+            \ name: 'Eclipse JDT Language Server',
+            \ filetype: 'java',
             \ path: 'jdtls',
             \ args: [
             \   '--validate-java-version',
@@ -183,21 +184,59 @@ call LspAddServer([#{
             \   '-data ' . getcwd(),
             \ ],
             \ }])
+endif
 
-call LspAddServer([#{
-            \ name: 'tsserver',
+if executable('typescript-language-server')
+    call LspAddServer([#{
+            \ name: 'Typescript Language Server',
             \ filetype: ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
             \ path: 'typescript-language-server',
             \ args: ['--stdio'],
             \ }])
+endif
 
-" Remap keys for gotos
-nmap <silent> gc :<C-u>LspGotoDeclaration<CR>
+if executable('yaml-language-server')
+    call LspAddServer([#{
+            \ name: 'Yaml Language Server',
+            \ filetype: 'yaml',
+            \ path: 'yaml-language-server',
+            \ args: ['--stdio'],
+            \ }])
+endif
+
+if executable('sql-language-server')
+    call LspAddServer([#{
+            \ name: 'SQL Language Server',
+            \ filetype: 'sql',
+            \ path: 'sql-language-server',
+            \ args: ['up', '--method=stdio'],
+            \ }])
+endif
+
+if executable('lua-language-server')
+    call LspAddServer([#{
+            \ name: 'Lua Language Server',
+            \ filetype: 'lua',
+            \ path: 'lua-language-server',
+            \ args: [],
+            \ }])
+endif
+
+" Gotos
 nmap <silent> gd :<C-u>LspGotoDefinition<CR>
-nmap <silent> gi :<C-u>LspGotoImpl<CR>
-nmap <silent> gr :<C-u>LspShowReferences<CR>
-nmap <silent> gj :<C-u>LspDocumentSymbol<CR>
+nmap <leader>gc  :<C-u>LspGotoDeclaration<CR>
+nmap <leader>gi  :<C-u>LspGotoImpl<CR>
+nmap <leader>gy  :<C-u>LspGotoTypeDef<CR>
+nmap <leader>gr  :<C-u>LspShowReferences<CR>
+nmap <leader>go  :<C-u>LspOutline<CR>
 
+" Peeks
+nmap <leader>pd  :<C-u>LspPeekDefinition<CR>
+nmap <leader>pc  :<C-u>LspPeekDeclaration<CR>
+nmap <leader>pi  :<C-u>LspPeekImpl<CR>
+nmap <leader>py  :<C-u>LspPeekTypeDef<CR>
+nmap <leader>pr  :<C-u>LspPeekReferences<CR>
+nmap <leader>po  :<C-u>LspDocumentSymbol<CR>
 nmap <silent> K :<C-u>LspHover<CR>
 
 xmap <leader>a  :<C-u>LspCodeAction<CR>
@@ -208,7 +247,6 @@ nmap <leader>c  :<C-u>LspCodeLens<CR>
 nmap <leader>rn  :<C-u>LspRename<CR>
 
 nnoremap <silent><nowait> <space>a  :<C-u>LspDiag show<cr>
-nnoremap <silent><nowait> <space>o  :<C-u>LspOutline<cr>
 
 endif
 " }}}
