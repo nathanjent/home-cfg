@@ -222,6 +222,13 @@ if executable('lua-language-server')
             \ }])
 endif
 
+call LspOptionsSet(#{
+            \ outlineOnRight: v:true,
+            \ snippetSupport: v:true,
+            \ ultisnipsSupport: v:true,
+            \ showInlayHints: v:true,
+            \ })
+
 " Gotos
 nmap <silent> gd :<C-u>LspGotoDefinition<CR>
 nmap <leader>gc  :<C-u>LspGotoDeclaration<CR>
