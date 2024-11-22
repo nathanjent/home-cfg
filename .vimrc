@@ -215,6 +215,26 @@ if executable('lua-language-server')
             \ }])
 endif
 
+if executable('rust-analyzer')
+    call LspAddServer([#{
+            \ name: 'Rust Analyzer Language Server',
+            \ filetype: 'rust',
+            \ path: 'rust-analyzer',
+            \ args: [],
+            \ syncInit: v:true,
+            \  initializationOptions: #{
+            \    inlayHints: #{
+            \      typeHints: #{
+            \        enable: v:true
+            \      },
+            \      parameterHints: #{
+            \        enable: v:true
+            \      }
+            \    },
+            \  }
+            \ }])
+endif
+
 call LspOptionsSet(#{
             \ outlineOnRight: v:true,
             \ snippetSupport: v:true,
