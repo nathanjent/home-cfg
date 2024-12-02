@@ -21,6 +21,8 @@
 !.config/awesome/**
 !.config/waybar/
 !.config/waybar/**
+!.lualanguageserver/
+!.lualanguageserver/**
 
 # Swap file cache
 .vim/swapfiles

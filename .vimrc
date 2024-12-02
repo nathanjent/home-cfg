@@ -218,8 +218,8 @@ if executable('lua-language-server')
             \       enable: v:true,
             \     },
             \     workspace: #{
-            \       checkThirdParty: 'Apply',
-            \       userThirdParty: ['$HOME/.lualanguageserver/addons/busted'],
+            \       checkThirdParty: v:false,
+            \       library: ['$HOME/.lualanguageserver/addons'],
             \     },
             \   },
             \ },
