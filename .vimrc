@@ -212,6 +212,17 @@ if executable('lua-language-server')
             \ filetype: 'lua',
             \ path: 'lua-language-server',
             \ args: [],
+            \ workspaceConfig: #{
+            \   Lua: #{
+            \     hint: #{
+            \       enable: v:true,
+            \     },
+            \     workspace: #{
+            \       checkThirdParty: 'Apply',
+            \       userThirdParty: ['$HOME/.lualanguageserver/addons/busted'],
+            \     },
+            \   },
+            \ },
             \ }])
 endif
 
@@ -222,16 +233,16 @@ if executable('rust-analyzer')
             \ path: 'rust-analyzer',
             \ args: [],
             \ syncInit: v:true,
-            \  initializationOptions: #{
-            \    inlayHints: #{
-            \      typeHints: #{
-            \        enable: v:true
-            \      },
-            \      parameterHints: #{
-            \        enable: v:true
-            \      }
-            \    },
-            \  }
+            \ initializationOptions: #{
+            \   inlayHints: #{
+            \     typeHints: #{
+            \       enable: v:true
+            \     },
+            \     parameterHints: #{
+            \       enable: v:true
+            \     }
+            \   },
+            \ }
             \ }])
 endif
 
