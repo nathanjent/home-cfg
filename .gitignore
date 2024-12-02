@@ -21,6 +21,8 @@
 !.config/awesome/**
 !.config/waybar/
 !.config/waybar/**
+!.hammerspoon/
+!.hammerspoon/**
 
 # Swap file cache
 .vim/swapfiles
