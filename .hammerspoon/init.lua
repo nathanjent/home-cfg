@@ -12,7 +12,7 @@ spoon.MiroWindowsManager:bindHotkeys({
     nextscreen = {hyper, "n"}
   })
 spoon.MiroWindowsManager.fullScreenSizes = { 1, 2 }
-spoon.MiroWindowsManager.sizes = { 2, 3, 4, 3/2, 4/3 }
+spoon.MiroWindowsManager.sizes = { 2, 3, 3/2, 4, 4/3 }
 
 -- Hold mouse 4 button and scroll with pointer, good with trackball mouse 
 -- https://github.com/pqrs-org/Karabiner-archived/issues/814#issuecomment-290100483
