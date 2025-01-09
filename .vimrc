@@ -167,7 +167,7 @@ if has('vim9script')
 packadd lsp
 
 if executable('jdtls')
-    if !empty($LOMBOK_JAR)
+    if !empty($LOMBOK_JAR) && filereadable($LOMBOK_JAR)
         let lombok_arg = '--jvm-arg=-javaagent:' . $LOMBOK_JAR
     else
         let lombok_arg = ''
