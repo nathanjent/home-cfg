@@ -223,6 +223,15 @@ if executable('lua-language-server')
             \ }])
 endif
 
+if executable('sourcekit-lsp')
+    call LspAddServer([#{
+            \ name: 'Swift Language Server',
+            \ filetype: ['swift'],
+            \ path: '/usr/bin/xcrun',
+            \ args: ['sourcekit-lsp'],
+            \ }])
+endif
+
 call LspOptionsSet(#{
             \ outlineOnRight: v:true,
             \ snippetSupport: v:true,
