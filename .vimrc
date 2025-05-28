@@ -270,6 +270,10 @@ endif
 
 " }}}
 
+" View images in terminal with viu {{{
+nnoremap <Leader>gv :!viu '%:p:h'/<cfile><CR>
+" }}}
+
 silent! helptags ALL
 
 finish " break here
