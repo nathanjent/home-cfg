@@ -226,9 +226,18 @@ endif
 if executable('sourcekit-lsp')
     call LspAddServer([#{
             \ name: 'Swift Language Server',
-            \ filetype: ['swift'],
+            \ filetype: 'swift',
             \ path: '/usr/bin/xcrun',
             \ args: ['sourcekit-lsp'],
+            \ }])
+endif
+
+if executable('kotlin-language-server')
+    call LspAddServer([#{
+            \ name: 'Kotlin Language Server',
+            \ filetype: 'kotlin',
+            \ path: 'kotlin-language-server',
+            \ args: [],
             \ }])
 endif
 
